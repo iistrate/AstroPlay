@@ -6,11 +6,11 @@
 class UserInput {
 private:
 	SDL_Event event;
-	enum KEYS {
-		UP,
-		RIGHT,
-		DOWN,
-		LEFT
+	enum {
+		UP = 1,
+		RIGHT = 2,
+		DOWN = 3,
+		LEFT = 4
 	};
 	int pressed = 0;
 public:

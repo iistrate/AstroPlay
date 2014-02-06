@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
+
 //my little helper
 #define P(x) std::cout << #x << "'s value is " << x << std::endl;
 
@@ -24,7 +25,7 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 void Game::run() {
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	do {
-
+		P(ui.getInput());
 		tmanager.draw(m_pRenderer);
 
 	} while (m_brunning);

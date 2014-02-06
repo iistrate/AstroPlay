@@ -21,8 +21,11 @@ int UserInput::getInput() {
 				pressed = LEFT;
 				break;
 			}
-		case SDL_KEYUP:
-			return pressed;
 			break;
+		case SDL_KEYUP:
+			pressed = 0;
+			break;
+		}
 	}
+	return pressed;
 }

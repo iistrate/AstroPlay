@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "TextureManager.h"
+#include "UserInput.h"
 
 class Game {
 private:
@@ -16,6 +17,7 @@ private:
 
 	//compo
 	TextureManager tmanager;
+	UserInput ui;
 public:
 	Game();
 	~Game();
