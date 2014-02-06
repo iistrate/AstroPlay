@@ -1,8 +1,17 @@
 #ifndef TEXTURE_MANAGER_H
 #define TEXTURE_MANAGER_H
+
+#include <SDL.h>
+#include <SDL_image.h>
+
 class TextureManager {
 private:
+	SDL_Rect* m_dstRect;
+	SDL_Texture* m_pTexture;
 public:
 	TextureManager();
+	~TextureManager() {}
+
+	void draw(SDL_Renderer* renderer);
 };
 #endif // end TextureManager.h

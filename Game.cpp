@@ -4,7 +4,7 @@
 //my little helper
 #define P(x) std::cout << #x << "'s value is " << x << std::endl;
 
-void Game::init(const char* title, int x, int y, int w, int h, int flags = SDL_WINDOW_SHOWN) {
+void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
 	m_brunning = true;
 	//initialize sdl
@@ -22,13 +22,20 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags = SDL_W
 	}
 }
 void Game::run() {
-	init("Practicum", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SDL_WINDOW_SHOWN);
+	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	do {
-		quit();
+
+		tmanager.draw(m_pRenderer);
+
 	} while (m_brunning);
 }
 void Game::quit() {
 	m_brunning = false;
+	SDL_Quit();
+	SDL_DestroyWindow(m_pWindow);
+	m_pWindow = 0;
+	SDL_DestroyRenderer(m_pRenderer);
+	m_pRenderer = 0;
 	system("pause");
 }
 

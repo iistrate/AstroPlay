@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL.h>
 #include "TextureManager.h"
+
 class Game {
 private:
 	//sdl
@@ -11,16 +11,16 @@ private:
 
 	//initializers
 	bool m_brunning = false;
-	const int SCREEN_WIDTH = 960;
-	const int SCREEN_HEIGHT = 480; 
+	const int SCREEN_WIDTH = 1200;
+	const int SCREEN_HEIGHT = 900; 
 
 	//compo
-	Text
+	TextureManager tmanager;
 public:
 	Game();
 	~Game();
 
-	void init(const char* title, int x, int y, int w, int h, int flags = SDL_WINDOW_SHOWN);
+	void init(const char* title, int x, int y, int w, int h, int flags);
 	void run();
 	void quit();
 };
