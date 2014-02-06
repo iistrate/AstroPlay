@@ -6,12 +6,13 @@
 
 class TextureManager {
 private:
-	SDL_Rect* m_dstRect;
+	SDL_Rect m_dstRect;
+	SDL_Rect m_srcRect;
 	SDL_Texture* m_pTexture;
 public:
 	TextureManager();
 	~TextureManager() {}
 
-	void draw(SDL_Renderer* renderer);
+	void draw(SDL_Renderer* f_prenderer);
 };
 #endif // end TextureManager.h
