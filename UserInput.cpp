@@ -17,13 +17,19 @@ int UserInput::getInput() {
 				break;
 			case SDLK_DOWN:
 				pressed = DOWN;
+				break;
 			case SDLK_LEFT:
 				pressed = LEFT;
 				break;
+			case SDLK_ESCAPE:
+				pressed = QUIT;
+				break;
 			}
-			break;
 		case SDL_KEYUP:
 			pressed = 0;
+			break;
+		case SDL_QUIT:
+			pressed = QUIT;
 			break;
 		}
 	}
