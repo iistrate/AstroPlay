@@ -5,8 +5,10 @@ UserInput::UserInput(){
 
 }
 int UserInput::getInput() {
+	//poll for event
 	if (SDL_PollEvent(&event) != 0) {
 		switch (event.type) {
+		//if key is pressed
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_UP:
@@ -25,9 +27,11 @@ int UserInput::getInput() {
 				pressed = QUIT;
 				break;
 			}
+		//if key is released
 		case SDL_KEYUP:
 			pressed = 0;
 			break;
+		//if pressed window close btn
 		case SDL_QUIT:
 			pressed = QUIT;
 			break;
