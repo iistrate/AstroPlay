@@ -9,8 +9,6 @@ private:
 	//sdl
 	SDL_Window* m_pWindow = 0;
 	SDL_Renderer* m_pRenderer = 0;
-	//font
-	TTF_Font* m_pfont = 0;
 
 	//initializers
 	bool m_brunning = false;
@@ -28,6 +26,7 @@ private:
 	TextureManager tmanager;
 	UserInput ui;
 
+	std::string m_scommand;
 
 public:
 	Game();

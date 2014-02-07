@@ -9,13 +9,6 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
 	m_brunning = true;
 
-	//initialize font
-	if (TTF_Init() == -1) {
-		std::cout << "FOnts failed to initialize" << std::endl;
-	}
-	else {
-		m_pfont = TTF_OpenFont("ARLRDBD.TTF", 14);
-	}
 	//initialize sdl
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
 		m_pWindow = SDL_CreateWindow(title, x, y, w, h, flags);
@@ -43,7 +36,21 @@ void Game::run() {
 			P(ui.getCommand()); //string of command
 			//movement would go here
 		}
+		m_scommand = ui.getCommand();
+
+		//clear window
+		SDL_RenderClear(m_pRenderer);
+
+		//set color bg to white
+		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+
+		//draw
 		tmanager.draw(m_pRenderer);
+		tmanager.drawText(m_pRenderer, m_scommand);
+
+		//render window
+		SDL_RenderPresent(m_pRenderer);
+
 
 	} while (m_brunning);
 }
@@ -56,10 +63,6 @@ void Game::quit() {
 	m_pWindow = 0;
 	SDL_DestroyRenderer(m_pRenderer);
 	m_pRenderer = 0;
-	//font cleanup
-	TTF_Quit();
-	TTF_CloseFont(m_pfont);
-	m_pfont = 0;
 	system("pause");
 }
 
