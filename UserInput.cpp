@@ -18,33 +18,37 @@ int UserInput::getInput() {
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_UP:
-				pressed = UP;
+				m_ipressed = UP;
 				break;
 			case SDLK_RIGHT:
-				pressed = RIGHT;
+				m_ipressed = RIGHT;
 				break;
 			case SDLK_DOWN:
-				pressed = DOWN;
+				m_ipressed = DOWN;
 				break;
 			case SDLK_LEFT:
-				pressed = LEFT;
+				m_ipressed = LEFT;
 				break;
 			case SDLK_ESCAPE:
-				pressed = QUIT;
+				m_ipressed = QUIT;
+				break;
+			case SDLK_RETURN:
+				m_scommand = "";
+				//send command to python
+				SDL_StopTextInput();
 				break;
 			}
-			break;
 		//if key is released
 		case SDL_KEYUP:
-			pressed = 0;
+			m_ipressed = 0;
 			break;
 		//if pressed window close btn
 		case SDL_QUIT:
-			pressed = QUIT;
+			m_ipressed = QUIT;
 			break;
 		}
 	}
-	return pressed;
+	return m_ipressed;
 }
 
 std::string UserInput::getCommand() {

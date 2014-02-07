@@ -14,7 +14,7 @@ private:
 		LEFT,
 		QUIT = 9
 	};
-	int pressed = 0;
+	int m_ipressed = 0;
 	std::string m_scommand = "";
 public:
 	UserInput();
