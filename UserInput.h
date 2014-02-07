@@ -2,6 +2,7 @@
 #define USER_INPUT_H
 
 #include <SDL.h>
+#include <string>
 
 class UserInput {
 private:
@@ -14,11 +15,13 @@ private:
 		QUIT = 9
 	};
 	int pressed = 0;
+	std::string m_scommand = "";
 public:
 	UserInput();
 	~UserInput() {}
 	
 	int getInput();
+	std::string getCommand();
 
 };
 

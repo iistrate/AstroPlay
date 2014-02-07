@@ -13,6 +13,7 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 		m_pWindow = SDL_CreateWindow(title, x, y, w, h, flags);
 		if (m_pWindow) {
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+			SDL_StartTextInput();
 		}
 		else {
 			std::cout << "Window failed to load" << std::endl;
@@ -27,8 +28,12 @@ void Game::run() {
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	do {
 		input = ui.getInput();
-		if (input == 9) {
+		if (input == QUIT) {
 			quit();
+		}
+		else {
+			P(ui.getCommand());
+			//movement would go here
 		}
 		tmanager.draw(m_pRenderer);
 

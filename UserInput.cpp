@@ -1,14 +1,20 @@
 #include "UserInput.h"
+#include <iostream>
 
 
 UserInput::UserInput(){
 
 }
 int UserInput::getInput() {
+	SDL_StartTextInput();
 	//poll for event
 	if (SDL_PollEvent(&event) != 0) {
 		switch (event.type) {
 		//if key is pressed
+		case SDL_TEXTINPUT:
+			//do text input
+			m_scommand += event.text.text;
+			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_UP:
@@ -27,6 +33,7 @@ int UserInput::getInput() {
 				pressed = QUIT;
 				break;
 			}
+			break;
 		//if key is released
 		case SDL_KEYUP:
 			pressed = 0;
@@ -38,4 +45,8 @@ int UserInput::getInput() {
 		}
 	}
 	return pressed;
+}
+
+std::string UserInput::getCommand() {
+	return m_scommand;
 }
