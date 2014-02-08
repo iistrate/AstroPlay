@@ -26,6 +26,7 @@ private:
 	TextureManager tmanager;
 	UserInput ui;
 
+	//gets string command from user
 	std::string m_scommand;
 
 public:
