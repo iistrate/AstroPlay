@@ -25,11 +25,11 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	}
 }
 void Game::run() {
-	int input = 0;
+	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	do {
-		input = ui.getInput();
-		if (input == QUIT) {
+		f_iinput = ui.getInput();
+		if (f_iinput == QUIT) {
 			quit();
 		}
 		else {
@@ -55,19 +55,17 @@ void Game::run() {
 	} while (m_brunning);
 }
 void Game::quit() {
-	//game cleanup
 	m_brunning = false;
-	//sdl cleanup
-	SDL_Quit();
-	SDL_DestroyWindow(m_pWindow);
-	m_pWindow = 0;
-	SDL_DestroyRenderer(m_pRenderer);
-	m_pRenderer = 0;
-	system("pause");
 }
 
 
 Game::Game() {
 }
 Game::~Game() {
+	//sdl cleanup; font cleanup handled in tmanager
+	SDL_Quit();
+	SDL_DestroyWindow(m_pWindow);
+	m_pWindow = 0;
+	SDL_DestroyRenderer(m_pRenderer);
+	m_pRenderer = 0;
 }

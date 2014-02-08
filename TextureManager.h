@@ -20,7 +20,7 @@ private:
 
 public:
 	TextureManager();
-	~TextureManager() {}
+	~TextureManager();
 
 	void draw(SDL_Renderer* f_prenderer);
 	void drawText(SDL_Renderer* f_prenderer, std::string s);

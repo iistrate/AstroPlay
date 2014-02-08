@@ -37,9 +37,10 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s) {
 	m_srcRect.h = m_dstRect.h = 183;
 
 	SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
-
+}
+TextureManager::~TextureManager() {
 	//font cleanup
-//	TTF_Quit();
-//	TTF_CloseFont(m_pfont);
-//	m_pfont = 0;
+	TTF_Quit();
+	TTF_CloseFont(m_pfont);
+	m_pfont = 0;
 }
