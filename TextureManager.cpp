@@ -1,9 +1,8 @@
 #include "TextureManager.h"
-#include <iostream>
 
 TextureManager::TextureManager() {}
 
-void TextureManager::draw(SDL_Renderer* f_prenderer) {
+void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images) {
 
 	SDL_Surface* pTempSurface = IMG_Load("assets/grauru.jpg");
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);

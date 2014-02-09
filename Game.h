@@ -25,6 +25,7 @@ private:
 	//compo
 	TextureManager tmanager;
 	UserInput ui;
+	std::vector < Image > m_Images;
 
 	//gets string command from user
 	std::string m_scommand;

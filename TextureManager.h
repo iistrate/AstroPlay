@@ -5,6 +5,11 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
+#include <vector>
+#include <iostream>
+
+
+#include "Image.h"
 
 class TextureManager {
 private:
@@ -22,7 +27,7 @@ public:
 	TextureManager();
 	~TextureManager();
 
-	void draw(SDL_Renderer* f_prenderer);
+	void draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images);
 	void drawText(SDL_Renderer* f_prenderer, std::string s);
 };
 #endif // end TextureManager.h

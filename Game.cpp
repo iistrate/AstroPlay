@@ -25,8 +25,14 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	}
 }
 void Game::run() {
+	
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+
+	Image* test = new Image();
+	m_Images.push_back(*test);
+	
+	//game loop
 	do {
 		f_iinput = ui.getInput();
 		if (f_iinput == QUIT) {
@@ -44,8 +50,9 @@ void Game::run() {
 		//set color bg to white
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
-		//draw
-		tmanager.draw(m_pRenderer);
+		//draw images
+		tmanager.draw(m_pRenderer, m_Images);
+		//draw text
 		tmanager.drawText(m_pRenderer, m_scommand);
 
 		//render window
