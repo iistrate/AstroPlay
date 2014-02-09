@@ -3,18 +3,26 @@
 TextureManager::TextureManager() {}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images) {
+	std::string fname = "";
+	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
+		fname = f_Images[i].getFileName();
+		m_pcstr = fname.c_str();
 
-	SDL_Surface* pTempSurface = IMG_Load("assets/grauru.jpg");
-	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);
-	//free and destroy surface
-	SDL_FreeSurface(pTempSurface);
-	pTempSurface = NULL;
+		SDL_Surface* pTempSurface = IMG_Load(m_pcstr);
+		m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);
+		//free and destroy surface
+		SDL_FreeSurface(pTempSurface);
+		pTempSurface = NULL;
 
-	m_srcRect.x = m_dstRect.x;
-	m_srcRect.y = m_dstRect.y;
-	m_srcRect.w = m_dstRect.w = 275;
-	m_srcRect.h = m_dstRect.h = 183;
-	
+		m_srcRect.x = f_Images[i].getSpriteX();
+		m_srcRect.y = f_Images[i].getSpriteY();
+		m_dstRect.x = f_Images[i].getX();
+		m_dstRect.y = f_Images[i].getY();
+		m_srcRect.w = m_dstRect.w = f_Images[i].getWidth();
+		m_srcRect.h = m_dstRect.h = f_Images[i].getHeight();
+
+	}
+
 	SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s) {

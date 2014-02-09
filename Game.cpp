@@ -29,8 +29,9 @@ void Game::run() {
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-	Image* test = new Image();
-	m_Images.push_back(*test);
+	Image* grauru = new Image();
+	grauru->load("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 1);
+	m_Images.push_back(*grauru);
 	
 	//game loop
 	do {
