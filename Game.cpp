@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <iostream>
 
 
 //my little helper
@@ -29,9 +28,12 @@ void Game::run() {
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-	Image* grauru = new Image();
-	grauru->load("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 1);
+	Image* grauru = new Image("assets/grauru.jpg", 300, 300, 275, 183, 0, 0, 1, false, 1, 1);
 	m_Images.push_back(*grauru);
+	Image* tst = new Image("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 1, false, 1, 1);
+	m_Images.push_back(*tst);
+	Image* robot = new Image("assets/sprites-tiles.64x64.bmp", 1, 1, 24, 24, 0, 32, 1, false, 1, 1);
+	m_Images.push_back(*robot);
 	
 	//game loop
 	do {

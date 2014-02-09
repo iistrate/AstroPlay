@@ -3,6 +3,8 @@
 
 #include "TextureManager.h"
 #include "UserInput.h"
+#include <iostream>
+
 
 class Game {
 private:

@@ -3,12 +3,10 @@
 TextureManager::TextureManager() {}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images) {
-	std::string fname = "";
-	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
+	const char* fname = "";
+	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
 		fname = f_Images[i].getFileName();
-		m_pcstr = fname.c_str();
-
-		SDL_Surface* pTempSurface = IMG_Load(m_pcstr);
+		SDL_Surface* pTempSurface = IMG_Load(fname);
 		m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);
 		//free and destroy surface
 		SDL_FreeSurface(pTempSurface);
@@ -21,9 +19,8 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Ima
 		m_srcRect.w = m_dstRect.w = f_Images[i].getWidth();
 		m_srcRect.h = m_dstRect.h = f_Images[i].getHeight();
 
+		SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
 	}
-
-	SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s) {
 	//initialize font
@@ -34,6 +31,7 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s) {
 		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
 	}
 	m_pcstr = s.c_str();
+	printf(m_pcstr);
 	m_pTextSurface = TTF_RenderUTF8_Solid(m_pfont, m_pcstr, { 0, 0, 0 });
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
 	m_pTextSurface = NULL;

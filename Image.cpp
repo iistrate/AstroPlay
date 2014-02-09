@@ -3,13 +3,7 @@
 Image::Image() {
 	m_banimated = false;
 }
-Image::Image(bool a, int f, int tf) {
-	m_banimated = a;
-	m_icurrentFrame = f;
-	m_itotalFrames = tf;
-}
-
-void Image::load(std::string fname, int x, int y, int width, int height, int sX, int sY, int layer) {
+Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int f, int tf) {
 	m_sfname = fname;
 	m_ix = x;
 	m_iy = y;
@@ -18,7 +12,11 @@ void Image::load(std::string fname, int x, int y, int width, int height, int sX,
 	m_ispriteX = sX;
 	m_ispriteY = sY;
 	m_ilayer = layer;
+	m_banimated = a;
+	m_icurrentFrame = f;
+	m_itotalFrames = tf;
 }
+
 
 //getters
 int Image::getX() {
@@ -45,7 +43,7 @@ int Image::getFrame() {
 int Image::getTotalFrames() {
 	return m_itotalFrames;
 }
-std::string Image::getFileName() {
+const char* Image::getFileName() {
 	return m_sfname;
 }
 int Image::getSpriteX() {

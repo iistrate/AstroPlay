@@ -18,17 +18,15 @@ private:
 	int m_icurrentFrame;
 	int m_itotalFrames;
 	//file name
-	std::string m_sfname;
+	const char* m_sfname;
 	//image location
 	int m_ispriteX;
 	int m_ispriteY;
 
 public:
 	Image();
-	Image(bool a, int f, int tf);
+	Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int f, int tf);
 	~Image() {}
-
-	void load(std::string fname, int x, int y, int width, int height, int sX, int sY, int layer);
 	
 	//getters
 	int getX();
@@ -39,7 +37,7 @@ public:
 	bool isAnimated();
 	int getFrame();
 	int getTotalFrames();
-	std::string getFileName();
+	const char* getFileName();
 	int getSpriteX();
 	int getSpriteY();
 };
