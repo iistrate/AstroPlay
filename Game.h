@@ -4,7 +4,7 @@
 #include "TextureManager.h"
 #include "UserInput.h"
 #include <iostream>
-
+#include "World.h"
 
 class Game {
 private:
@@ -27,6 +27,7 @@ private:
 	//compo
 	TextureManager tmanager;
 	UserInput ui;
+	World ProgAdv;
 	std::vector < Image > m_Images;
 
 	//gets string command from user
