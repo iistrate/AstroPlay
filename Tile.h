@@ -8,8 +8,6 @@ class Tile : public GameObject {
 private:
 	int m_type;
 	
-	Image* m_Image;
-	
 	enum {
 		BLANK,
 		INVENTORY,

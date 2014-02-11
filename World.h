@@ -14,6 +14,10 @@ private:
 	const int tileHeight = 24;
 	const int tileWidth = 24;
 
+	//tile vector size
+	int vectorY;
+	int vectorX;
+
 	//tile type
 	enum {
 		BLANK,
@@ -24,6 +28,7 @@ private:
 
 	//holds world's images
 	std::vector < Image* > m_Images;
+	std::vector < std::vector < Tile* > > Map;
 
 public:
 	World() {}
@@ -34,8 +39,8 @@ public:
 	//getters
 	int getHeight();
 	int getWidth();
-
-	std::vector < std::vector < Tile* > > Map;
+	void getImages(std::vector < Image* > f_Images);
+	
 };
 
 #endif // World.h

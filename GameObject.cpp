@@ -26,3 +26,6 @@ int GameObject::getW() {
 int GameObject::getH() {
 	return m_height;
 }
+Image* GameObject::getImage() {
+	return m_Image;
+}

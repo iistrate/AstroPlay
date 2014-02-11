@@ -7,8 +7,8 @@ World::World(int h, int w) {
 	width = w * 0.7;
 
 	//size of vector, figure out how many tiles we need
-	const int vectorY = height / tileHeight;
-	const int vectorX = width / tileWidth;
+	int vectorY = height / tileHeight;
+	int vectorX = width / tileWidth;
 
 	//populate tile vector
 	for (int i = 0; i < vectorY; i++) {
@@ -24,4 +24,11 @@ int World::getHeight() {
 }
 int World::getWidth() {
 	return width;
+}
+void World::getImages(std::vector < Image* > f_Images) {
+	for (int i = 0; i < vectorY; i++) {
+		for (int j = 0; j < vectorX; j++) {
+			f_Images.push_back(Map[i][j]->getImage());
+		}
+	}
 }
