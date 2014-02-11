@@ -2,11 +2,11 @@
 #define GAME_OBJECT_H
 
 class GameObject {
-private:
-	int x;
-	int y;
-	int width;
-	int height;
+protected:
+	int m_x;
+	int m_y;
+	int m_width;
+	int m_height;
 public:
 	//setters
 	void setY(int);

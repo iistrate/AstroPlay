@@ -2,27 +2,27 @@
 
 //setters
 void GameObject::setY(int i) {
-	y = i;
+	m_y = i;
 }
 void GameObject::setX(int i) {
-	x = i;
+	m_x = i;
 }
 void GameObject::setW(int i) {
-	width = i;
+	m_width = i;
 }
 void GameObject::setH(int i) {
-	height = i;
+	m_height = i;
 }
 //getters
 int GameObject::getY() {
-	return y;
+	return m_y;
 }
 int GameObject::getX() {
-	return x;
+	return m_x;
 }
 int GameObject::getW() {
-	return width;
+	return m_width;
 }
 int GameObject::getH() {
-	return height;
+	return m_height;
 }
