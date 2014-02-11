@@ -3,7 +3,7 @@
 Image::Image() {
 	m_banimated = false;
 }
-Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int f, int tf) {
+Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf) {
 	m_sfname = fname;
 	m_ix = x;
 	m_iy = y;
@@ -13,7 +13,20 @@ Image::Image(const char* fname, int x, int y, int width, int height, int sX, int
 	m_ispriteY = sY;
 	m_ilayer = layer;
 	m_banimated = a;
-	m_icurrentFrame = f;
+	m_icurrentFrame = cf;
+	m_itotalFrames = tf;
+}
+void Image::load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf) {
+	m_sfname = fname;
+	m_ix = x;
+	m_iy = y;
+	m_iwidth = width;
+	m_iheight = height;
+	m_ispriteX = sX;
+	m_ispriteY = sY;
+	m_ilayer = layer;
+	m_banimated = a;
+	m_icurrentFrame = cf;
 	m_itotalFrames = tf;
 }
 

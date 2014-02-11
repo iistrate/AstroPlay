@@ -9,7 +9,6 @@ private:
 public:
 	World() {}
 	~World(){}
-
 	//std::vector < std::vector < Tile > > mapTiles (ySize, std::vector < Tile >(xSize));
 };
 

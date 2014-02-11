@@ -16,7 +16,7 @@ private:
 	bool m_brunning = false;
 	const int SCREEN_WIDTH = 1200;
 	const int SCREEN_HEIGHT = 900; 
-	enum m_Keys {
+	enum {
 		UP = 1,
 		RIGHT,
 		DOWN,
