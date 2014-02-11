@@ -27,7 +27,7 @@ private:
 	//compo
 	TextureManager tmanager;
 	UserInput ui;
-	World ProgAdv;
+	World* Askeron;
 	std::vector < Image > m_Images;
 
 	//gets string command from user
@@ -35,10 +35,13 @@ private:
 
 public:
 	Game();
+	//cleans up SDL
 	~Game();
-
+	//initialize SDL, create window 
 	void init(const char* title, int x, int y, int w, int h, int flags);
+	//start game loop
 	void run();
+	//exits game loop;
 	void quit();
 };
 

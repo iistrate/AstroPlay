@@ -34,6 +34,8 @@ void Game::run() {
 	m_Images.push_back(*tst);
 	Image* robot = new Image("assets/sprites-tiles.64x64.bmp", 1, 1, 24, 24, 0, 32, 1, false, 1, 1);
 	m_Images.push_back(*robot);
+
+	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
 	
 	//game loop
 	do {
@@ -45,7 +47,12 @@ void Game::run() {
 			P(ui.getCommand()); //string of command
 			//movement would go here
 		}
+
+		//python script
 		m_scommand = ui.getCommand();
+
+
+
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);
