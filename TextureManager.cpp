@@ -2,22 +2,22 @@
 
 TextureManager::TextureManager() {}
 
-void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images) {
+void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
 	const char* fname = "";
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
-		fname = f_Images[i].getFileName();
+		fname = f_Images[i]->getFileName();
 		SDL_Surface* pTempSurface = IMG_Load(fname);
 		m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);
 		//free and destroy surface
 		SDL_FreeSurface(pTempSurface);
 		pTempSurface = NULL;
 
-		m_srcRect.x = f_Images[i].getSpriteX();
-		m_srcRect.y = f_Images[i].getSpriteY();
-		m_dstRect.x = f_Images[i].getX();
-		m_dstRect.y = f_Images[i].getY();
-		m_srcRect.w = m_dstRect.w = f_Images[i].getWidth();
-		m_srcRect.h = m_dstRect.h = f_Images[i].getHeight();
+		m_srcRect.x = f_Images[i]->getSpriteX();
+		m_srcRect.y = f_Images[i]->getSpriteY();
+		m_dstRect.x = f_Images[i]->getX();
+		m_dstRect.y = f_Images[i]->getY();
+		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();
+		m_srcRect.h = m_dstRect.h = f_Images[i]->getHeight();
 
 		SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
 	}

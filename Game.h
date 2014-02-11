@@ -28,7 +28,7 @@ private:
 	TextureManager tmanager;
 	UserInput ui;
 	World* Askeron;
-	std::vector < Image > m_Images;
+	std::vector < Image* > m_Images;
 
 	//gets string command from user
 	std::string m_scommand;

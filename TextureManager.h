@@ -27,7 +27,7 @@ public:
 	TextureManager();
 	~TextureManager();
 
-	void draw(SDL_Renderer* f_prenderer, std::vector < Image > f_Images);
+	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images);
 	void drawText(SDL_Renderer* f_prenderer, std::string s);
 };
 #endif // end TextureManager.h
