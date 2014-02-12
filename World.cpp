@@ -3,7 +3,7 @@
 
 World::World(int h, int w):tileHeight(24), tileWidth(24) {
 	//height and width as percentage of screen
-	height = h * 0.7;
+	height = h * 1;
 	width = w * 0.7;
 
 	//size of vector, figure out how many tiles we need

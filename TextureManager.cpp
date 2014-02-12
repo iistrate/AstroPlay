@@ -14,7 +14,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 
 		m_srcRect.x = f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();
-		m_dstRect.x = f_Images[i]->getX();
+		m_dstRect.x = f_Images[i]->getX() + 360;
 		m_dstRect.y = f_Images[i]->getY();
 		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();
 		m_srcRect.h = m_dstRect.h = f_Images[i]->getHeight();

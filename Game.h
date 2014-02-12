@@ -14,8 +14,8 @@ private:
 
 	//initializers
 	bool m_brunning = false;
-	const int SCREEN_WIDTH = 1200;
-	const int SCREEN_HEIGHT = 900; 
+	const int SCREEN_WIDTH;
+	const int SCREEN_HEIGHT; 
 	enum {
 		UP = 1,
 		RIGHT,
