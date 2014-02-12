@@ -36,8 +36,10 @@ void Game::run() {
 	//m_Images.push_back(robot);
 
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
-
+	Askeron->getImages(m_Images);
 	
+	std::cout << m_Images.size();
+
 	//game loop
 	do {
 		f_iinput = ui.getInput();
@@ -49,7 +51,6 @@ void Game::run() {
 			//movement would go here
 		}
 
-		Askeron->getImages(m_Images);
 		
 		//python script
 		m_scommand = ui.getCommand();

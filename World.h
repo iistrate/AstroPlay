@@ -11,12 +11,12 @@ private:
 	int width;
 
 	//tile height and width
-	const int tileHeight = 24;
-	const int tileWidth = 24;
+	const int tileHeight;
+	const int tileWidth;
 
 	//tile vector size
-	int vectorY;
-	int vectorX;
+	int m_vectorY;
+	int m_vectorX;
 
 	//tile type
 	enum {
@@ -28,10 +28,10 @@ private:
 
 	//holds world's images
 	std::vector < Image* > m_Images;
-	std::vector < std::vector < Tile* > > Map;
+	//holds tiles
+	std::vector < std::vector < GameObject* > > Map;
 
 public:
-	World() {}
 	//gets px height and width from Game
 	World(int, int);
 	~World(){}
@@ -39,7 +39,7 @@ public:
 	//getters
 	int getHeight();
 	int getWidth();
-	void getImages(std::vector < Image* > f_Images);
+	void getImages(std::vector < Image* > &f_Images);
 	
 };
 
