@@ -80,7 +80,7 @@ void Game::quit() {
 }
 
 
-Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200) {
+Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

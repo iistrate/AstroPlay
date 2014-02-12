@@ -9,11 +9,11 @@
 class Game {
 private:
 	//sdl
-	SDL_Window* m_pWindow = 0;
-	SDL_Renderer* m_pRenderer = 0;
+	SDL_Window* m_pWindow;
+	SDL_Renderer* m_pRenderer;
 
 	//initializers
-	bool m_brunning = false;
+	bool m_brunning;
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
 	enum {
