@@ -29,5 +29,6 @@ public:
 
 	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images);
 	void drawText(SDL_Renderer* f_prenderer, std::string s);
+	void sortByLayer(std::vector < Image* > f_Images);
 };
 #endif // end TextureManager.h

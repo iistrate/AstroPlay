@@ -3,7 +3,13 @@
 TextureManager::TextureManager() {}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
+	//helper vars
 	const char* fname = "";
+	int cameraModifierX = 360;
+	int cameraModifierY = 0;
+	int origX = 0;
+	int origY = 0;
+
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
 		//speed up loading
 		if (fname != f_Images[i]->getFileName()) {
@@ -15,12 +21,17 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			pTempSurface = NULL;
 		}
 
+
 		m_srcRect.x = f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();
-		m_dstRect.x = f_Images[i]->getX() + 360;
-		m_dstRect.y = f_Images[i]->getY();
 		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();
 		m_srcRect.h = m_dstRect.h = f_Images[i]->getHeight();
+
+		//camera modifiers
+		origX = f_Images[i]->getX();
+		origY = f_Images[i]->getY();
+		m_dstRect.x = origX + cameraModifierX;
+		m_dstRect.y = origY + cameraModifierY;
 
 		//magic
 		SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
@@ -54,4 +65,10 @@ TextureManager::~TextureManager() {
 	TTF_Quit();
 	TTF_CloseFont(m_pfont);
 	m_pfont = 0;
+}
+
+void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
+	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
+		std::cout << f_Images[i]->getLayer() << std::endl;
+	}
 }

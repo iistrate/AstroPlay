@@ -28,17 +28,12 @@ void Game::run() {
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-	//Image* grauru = new Image("assets/grauru.jpg", 300, 300, 275, 183, 0, 0, 1, false, 1, 1);
-	//m_Images.push_back(grauru);
-	//Image* tst = new Image("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 1, false, 1, 1);
-	//m_Images.push_back(tst);
-	//Image* robot = new Image("assets/sprites-tiles.64x64.bmp", 1, 1, 24, 24, 0, 32, 1, false, 1, 1);
-	//m_Images.push_back(robot);
+	//custom images
+	Image* grauru = new Image("assets/grauru.jpg", 300, 300, 275, 183, 0, 0, 2, false, 1, 1);
+	Image* tst = new Image("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 2, false, 1, 1);
+	Image* robot = new Image("assets/sprites-tiles.64x64.bmp", 1, 1, 24, 24, 0, 32, 2, false, 1, 1);
 
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
-	Askeron->getImages(m_Images);
-	
-	std::cout << m_Images.size();
 
 	//game loop
 	do {
@@ -55,8 +50,13 @@ void Game::run() {
 		//python script
 		m_scommand = ui.getCommand();
 
-
-
+		//get images
+		Askeron->getImages(m_Images);
+		//custom
+		m_Images.push_back(grauru);
+		m_Images.push_back(tst);
+		m_Images.push_back(robot);
+		//tmanager.sortByLayer(m_Images);
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);

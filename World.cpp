@@ -30,4 +30,5 @@ void World::getImages(std::vector < Image* > &f_Images) {
 			f_Images.push_back(Map[i][j]->getImage());
 		}
 	}
+	//player image
 }
