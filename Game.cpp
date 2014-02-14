@@ -52,6 +52,7 @@ void Game::run() {
 
 		//get images
 		Askeron->getImages(m_Images);
+		std::cout << m_Images.size() << std::endl;
 		//custom
 		m_Images.push_back(grauru);
 		m_Images.push_back(tst);
