@@ -21,9 +21,7 @@ private:
 	//tile type
 	enum {
 		BLANK,
-		INVENTORY,
-		PLAYER,
-		ENEMY
+		CLIFF,
 	};
 
 	//holds world's images

@@ -5,6 +5,7 @@
 #include "UserInput.h"
 #include <iostream>
 #include "World.h"
+#include "GUI.h"
 
 class Game {
 private:
@@ -28,6 +29,7 @@ private:
 	TextureManager tmanager;
 	UserInput ui;
 	World* Askeron;
+	GUI gameGUI;
 	std::vector < Image* > m_Images;
 
 	//gets string command from user
