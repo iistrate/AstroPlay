@@ -28,13 +28,69 @@ void Game::run() {
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-	//custom images
-	Image* grauru = new Image("assets/grauru.jpg", 300, 300, 275, 183, 0, 0, 2, false, 1, 1);
-	Image* tst = new Image("assets/grauru.jpg", 100, 100, 275, 183, 0, 0, 2, false, 1, 1);
-	Image* robot = new Image("assets/sprites-tiles.64x64.bmp", 1, 1, 24, 24, 0, 32, 2, false, 1, 1);
+	//size of vector, figure out how many tiles we need
+	int tileHeight = 32;
+	int tileWidth = 96;
+	int m_vectorY = SCREEN_HEIGHT / tileHeight;
+	int m_vectorX = (SCREEN_WIDTH / tileWidth) * 0.45;
 
+
+	//create world
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
 
+	//get images
+	Askeron->getImages(m_Images);
+	//to be moved
+	//custom images
+	for (int i = 0; i < m_vectorY; i++) {
+		for (int j = 0; j < m_vectorX; j++) {
+			//bordered left
+			if (j == 0) {
+				//top 
+				if (i == 0) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", j * tileWidth, i * tileHeight, 32, 36, 34, 53, 2, 0, 0, 0));
+				}
+				//bottom
+				else if (i == (m_vectorY - 1)) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", j * tileWidth, i * tileHeight, 32, 36, 34, 136, 2, 0, 0, 0));
+				}
+				//everything else
+				else {
+					m_Images.push_back(new Image("assets/sprites-ui.png", j * tileWidth, i * tileHeight, 32, 36, 34, 96, 2, 0, 0, 0));
+				}
+			}
+			//bordered right
+			else if (j == (m_vectorX - 1)) {
+				//top
+				if (i == 0) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, 32, 36, 176, 53, 2, 0, 0, 0));
+				}
+				//bottom
+				else if (i == (m_vectorY - 1)) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, 32, 36, 176, 136, 2, 0, 0, 0));
+				}
+				//everything else
+				else {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, 32, 36, 176, 96, 2, 0, 0, 0));
+				}
+			}
+			//gray area 
+			else {
+				//top
+				if (i == 0) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, tileWidth, tileHeight, 72, 53, 2, 0, 0, 0));
+				}
+				//bottom
+				else if (i == (m_vectorY - 1)) {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, tileWidth, tileHeight, 72, 136, 2, 0, 0, 0));
+				}
+				//everything else
+				else {
+					m_Images.push_back(new Image("assets/sprites-ui.png", (j * tileWidth) - 66, i * tileHeight, tileWidth, tileHeight, 72, 96, 2, 0, 0, 0));
+				}
+			}
+		}
+	}
 	//game loop
 	do {
 		f_iinput = ui.getInput();
@@ -45,19 +101,10 @@ void Game::run() {
 			//P(ui.getCommand()); //string of command
 			//movement would go here
 		}
-
+		
 		
 		//python script
 		m_scommand = ui.getCommand();
-
-		//get images
-		Askeron->getImages(m_Images);
-		std::cout << m_Images.size() << std::endl;
-		//custom
-		m_Images.push_back(grauru);
-		m_Images.push_back(tst);
-		m_Images.push_back(robot);
-		//tmanager.sortByLayer(m_Images);
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);
@@ -72,8 +119,6 @@ void Game::run() {
 
 		//render window
 		SDL_RenderPresent(m_pRenderer);
-
-
 	} while (m_brunning);
 }
 void Game::quit() {

@@ -5,7 +5,7 @@ TextureManager::TextureManager() {}
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
 	//helper vars
 	const char* fname = "";
-	int cameraModifierX = 360;
+	int cameraModifierX = 0;
 	int cameraModifierY = 0;
 	int origX = 0;
 	int origY = 0;

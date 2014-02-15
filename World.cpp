@@ -7,8 +7,8 @@ World::World(int h, int w):tileHeight(32), tileWidth(64) {
 	width = w * 0.7;
 
 	//size of vector, figure out how many tiles we need
-	m_vectorY = height / tileHeight;
-	m_vectorX = width / tileWidth;
+	m_vectorY = (height / tileHeight*2);
+	m_vectorX = (width / tileWidth*2);
 
 	//populate tile vector
 	for (int i = 0; i < m_vectorY; i++) {
