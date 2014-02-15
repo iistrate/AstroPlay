@@ -45,8 +45,8 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s) {
 	else {
 		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
 	}
+
 	m_pcstr = s.c_str();
-	printf(m_pcstr);
 	m_pTextSurface = TTF_RenderUTF8_Solid(m_pfont, m_pcstr, { 0, 0, 0 });
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
 	m_pTextSurface = NULL;

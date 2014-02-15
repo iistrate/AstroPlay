@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include "Tile.h"
+#include "Player.h"
 #include <vector>
 
 class World {
@@ -28,6 +29,8 @@ private:
 	std::vector < Image* > m_Images;
 	//holds tiles
 	std::vector < std::vector < GameObject* > > Map;
+
+	Player* Ioan;
 
 public:
 	//gets px height and width from Game

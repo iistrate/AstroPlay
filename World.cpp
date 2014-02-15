@@ -23,6 +23,7 @@ World::World(int h, int w):tileHeight(32), tileWidth(64) {
 			}
 		}
 	}
+	Ioan = new Player(800, 300, 29, 37, 1);
 }
 int World::getHeight() {
 	return height;
@@ -36,5 +37,5 @@ void World::getImages(std::vector < Image* > &f_Images) {
 			f_Images.push_back(Map[i][j]->getImage());
 		}
 	}
-	//player image
+	f_Images.push_back(Ioan->getImage());
 }

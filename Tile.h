@@ -10,7 +10,7 @@ private:
 	
 	enum {
 		BLANK,
-		INVENTORY,
+		CLIFF,
 		PLAYER,
 		ENEMY
 	};
