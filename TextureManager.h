@@ -18,10 +18,12 @@ private:
 	SDL_Texture* m_pTexture;
 
 	//font
-	SDL_Surface* m_pTextSurface = 0;
-	TTF_Font* m_pfont = 0;
+	SDL_Surface* m_pTextSurface;
+	TTF_Font* m_pfont;
 	const char *m_pcstr;
 	std::string m_scommand;
+
+	Uint32 FPS;
 
 public:
 	TextureManager();

@@ -1,6 +1,6 @@
 #include "TextureManager.h"
 
-TextureManager::TextureManager() {}
+TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0) {}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
 	//helper vars
@@ -39,7 +39,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
 
-	Uint32 lineWidth = wrap;
+	Uint32 lineWrap = wrap;
 	int yPos = y;
 	int xPos = x;
 
@@ -50,9 +50,8 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	else {
 		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
 	}
-
 	m_pcstr = s.c_str();
-	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, { 0, 0, 0 }, lineWidth);
+	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, { 0, 0, 0 }, lineWrap);
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
 	m_pTextSurface = NULL;
 	SDL_QueryTexture(m_pTexture, 0, 0, &m_srcRect.w, &m_srcRect.h);
