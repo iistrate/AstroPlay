@@ -1,0 +1,1 @@
+Slow frame load, need to add fps counter and optimize image loading.

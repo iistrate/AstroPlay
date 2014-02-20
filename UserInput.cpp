@@ -33,8 +33,7 @@ int UserInput::getInput() {
 				m_ipressed = QUIT;
 				break;
 			case SDLK_RETURN:
-				m_scommand = "";
-				//send command to python
+				m_scommand += "/n";
 				SDL_StopTextInput();
 				break;
 			}

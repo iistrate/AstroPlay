@@ -61,9 +61,11 @@ void Game::run() {
 
 		//draw images
 		tmanager.draw(m_pRenderer, m_Images);
-		//draw text
-		tmanager.drawText(m_pRenderer, m_scommand);
-
+		
+		//draw command
+		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
+		//instruction settings
+		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 		//render window
 		SDL_RenderPresent(m_pRenderer);
 	} while (m_brunning);
