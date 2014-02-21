@@ -68,14 +68,25 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 		//render window
 		SDL_RenderPresent(m_pRenderer);
+		P(m_turn);
+		fpsCap();
+		m_turn++;
 	} while (m_brunning);
+}
+void Game::fpsCap() {
+	//time in seconds
+	m_fps = SDL_GetTicks() / 1000;
+	if (m_fps < 1000 / m_fpsCap) {
+		//fps per seconds - time difference from when the loop started till the end in seconds
+		SDL_Delay((1000 / m_fpsCap) - (m_fps / 1000));
+	}
 }
 void Game::quit() {
 	m_brunning = false;
 }
 
 
-Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0) {
+Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(15), m_turn(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

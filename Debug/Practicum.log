@@ -1,20 +1,8 @@
-﻿Build started 2/20/2014 1:56:31 PM.
+﻿Build started 2/20/2014 7:27:49 PM.
      1>Project "C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Practicum\Practicum.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp GameObject.cpp GUI.cpp Image.cpp Main.cpp Player.cpp TextureManager.cpp Tile.cpp UserInput.cpp World.cpp
-         World.cpp
-         UserInput.cpp
-         Tile.cpp
-         TextureManager.cpp
-         Player.cpp
-         Main.cpp
-         Image.cpp
-         GUI.cpp
-     1>c:\users\ioan\documents\visual studio 2013\projects\practicum\practicum\gui.cpp(13): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\ioan\documents\visual studio 2013\projects\practicum\practicum\gui.cpp(79): warning C4018: '<' : signed/unsigned mismatch
-         GameObject.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
          Game.cpp
-         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Debug\Practicum.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Debug\Practicum.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Debug\Practicum.lib" /MACHINE:X86 Debug\Game.obj
          Debug\GameObject.obj
@@ -26,10 +14,9 @@
          Debug\Tile.obj
          Debug\UserInput.obj
          Debug\World.obj
-     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Practicum.vcxproj -> C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Debug\Practicum.exe
      1>Done Building Project "C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Practicum\Practicum.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.47
+Time Elapsed 00:00:00.75

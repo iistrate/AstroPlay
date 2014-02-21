@@ -12,6 +12,11 @@ private:
 	//sdl
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+	//fps thingy
+	Uint32 m_fps;
+	Uint32 m_fpsCap;
+
+	int m_turn;
 
 	//initializers
 	bool m_brunning;
@@ -45,6 +50,8 @@ public:
 	void run();
 	//exits game loop;
 	void quit();
+	//fps
+	void fpsCap();
 };
 
 #endif // end Game.h
