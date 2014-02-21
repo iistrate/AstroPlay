@@ -66,9 +66,10 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
 		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
+		//show turn
+		tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
 		//render window
 		SDL_RenderPresent(m_pRenderer);
-		P(m_turn);
 		fpsCap();
 		m_turn++;
 	} while (m_brunning);
@@ -86,7 +87,7 @@ void Game::quit() {
 }
 
 
-Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(15), m_turn(0) {
+Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(10), m_turn(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager
