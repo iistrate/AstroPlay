@@ -4,14 +4,15 @@ TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0) {
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
 	//helper vars
-	const char* fname = "";
 	int cameraModifierX = 0;
 	int cameraModifierY = 0;
 	int origX = 0;
 	int origY = 0;
 
+	const char* fname = "";
+
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
-		//speed up loading
+		//speed up loading; only load image sprite once
 		if (fname != f_Images[i]->getFileName()) {
 			fname = f_Images[i]->getFileName();
 			SDL_Surface* pTempSurface = IMG_Load(fname);
@@ -20,7 +21,6 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			SDL_FreeSurface(pTempSurface);
 			pTempSurface = NULL;
 		}
-
 
 		m_srcRect.x = f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();

@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-UserInput::UserInput(){
+UserInput::UserInput() : m_ipressed(0), m_imouseX(0), m_imouseY(0) {
 
 }
 int UserInput::getInput() {
@@ -36,6 +36,8 @@ int UserInput::getInput() {
 				m_scommand += "/n";
 				SDL_StopTextInput();
 				break;
+			case SDL_MOUSEMOTION:
+				break;
 			}
 		//if key is released
 		case SDL_KEYUP:
@@ -52,4 +54,10 @@ int UserInput::getInput() {
 
 std::string UserInput::getCommand() {
 	return m_scommand;
+}
+int UserInput::getMouseX() {
+	return m_imouseX;
+}
+int UserInput::getMouseY() {
+	return m_imouseY;
 }
