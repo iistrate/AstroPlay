@@ -40,17 +40,18 @@ void Game::run() {
 
 	//game loop
 	do {
-		f_iinput = ui.getInput();
+		f_iinput = ui.getCommand();
+
 		if (f_iinput == QUIT) {
 			quit();
 		}
 		else {
-			//P(ui.getCommand()); //string of command
+			//P(ui.getStringCommand()); //string of command
 			//movement would go 
 		}
 		
 		//python script
-		m_scommand = ui.getCommand();
+		m_scommand = ui.getStringCommand();
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);
@@ -67,6 +68,10 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 		//show turn
 		tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
+		//show mouse position
+		tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
+		//show command
+		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
 		//render window
 		SDL_RenderPresent(m_pRenderer);
 		fpsCap();

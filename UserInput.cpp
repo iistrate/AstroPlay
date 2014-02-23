@@ -5,7 +5,7 @@
 UserInput::UserInput() : m_ipressed(0), m_imouseX(0), m_imouseY(0) {
 
 }
-int UserInput::getInput() {
+int UserInput::getCommand() {
 	SDL_StartTextInput();
 	//poll for event
 	if (SDL_PollEvent(&event) != 0) {
@@ -37,6 +37,7 @@ int UserInput::getInput() {
 				SDL_StopTextInput();
 				break;
 			}
+			break;
 		//if key is released
 		case SDL_KEYUP:
 			m_ipressed = 0;
@@ -64,7 +65,7 @@ int UserInput::getInput() {
 	return m_ipressed;
 }
 
-std::string UserInput::getCommand() {
+std::string UserInput::getStringCommand() {
 	return m_scommand;
 }
 int UserInput::getMouseX() {
