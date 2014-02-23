@@ -36,12 +36,13 @@ int UserInput::getInput() {
 				m_scommand += "/n";
 				SDL_StopTextInput();
 				break;
-			case SDL_MOUSEMOTION:
-				break;
 			}
 		//if key is released
 		case SDL_KEYUP:
 			m_ipressed = 0;
+			break;
+		case SDL_MOUSEMOTION:
+			SDL_GetMouseState(&m_imouseX, &m_imouseY);
 			break;
 		//if pressed window close btn
 		case SDL_QUIT:

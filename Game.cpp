@@ -48,7 +48,7 @@ void Game::run() {
 			//P(ui.getCommand()); //string of command
 			//movement would go here
 		}
-		
+		P(ui.getMouseX());
 		
 		//python script
 		m_scommand = ui.getCommand();
