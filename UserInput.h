@@ -7,11 +7,13 @@
 class UserInput {
 private:
 	SDL_Event event;
-	enum m_Keys {
+	enum {
 		UP = 1,
 		RIGHT,
 		DOWN,
 		LEFT,
+		LEFT_MOUSE_BUTTON,
+		RIGHT_MOUSE_BUTTON,
 		QUIT = 9
 	};
 	int m_ipressed;

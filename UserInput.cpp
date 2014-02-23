@@ -44,6 +44,17 @@ int UserInput::getInput() {
 		case SDL_MOUSEMOTION:
 			SDL_GetMouseState(&m_imouseX, &m_imouseY);
 			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (SDL_BUTTON_LEFT) {
+				m_ipressed = LEFT_MOUSE_BUTTON;
+			}
+			else if (SDL_BUTTON_RIGHT){
+				m_ipressed = RIGHT_MOUSE_BUTTON;
+			}
+			break;
+		case SDL_MOUSEBUTTONUP:
+			m_ipressed = 0;
+			break;
 		//if pressed window close btn
 		case SDL_QUIT:
 			m_ipressed = QUIT;

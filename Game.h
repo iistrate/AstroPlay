@@ -27,6 +27,8 @@ private:
 		RIGHT,
 		DOWN,
 		LEFT,
+		LEFT_MOUSE_BUTTON,
+		RIGHT_MOUSE_BUTTON,
 		QUIT = 9
 	};
 
