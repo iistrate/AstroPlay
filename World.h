@@ -24,6 +24,15 @@ private:
 		BLANK,
 		CLIFF,
 	};
+	enum {
+		UP = 1,
+		RIGHT,
+		DOWN,
+		LEFT,
+		LEFT_MOUSE_BUTTON,
+		RIGHT_MOUSE_BUTTON,
+		QUIT = 9
+	};
 
 	//holds world's images
 	std::vector < Image* > m_Images;
@@ -36,6 +45,9 @@ public:
 	//gets px height and width from Game
 	World(int, int);
 	~World(){}
+
+	void update();
+	void movePlayer(int);
 
 	//getters
 	int getHeight();

@@ -30,7 +30,8 @@ public:
 	
 	//setter
 	void load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf);
-
+	void setX(int);
+	void setY(int);
 	//getters
 	int getX();
 	int getY();

@@ -47,7 +47,12 @@ void Game::run() {
 		}
 		else {
 			//P(ui.getStringCommand()); //string of command
-			//movement would go 
+			//move player
+			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
+				Askeron->movePlayer(f_iinput);
+			}
+			//update game 
+			Askeron->update();
 		}
 		
 		//python script

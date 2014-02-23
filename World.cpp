@@ -25,6 +25,38 @@ World::World(int h, int w):tileHeight(32), tileWidth(64) {
 	}
 	Ioan = new Player(800, 300, 29, 37, 1);
 }
+void World::movePlayer(int d) {
+	Ioan->setDirection(d);
+	int oldX = Ioan->getX();
+	int oldY = Ioan->getY();
+	int newY = 0;
+	int newX = 0;
+	int speed = Ioan->getSpeed();
+	const int direction = d;
+	switch (d) {
+	case UP:
+		newY = oldY - speed;
+		newX = oldX;
+		break;
+	case RIGHT:
+		newX = oldX + speed;
+		newY = oldY;
+		break;
+	case DOWN:
+		newY = oldY + speed;
+		newX = oldX;
+		break;
+	case LEFT:
+		newX = oldX - speed;
+		newY = oldY;
+		break;
+	}
+	Ioan->setX(newX);
+	Ioan->setY(newY);
+}
+void World::update() {
+	std::cout << Ioan->getY() << std::endl;
+}
 int World::getHeight() {
 	return height;
 }

@@ -3,9 +3,11 @@
 //setters
 void GameObject::setY(int i) {
 	m_y = i;
+	m_Image->setY(m_y);
 }
 void GameObject::setX(int i) {
 	m_x = i;
+	m_Image->setX(m_x);
 }
 void GameObject::setW(int i) {
 	m_width = i;

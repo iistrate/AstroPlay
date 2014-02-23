@@ -29,7 +29,12 @@ void Image::load(const char* fname, int x, int y, int width, int height, int sX,
 	m_icurrentFrame = cf;
 	m_itotalFrames = tf;
 }
-
+void Image::setX(int x) {
+	m_ix = x;
+}
+void Image::setY(int y) {
+	m_iy = y;
+}
 
 //getters
 int Image::getX() {
