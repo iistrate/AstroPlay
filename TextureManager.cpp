@@ -12,7 +12,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	const char* fname = "";
 
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
-		//speed up loading; only load image sprite once
+		//speed up loading; only load image sprites once per image set; counter says 3 (which is good)
 		if (fname != f_Images[i]->getFileName()) {
 			fname = f_Images[i]->getFileName();
 			SDL_Surface* pTempSurface = IMG_Load(fname);
@@ -21,7 +21,6 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			SDL_FreeSurface(pTempSurface);
 			pTempSurface = NULL;
 		}
-
 		m_srcRect.x = f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();
 		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();

@@ -8,6 +8,9 @@ Tile::Tile(int x, int y, int w, int h, int t) {
 	m_height = h;
 	m_type = t;
 }
+Tile::~Tile() {
+	delete m_Image;
+}
 
 void Tile::setType(int t) {
 	m_type = t;

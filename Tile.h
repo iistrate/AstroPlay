@@ -17,7 +17,7 @@ private:
 	};
 public:
 	Tile(int x, int y, int w, int h, int t);
-	~Tile(){}
+	~Tile();
 
 	void setType(int t);
 	int getType();
