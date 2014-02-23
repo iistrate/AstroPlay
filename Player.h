@@ -11,6 +11,14 @@ private:
 public:
 	Player(int x, int y, int w, int h, int t);
 	~Player();
+
+	void setDirection(int);
+	void setSpeed(int);
+	void setMoving(bool);
+
+	int getDirection();
+	int getSpeed();
+	bool isMoving();
 };
 
 #endif

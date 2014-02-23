@@ -10,3 +10,22 @@ Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(20),
 Player::~Player() {
 	delete m_Image;
 }
+void Player::setDirection(int i) {
+	m_idirection = i;
+}
+void Player::setMoving(bool b) {
+	m_bmoving = b;
+}
+void Player::setSpeed(int i) {
+	m_ispeed = i;
+}
+
+int Player::getDirection() {
+	return m_idirection;
+}
+bool Player::isMoving() {
+	return m_bmoving;
+}
+int Player::getSpeed() {
+	return m_ispeed;
+}
