@@ -35,6 +35,7 @@ public:
 	void setX(int);
 	void setY(int);
 	void setFlipped(bool b);
+	void setCurrentFrame(int i);
 	//getters
 	bool isFlipped();
 	int getX();

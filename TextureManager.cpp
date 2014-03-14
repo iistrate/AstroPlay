@@ -8,6 +8,12 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	int cameraModifierY = 0;
 	int origX = 0;
 	int origY = 0;
+	int currentFrame = 1;
+	int totalFrames = 2;
+	int width = 0;
+	int height = 0;
+	bool animated = false;
+	bool flipped = false;
 
 	const char* fname = "";
 
@@ -21,15 +27,28 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			SDL_FreeSurface(pTempSurface);
 			pTempSurface = NULL;
 		}
+		//image vars
+		animated = f_Images[i]->isAnimated();
+		flipped = f_Images[i]->isFlipped();
+		width = f_Images[i]->getWidth();
+		height = f_Images[i]->getHeight();
+		currentFrame = f_Images[i]->getFrame();
+		totalFrames = f_Images[i]->getTotalFrames();
+
 		//see if image is flipped 
-		if (f_Images[i]->isFlipped()) {
+		if (flipped) {
 			f_flip = SDL_FLIP_HORIZONTAL;
 		}
+		else {
+			f_flip = SDL_FLIP_NONE;
+		}
 
-		m_srcRect.x = f_Images[i]->getSpriteX();
+		m_srcRect.w = m_dstRect.w = width;
+		m_srcRect.h = m_dstRect.h = height;
+		
+		m_srcRect.x = f_Images[i]->isAnimated() ? f_Images[i]->getSpriteX() + (currentFrame * width) : f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();
-		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();
-		m_srcRect.h = m_dstRect.h = f_Images[i]->getHeight();
+
 
 		//camera modifiers
 		origX = f_Images[i]->getX();
@@ -39,6 +58,12 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 
 		//magic
 		SDL_RenderCopyEx(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect, NULL, NULL, f_flip);
+		//see if it is animated
+		if (animated) {
+			currentFrame = currentFrame + 1 == totalFrames ? 1 : currentFrame + 1;
+			//set frame
+			f_Images[i]->setCurrentFrame(currentFrame);
+		}
 	}
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {

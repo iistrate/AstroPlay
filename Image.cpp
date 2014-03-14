@@ -40,6 +40,9 @@ void Image::setY(int y) {
 void Image::setFlipped(bool b) {
 	m_bflipped = b;
 }
+void Image::setCurrentFrame(int i) {
+	m_icurrentFrame = i;
+}
 
 //getters
 bool Image::isFlipped() {
