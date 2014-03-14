@@ -1,9 +1,11 @@
 #include "Image.h"
 
-Image::Image() {
-	m_banimated = false;
+Image::Image() :m_banimated(false), m_bflipped(false) {
 }
-Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf) {
+Image::~Image() {
+	delete this;
+}
+Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf): m_bflipped(false) {
 	m_sfname = fname;
 	m_ix = x;
 	m_iy = y;
@@ -35,8 +37,14 @@ void Image::setX(int x) {
 void Image::setY(int y) {
 	m_iy = y;
 }
+void Image::setFlipped(bool b) {
+	m_bflipped = b;
+}
 
 //getters
+bool Image::isFlipped() {
+	return m_bflipped;
+}
 int Image::getX() {
 	return m_ix;
 }

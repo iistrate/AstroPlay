@@ -22,17 +22,21 @@ private:
 	//image location
 	int m_ispriteX;
 	int m_ispriteY;
+	//is flipped
+	bool m_bflipped;
 
 public:
 	Image();
 	Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf);
-	~Image() {}
+	~Image();
 	
 	//setter
 	void load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf);
 	void setX(int);
 	void setY(int);
+	void setFlipped(bool b);
 	//getters
+	bool isFlipped();
 	int getX();
 	int getY();
 	int getWidth();

@@ -11,6 +11,12 @@ Player::~Player() {
 	delete m_Image;
 }
 void Player::setDirection(int i) {
+	if (m_idirection == LEFT) {
+		m_Image->setFlipped(true);
+	}
+	else if (m_idirection == RIGHT) {
+		m_Image->setFlipped(false);
+	}
 	m_idirection = i;
 }
 void Player::setMoving(bool b) {

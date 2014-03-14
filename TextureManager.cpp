@@ -2,7 +2,7 @@
 
 TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0) {}
 
-void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images) {
+void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
 	int cameraModifierX = 0;
 	int cameraModifierY = 0;
@@ -21,6 +21,11 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			SDL_FreeSurface(pTempSurface);
 			pTempSurface = NULL;
 		}
+		//see if image is flipped 
+		if (f_Images[i]->isFlipped()) {
+			f_flip = SDL_FLIP_HORIZONTAL;
+		}
+
 		m_srcRect.x = f_Images[i]->getSpriteX();
 		m_srcRect.y = f_Images[i]->getSpriteY();
 		m_srcRect.w = m_dstRect.w = f_Images[i]->getWidth();
@@ -33,7 +38,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 		m_dstRect.y = origY + cameraModifierY;
 
 		//magic
-		SDL_RenderCopy(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect);
+		SDL_RenderCopyEx(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect, NULL, NULL, f_flip);
 	}
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
@@ -42,18 +47,16 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	int yPos = y;
 	int xPos = x;
 
-	//initialize font
-	if (TTF_Init() == -1) {
-		std::cout << "Fonts failed to initialize" << std::endl;
-	}
-	else {
-		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
-	}
 	m_pcstr = s.c_str();
+	
 	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, { 0, 0, 0 }, lineWrap);
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
-	m_pTextSurface = NULL;
+
+	//figure out width and height
 	SDL_QueryTexture(m_pTexture, 0, 0, &m_srcRect.w, &m_srcRect.h);
+	//free resources
+	SDL_FreeSurface(m_pTextSurface);
+	m_pTextSurface = NULL;
 
 	m_dstRect.x = x;
 	m_dstRect.y = y;
@@ -74,5 +77,14 @@ TextureManager::~TextureManager() {
 void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
 	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
 		std::cout << f_Images[i]->getLayer() << std::endl;
+	}
+}
+void TextureManager::initFont() {
+	//initialize font
+	if (TTF_Init() == -1) {
+		std::cout << "Fonts failed to initialize" << std::endl;
+	}
+	else {
+		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
 	}
 }

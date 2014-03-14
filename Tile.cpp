@@ -10,6 +10,7 @@ Tile::Tile(int x, int y, int w, int h, int t) {
 }
 Tile::~Tile() {
 	delete m_Image;
+	delete this;
 }
 
 void Tile::setType(int t) {

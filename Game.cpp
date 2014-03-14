@@ -38,6 +38,9 @@ void Game::run() {
 	Askeron->getImages(m_Images);
 	gameGUI.getImages(m_Images);
 
+	//init font
+	tmanager.initFont();
+
 	//game loop
 	do {
 		f_iinput = ui.getCommand();
@@ -66,7 +69,6 @@ void Game::run() {
 
 		//draw images
 		tmanager.draw(m_pRenderer, m_Images);
-		
 		//draw command
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
@@ -79,8 +81,10 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
 		//render window
 		SDL_RenderPresent(m_pRenderer);
+
 		fpsCap();
 		m_turn++;
+
 	} while (m_brunning);
 }
 void Game::fpsCap() {

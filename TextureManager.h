@@ -29,8 +29,10 @@ public:
 	TextureManager();
 	~TextureManager();
 
-	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images);
+	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap = 305);
 	void sortByLayer(std::vector < Image* > f_Images);
+
+	void initFont();
 };
 #endif // end TextureManager.h

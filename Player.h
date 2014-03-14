@@ -8,6 +8,15 @@ private:
 	int m_idirection;
 	int m_ispeed;
 	bool m_bmoving;
+	enum {
+		UP = 1,
+		RIGHT,
+		DOWN,
+		LEFT,
+		LEFT_MOUSE_BUTTON,
+		RIGHT_MOUSE_BUTTON,
+		QUIT = 9
+	};
 public:
 	Player(int x, int y, int w, int h, int t);
 	~Player();

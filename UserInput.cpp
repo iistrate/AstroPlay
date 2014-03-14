@@ -6,13 +6,13 @@ UserInput::UserInput() : m_ipressed(0), m_imouseX(0), m_imouseY(0) {
 
 }
 int UserInput::getCommand() {
-	SDL_StartTextInput();
 	//poll for event
 	if (SDL_PollEvent(&event) != 0) {
 		switch (event.type) {
 		//if key is pressed
 		case SDL_TEXTINPUT:
 			//do text input
+			SDL_StartTextInput();
 			m_scommand += event.text.text;
 			break;
 		case SDL_KEYDOWN:
@@ -34,7 +34,6 @@ int UserInput::getCommand() {
 				break;
 			case SDLK_RETURN:
 				m_scommand += "/n";
-				SDL_StopTextInput();
 				break;
 			}
 			break;
@@ -49,7 +48,7 @@ int UserInput::getCommand() {
 			if (SDL_BUTTON_LEFT) {
 				m_ipressed = LEFT_MOUSE_BUTTON;
 			}
-			else if (SDL_BUTTON_RIGHT){
+			else {
 				m_ipressed = RIGHT_MOUSE_BUTTON;
 			}
 			break;
@@ -59,6 +58,7 @@ int UserInput::getCommand() {
 		//if pressed window close btn
 		case SDL_QUIT:
 			m_ipressed = QUIT;
+			SDL_StopTextInput();
 			break;
 		}
 	}

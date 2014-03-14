@@ -44,7 +44,7 @@ private:
 public:
 	//gets px height and width from Game
 	World(int, int);
-	~World(){}
+	~World();
 
 	void update();
 	void movePlayer(int);
