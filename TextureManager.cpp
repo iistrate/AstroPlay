@@ -1,11 +1,11 @@
 #include "TextureManager.h"
 
-TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0) {}
+TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), m_icamX(0), m_icamY(0) {}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
-	int cameraModifierX = 0;
-	int cameraModifierY = 0;
+	int cameraModifierX = ((1200 / 2) - 29) - m_icamX;
+	int cameraModifierY = ((600 / 2) - 37) - m_icamY;
 	int origX = 0;
 	int origY = 0;
 	int currentFrame = 1;
@@ -112,4 +112,10 @@ void TextureManager::initFont() {
 	else {
 		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
 	}
+}
+void TextureManager::setCamX(int i) {
+	m_icamX = i;
+}
+void TextureManager::setCamY(int i) {
+	m_icamY = i;
 }

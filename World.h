@@ -53,6 +53,8 @@ public:
 	int getHeight();
 	int getWidth();
 	void getImages(std::vector < Image* > &f_Images);
+	int getPlayerX();
+	int getPlayerY();
 	
 };
 

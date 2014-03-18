@@ -55,7 +55,7 @@ void World::movePlayer(int d) {
 	Ioan->setY(newY);
 }
 void World::update() {
-	std::cout << Ioan->getY() << std::endl;
+	//std::cout << Ioan->getY() << std::endl;
 }
 int World::getHeight() {
 	return height;
@@ -70,4 +70,10 @@ void World::getImages(std::vector < Image* > &f_Images) {
 		}
 	}
 	f_Images.push_back(Ioan->getImage());
+}
+int World::getPlayerX() {
+	return Ioan->getX();
+}
+int World::getPlayerY() {
+	return Ioan->getY();
 }

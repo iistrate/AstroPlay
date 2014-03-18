@@ -33,6 +33,9 @@ void Game::run() {
 
 	//create world
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
+	//set camera
+	tmanager.setCamX(Askeron->getPlayerX());
+	tmanager.setCamY(Askeron->getPlayerY());
 
 	//get images
 	Askeron->getImages(m_Images);
@@ -53,6 +56,9 @@ void Game::run() {
 			//move player
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
 				Askeron->movePlayer(f_iinput);
+				//set camera
+				tmanager.setCamX(Askeron->getPlayerX());
+				tmanager.setCamY(Askeron->getPlayerY());
 			}
 			//update game 
 			Askeron->update();
@@ -100,7 +106,7 @@ void Game::quit() {
 }
 
 
-Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(10), m_turn(0) {
+Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(50), m_turn(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

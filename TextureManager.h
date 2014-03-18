@@ -25,6 +25,9 @@ private:
 
 	Uint32 FPS;
 
+	int m_icamX;
+	int m_icamY;
+
 public:
 	TextureManager();
 	~TextureManager();
@@ -34,5 +37,8 @@ public:
 	void sortByLayer(std::vector < Image* > f_Images);
 
 	void initFont();
+
+	void setCamX(int);
+	void setCamY(int);
 };
 #endif // end TextureManager.h
