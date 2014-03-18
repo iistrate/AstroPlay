@@ -1,11 +1,11 @@
 #include "Image.h"
 
-Image::Image() :m_banimated(false), m_bflipped(false) {
+Image::Image() :m_banimated(false), m_bflipped(false), m_bstatic(false) {
 }
 Image::~Image() {
 	delete this;
 }
-Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf): m_bflipped(false) {
+Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static) : m_bflipped(false) {
 	m_sfname = fname;
 	m_ix = x;
 	m_iy = y;
@@ -17,8 +17,9 @@ Image::Image(const char* fname, int x, int y, int width, int height, int sX, int
 	m_banimated = a;
 	m_icurrentFrame = cf;
 	m_itotalFrames = tf;
+	m_bstatic = f_static;
 }
-void Image::load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf) {
+void Image::load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static) {
 	m_sfname = fname;
 	m_ix = x;
 	m_iy = y;
@@ -42,6 +43,9 @@ void Image::setFlipped(bool b) {
 }
 void Image::setCurrentFrame(int i) {
 	m_icurrentFrame = i;
+}
+void Image::setStatic(bool b) {
+	m_bstatic = b;
 }
 
 //getters
@@ -80,4 +84,7 @@ int Image::getSpriteX() {
 }
 int Image::getSpriteY() {
 	return m_ispriteY;
+}
+bool Image::isStatic() {
+	return m_bstatic;
 }

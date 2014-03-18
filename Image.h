@@ -24,18 +24,21 @@ private:
 	int m_ispriteY;
 	//is flipped
 	bool m_bflipped;
+	//is static
+	bool m_bstatic;
 
 public:
 	Image();
-	Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf);
+	Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static);
 	~Image();
 	
 	//setter
-	void load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf);
+	void load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static);
 	void setX(int);
 	void setY(int);
 	void setFlipped(bool b);
 	void setCurrentFrame(int i);
+	void setStatic(bool b);
 	//getters
 	bool isFlipped();
 	int getX();
@@ -49,6 +52,7 @@ public:
 	const char* getFileName();
 	int getSpriteX();
 	int getSpriteY();
+	bool isStatic();
 };
 
 #endif // Image.h
