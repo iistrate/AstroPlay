@@ -23,7 +23,7 @@ World::World(int h, int w):tileHeight(32), tileWidth(64) {
 			}
 		}
 	}
-	Ioan = new Player(650, 475, 29, 37, 1);
+	Ioan = new Player(600, 400, 29, 37, 1);
 }
 void World::movePlayer(int d) {
 	Ioan->setDirection(d);

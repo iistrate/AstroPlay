@@ -35,6 +35,12 @@ int UserInput::getCommand() {
 			case SDLK_RETURN:
 				m_scommand += "/n";
 				break;
+			case SDLK_DELETE:
+				m_scommand += "/d";
+				break;
+			case SDLK_BACKSPACE:
+				m_scommand += "/d";
+				break;
 			}
 			break;
 		//if key is released
