@@ -3,6 +3,7 @@
 
 #include "Tile.h"
 #include "Player.h"
+#include "Camera.h"
 #include <vector>
 
 class World {
@@ -39,7 +40,10 @@ private:
 	//holds tiles
 	std::vector < std::vector < GameObject* > > Map;
 
+	//player
 	Player* Ioan;
+	//camera
+	Camera* Cam;
 
 public:
 	//gets px height and width from Game
@@ -53,10 +57,8 @@ public:
 	int getHeight();
 	int getWidth();
 	void getImages(std::vector < Image* > &f_Images);
-	int getPlayerX();
-	int getPlayerY();
-	int getPlayerSpeed();
-	
+	int getCameraX();
+	int getCameraY();	
 };
 
 #endif // World.h

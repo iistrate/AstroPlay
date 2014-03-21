@@ -51,8 +51,12 @@ void World::movePlayer(int d) {
 		newY = oldY;
 		break;
 	}
+	//set layer position
 	Ioan->setX(newX);
 	Ioan->setY(newY);
+	//set camera position
+	Cam->setCamX(newX);
+	Cam->setCamY(newY);
 }
 void World::update() {
 	//std::cout << Ioan->getY() << std::endl;
@@ -71,13 +75,10 @@ void World::getImages(std::vector < Image* > &f_Images) {
 	}
 	f_Images.push_back(Ioan->getImage());
 }
-//interface for Player->TextureManager
-int World::getPlayerX() {
-	return Ioan->getX();
+//interface for Camera->TextureManager
+int World::getCameraY() {
+	return Cam->getCamY();
 }
-int World::getPlayerY() {
-	return Ioan->getY();
-}
-int World::getPlayerSpeed() {
-	return Ioan->getSpeed();
+int World::getCameraX() {
+	return Cam->getCamX();
 }

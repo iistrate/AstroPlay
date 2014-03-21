@@ -128,6 +128,3 @@ void TextureManager::setCamX(int i) {
 void TextureManager::setCamY(int i) {
 	m_icamY = i;
 }
-void TextureManager::setCamSpeed(int i) {
-	m_icamSpeed = i;
-}

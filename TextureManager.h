@@ -50,6 +50,5 @@ public:
 
 	void setCamX(int);
 	void setCamY(int);
-	void setCamSpeed(int);
 };
 #endif // end TextureManager.h

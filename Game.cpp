@@ -34,8 +34,8 @@ void Game::run() {
 	//create world
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
 	//set camera
-	tmanager.setCamX(Askeron->getPlayerX());
-	tmanager.setCamY(Askeron->getPlayerY());
+	tmanager.setCamX(Askeron->getCameraX());
+	tmanager.setCamY(Askeron->getCameraY());
 
 	//get images
 	Askeron->getImages(m_Images);
@@ -57,9 +57,8 @@ void Game::run() {
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
 				Askeron->movePlayer(f_iinput);
 				//set camera
-				tmanager.setCamX(Askeron->getPlayerX());
-				tmanager.setCamY(Askeron->getPlayerY());
-				tmanager.setCamSpeed(Askeron->getPlayerSpeed());
+				tmanager.setCamX(Askeron->getCameraX());
+				tmanager.setCamY(Askeron->getCameraY());
 			}
 			//update game 
 			Askeron->update();
