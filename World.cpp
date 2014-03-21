@@ -71,9 +71,13 @@ void World::getImages(std::vector < Image* > &f_Images) {
 	}
 	f_Images.push_back(Ioan->getImage());
 }
+//interface for Player->TextureManager
 int World::getPlayerX() {
 	return Ioan->getX();
 }
 int World::getPlayerY() {
 	return Ioan->getY();
+}
+int World::getPlayerSpeed() {
+	return Ioan->getSpeed();
 }

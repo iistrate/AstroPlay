@@ -47,6 +47,9 @@ void Image::setCurrentFrame(int i) {
 void Image::setStatic(bool b) {
 	m_bstatic = b;
 }
+void Image::setCamera(bool b) {
+	m_bcamera = b;
+}
 
 //getters
 bool Image::isFlipped() {
@@ -87,4 +90,7 @@ int Image::getSpriteY() {
 }
 bool Image::isStatic() {
 	return m_bstatic;
+}
+bool Image::isCamera() {
+	return m_bcamera;
 }

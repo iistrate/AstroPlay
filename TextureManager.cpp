@@ -1,11 +1,12 @@
 #include "TextureManager.h"
 
-TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), m_icamX(0), m_icamY(0) {}
+TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), m_icamX(0), m_icamY(0),
+									m_ilevelHeight(1800), m_ilevelWidth(2400), m_iscreenHeight(900), m_iscreenWidth(1200){}
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
-	int cameraModifierX = ((1200 / 2) - 29) - m_icamX;
-	int cameraModifierY = ((600 / 2) - 37) - m_icamY;
+	int cameraModifierX = ((m_iscreenWidth / 2) - 129) - m_icamX;
+	int cameraModifierY = ((m_iscreenHeight / 2) - 37) - m_icamY;
 	int origX = 0;
 	int origY = 0;
 	int currentFrame = 1;
@@ -53,8 +54,16 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 		//camera modifiers
 		origX = f_Images[i]->getX();
 		origY = f_Images[i]->getY();
+
 		m_dstRect.x = f_Images[i]->isStatic() ? origX : origX + cameraModifierX;
 		m_dstRect.y = f_Images[i]->isStatic() ? origY : origY + cameraModifierY;
+		
+		if (f_Images[i]->isCamera() && (m_icamX < m_iscreenWidth)) {
+			m_dstRect.x = origX;
+		}
+		else {
+			origX + cameraModifierX;
+		}
 
 		//magic
 		SDL_RenderCopyEx(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect, NULL, NULL, f_flip);
@@ -118,4 +127,7 @@ void TextureManager::setCamX(int i) {
 }
 void TextureManager::setCamY(int i) {
 	m_icamY = i;
+}
+void TextureManager::setCamSpeed(int i) {
+	m_icamSpeed = i;
 }

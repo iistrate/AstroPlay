@@ -25,8 +25,18 @@ private:
 
 	Uint32 FPS;
 
+	//camera position
 	int m_icamX;
 	int m_icamY;
+	int m_icamSpeed;
+
+	//level dimension
+	int m_ilevelWidth;
+	int m_ilevelHeight;
+
+	//screen dimension
+	int m_iscreenWidth;
+	int m_iscreenHeight;
 
 public:
 	TextureManager();
@@ -40,5 +50,6 @@ public:
 
 	void setCamX(int);
 	void setCamY(int);
+	void setCamSpeed(int);
 };
 #endif // end TextureManager.h

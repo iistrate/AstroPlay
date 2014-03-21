@@ -55,6 +55,7 @@ public:
 	void getImages(std::vector < Image* > &f_Images);
 	int getPlayerX();
 	int getPlayerY();
+	int getPlayerSpeed();
 	
 };
 

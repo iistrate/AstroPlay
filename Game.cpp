@@ -59,6 +59,7 @@ void Game::run() {
 				//set camera
 				tmanager.setCamX(Askeron->getPlayerX());
 				tmanager.setCamY(Askeron->getPlayerY());
+				tmanager.setCamSpeed(Askeron->getPlayerSpeed());
 			}
 			//update game 
 			Askeron->update();

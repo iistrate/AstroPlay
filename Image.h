@@ -26,6 +26,7 @@ private:
 	bool m_bflipped;
 	//is static
 	bool m_bstatic;
+	bool m_bcamera;
 
 public:
 	Image();
@@ -36,9 +37,11 @@ public:
 	void load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static);
 	void setX(int);
 	void setY(int);
-	void setFlipped(bool b);
-	void setCurrentFrame(int i);
-	void setStatic(bool b);
+	void setFlipped(bool);
+	void setCurrentFrame(int);
+	void setStatic(bool);
+	void setCamera(bool);
+
 	//getters
 	bool isFlipped();
 	int getX();
@@ -53,6 +56,7 @@ public:
 	int getSpriteX();
 	int getSpriteY();
 	bool isStatic();
+	bool isCamera();
 };
 
 #endif // Image.h
