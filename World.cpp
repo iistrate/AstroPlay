@@ -55,8 +55,8 @@ void World::movePlayer(int d) {
 	Ioan->setX(newX);
 	Ioan->setY(newY);
 	//set camera position
-	Cam->setCamX(newX);
-	Cam->setCamY(newY);
+	Cam1.setCamX(newX);
+	Cam1.setCamY(newY);
 }
 void World::update() {
 	//std::cout << Ioan->getY() << std::endl;
@@ -76,9 +76,6 @@ void World::getImages(std::vector < Image* > &f_Images) {
 	f_Images.push_back(Ioan->getImage());
 }
 //interface for Camera->TextureManager
-int World::getCameraY() {
-	return Cam->getCamY();
-}
-int World::getCameraX() {
-	return Cam->getCamX();
+Camera World::getCamera() {
+	return Cam1;
 }

@@ -43,7 +43,7 @@ private:
 	//player
 	Player* Ioan;
 	//camera
-	Camera* Cam;
+	Camera Cam1;
 
 public:
 	//gets px height and width from Game
@@ -57,8 +57,8 @@ public:
 	int getHeight();
 	int getWidth();
 	void getImages(std::vector < Image* > &f_Images);
-	int getCameraX();
-	int getCameraY();	
+
+	Camera getCamera();	
 };
 
 #endif // World.h

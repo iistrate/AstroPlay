@@ -22,6 +22,8 @@ private:
 	bool m_brunning;
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
+
+	//controls
 	enum {
 		UP = 1,
 		RIGHT,

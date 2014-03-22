@@ -3,7 +3,6 @@
 Image::Image() :m_banimated(false), m_bflipped(false), m_bstatic(false) {
 }
 Image::~Image() {
-	delete this;
 }
 Image::Image(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static) : m_bflipped(false) {
 	m_sfname = fname;
@@ -19,6 +18,7 @@ Image::Image(const char* fname, int x, int y, int width, int height, int sX, int
 	m_itotalFrames = tf;
 	m_bstatic = f_static;
 }
+//setters
 void Image::load(const char* fname, int x, int y, int width, int height, int sX, int sY, int layer, bool a, int cf, int tf, bool f_static) {
 	m_sfname = fname;
 	m_ix = x;

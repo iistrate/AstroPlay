@@ -3,11 +3,12 @@
 
 class Camera {
 private:
+	//camera position
 	int m_icamX;
 	int m_icamY;
 public:
-	Camera():m_icamX(0), m_icamY(0) {}
-	~Camera() {}
+	Camera();
+	~Camera();
 	//setters
 	void setCamX(int);
 	void setCamY(int);

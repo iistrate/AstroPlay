@@ -57,13 +57,6 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 
 		m_dstRect.x = f_Images[i]->isStatic() ? origX : origX + cameraModifierX;
 		m_dstRect.y = f_Images[i]->isStatic() ? origY : origY + cameraModifierY;
-		
-		if (f_Images[i]->isCamera() && (m_icamX < m_iscreenWidth)) {
-			m_dstRect.x = origX;
-		}
-		else {
-			origX + cameraModifierX;
-		}
 
 		//magic
 		SDL_RenderCopyEx(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect, NULL, NULL, f_flip);

@@ -33,9 +33,10 @@ void Game::run() {
 
 	//create world
 	Askeron = new World(SCREEN_HEIGHT, SCREEN_WIDTH);
+
 	//set camera
-	tmanager.setCamX(Askeron->getCameraX());
-	tmanager.setCamY(Askeron->getCameraY());
+	tmanager.setCamX(Askeron->getCamera().getCamX());
+	tmanager.setCamY(Askeron->getCamera().getCamY());
 
 	//get images
 	Askeron->getImages(m_Images);
@@ -57,8 +58,8 @@ void Game::run() {
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
 				Askeron->movePlayer(f_iinput);
 				//set camera
-				tmanager.setCamX(Askeron->getCameraX());
-				tmanager.setCamY(Askeron->getCameraY());
+				tmanager.setCamX(Askeron->getCamera().getCamX());
+				tmanager.setCamY(Askeron->getCamera().getCamY());
 			}
 			//update game 
 			Askeron->update();
@@ -75,6 +76,7 @@ void Game::run() {
 
 		//draw images
 		tmanager.draw(m_pRenderer, m_Images);
+
 		//draw command
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
@@ -85,6 +87,7 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
 		//show command
 		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
+
 		//render window
 		SDL_RenderPresent(m_pRenderer);
 
