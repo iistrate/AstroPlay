@@ -5,8 +5,8 @@ TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), 
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
-	int cameraModifierX = ((m_iscreenWidth / 2) - 129) - m_icamX;
-	int cameraModifierY = ((m_iscreenHeight / 2) - 37) - m_icamY;
+	int cameraModifierX = (m_iscreenWidth / 2) - m_icamX;
+	int cameraModifierY = (m_iscreenHeight / 2) - m_icamY;
 	int origX = 0;
 	int origY = 0;
 	int currentFrame = 1;
@@ -55,13 +55,16 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 		origX = f_Images[i]->getX();
 		origY = f_Images[i]->getY();
 
+		
 		m_dstRect.x = f_Images[i]->isStatic() ? origX : origX + cameraModifierX;
 		m_dstRect.y = f_Images[i]->isStatic() ? origY : origY + cameraModifierY;
 
 		//magic
 		SDL_RenderCopyEx(f_prenderer, m_pTexture, &m_srcRect, &m_dstRect, NULL, NULL, f_flip);
+
 		//see if it is animated
 		if (animated) {
+			//figure out next frame
 			currentFrame = currentFrame + 1 == totalFrames ? 1 : currentFrame + 1;
 			//set frame
 			f_Images[i]->setCurrentFrame(currentFrame);

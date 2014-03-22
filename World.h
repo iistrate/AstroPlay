@@ -9,12 +9,12 @@
 class World {
 private:
 	//px h and w
-	int height;
-	int width;
+	int m_iheight;
+	int m_iwidth;
 
 	//tile height and width
-	const int tileHeight;
-	const int tileWidth;
+	const int m_itileHeight;
+	const int m_itileWidth;
 
 	//tile vector size
 	int m_vectorY;

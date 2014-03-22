@@ -1,14 +1,14 @@
 #include "World.h"
 #include <iostream>
 
-World::World(int h, int w):tileHeight(32), tileWidth(64) {
+World::World(int h, int w):m_itileHeight(32), m_itileWidth(64) {
 	//height and width as percentage of screen
-	height = h * 2;
-	width = w * 2;
+	m_iheight = h * 2;
+	m_iwidth = w * 2;
 
 	//size of vector, figure out how many tiles we need
-	m_vectorY = (height / tileHeight*2);
-	m_vectorX = (width / tileWidth*2);
+	m_vectorY = (m_iheight / m_itileHeight*2);
+	m_vectorX = (m_iwidth / m_itileWidth*2);
 
 	//populate tile vector
 	for (int i = 0; i < m_vectorY; i++) {
@@ -16,14 +16,16 @@ World::World(int h, int w):tileHeight(32), tileWidth(64) {
 		for (int j = 0; j < m_vectorX; j++) {
 			//first and last rows
 			if (i == 0 || i == (m_vectorY - 1)) {
-				Map[i].push_back(new Tile((j * tileWidth) - (tileWidth / 2)*j, (i * tileHeight) - (tileHeight / 2)*i, tileWidth, tileHeight, BLANK));
+				Map[i].push_back(new Tile((j * m_itileWidth) - (m_itileWidth / 2)*j, (i * m_itileHeight) - (m_itileHeight / 2)*i, m_itileWidth, m_itileHeight, BLANK));
 			}
 			else {
-				Map[i].push_back(new Tile((j * tileWidth) - (tileWidth / 2)*j, (i * tileHeight) - (tileHeight / 2)*i, tileWidth, tileHeight, BLANK));
+				Map[i].push_back(new Tile((j * m_itileWidth) - (m_itileWidth / 2)*j, (i * m_itileHeight) - (m_itileHeight / 2)*i, m_itileWidth, m_itileHeight, BLANK));
 			}
 		}
 	}
 	Ioan = new Player(600, 400, 29, 37, 1);
+	Cam1.setCamX(620);
+	Cam1.setCamY(460);
 }
 void World::movePlayer(int d) {
 	Ioan->setDirection(d);
@@ -55,6 +57,7 @@ void World::movePlayer(int d) {
 	Ioan->setX(newX);
 	Ioan->setY(newY);
 	//set camera position
+	if (newX)
 	Cam1.setCamX(newX);
 	Cam1.setCamY(newY);
 }
@@ -62,10 +65,10 @@ void World::update() {
 	//std::cout << Ioan->getY() << std::endl;
 }
 int World::getHeight() {
-	return height;
+	return m_iheight;
 }
 int World::getWidth() {
-	return width;
+	return m_iwidth;
 }
 void World::getImages(std::vector < Image* > &f_Images) {
 	for (int i = 0; i < m_vectorY; i++) {
