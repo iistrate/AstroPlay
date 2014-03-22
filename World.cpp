@@ -43,19 +43,19 @@ void World::movePlayer(int d) {
 
 	switch (d) {
 	case UP:
-		newY = oldY - speed;
+		newY = oldY - speed > 0 ? oldY - speed : oldY;
 		newX = oldX;
 		break;
 	case RIGHT:
-		newX = oldX + speed;
+		newX = oldX + speed < m_iwidth ? oldX + speed : oldX;
 		newY = oldY;
 		break;
 	case DOWN:
-		newY = oldY + speed;
+		newY = oldY + speed < m_iheight ? oldY + speed : oldY;
 		newX = oldX;
 		break;
 	case LEFT:
-		newX = oldX - speed;
+		newX = oldX - speed > 0 ? oldX - speed : oldX;
 		newY = oldY;
 		break;
 	}
@@ -63,8 +63,8 @@ void World::movePlayer(int d) {
 	Ioan->setX(newX);
 	Ioan->setY(newY);
 	//set camera position
-	PlayerCamera.setCamX(newCamX);
-	PlayerCamera.setCamY(newCamY);
+	PlayerCamera.setCamX(newX);
+	PlayerCamera.setCamY(newY);
 }
 void World::update() {
 	//std::cout << Ioan->getY() << std::endl;
