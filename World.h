@@ -43,7 +43,7 @@ private:
 	//player
 	Player* Ioan;
 	//camera
-	Camera Cam1;
+	Camera PlayerCamera;
 
 public:
 	//gets px height and width from Game

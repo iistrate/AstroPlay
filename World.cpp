@@ -24,17 +24,23 @@ World::World(int h, int w):m_itileHeight(32), m_itileWidth(64) {
 		}
 	}
 	Ioan = new Player(600, 400, 29, 37, 1);
-	Cam1.setCamX(620);
-	Cam1.setCamY(460);
+	//initial cam setup
+	PlayerCamera.setCamX(Ioan->getX() + 20);
+	PlayerCamera.setCamY(Ioan->getY() + 60);
 }
 void World::movePlayer(int d) {
+	//Player
 	Ioan->setDirection(d);
 	int oldX = Ioan->getX();
 	int oldY = Ioan->getY();
-	int newY = 0;
-	int newX = 0;
+	int newY = 0, newX = 0;
 	int speed = Ioan->getSpeed();
 	const int direction = d;
+	//Camera
+	int oldCamX = PlayerCamera.getCamX();
+	int oldCamY = PlayerCamera.getCamY();
+	int newCamX = 0, newCamY = 0;
+
 	switch (d) {
 	case UP:
 		newY = oldY - speed;
@@ -53,13 +59,12 @@ void World::movePlayer(int d) {
 		newY = oldY;
 		break;
 	}
-	//set layer position
+	//set player position
 	Ioan->setX(newX);
 	Ioan->setY(newY);
 	//set camera position
-	if (newX)
-	Cam1.setCamX(newX);
-	Cam1.setCamY(newY);
+	PlayerCamera.setCamX(newCamX);
+	PlayerCamera.setCamY(newCamY);
 }
 void World::update() {
 	//std::cout << Ioan->getY() << std::endl;
@@ -80,5 +85,5 @@ void World::getImages(std::vector < Image* > &f_Images) {
 }
 //interface for Camera->TextureManager
 Camera World::getCamera() {
-	return Cam1;
+	return PlayerCamera;
 }

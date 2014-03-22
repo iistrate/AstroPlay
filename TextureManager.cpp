@@ -44,6 +44,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			f_flip = SDL_FLIP_NONE;
 		}
 
+		//width and height of image
 		m_srcRect.w = m_dstRect.w = width;
 		m_srcRect.h = m_dstRect.h = height;
 		
@@ -51,11 +52,9 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 		m_srcRect.y = f_Images[i]->getSpriteY();
 
 
-		//camera modifiers
 		origX = f_Images[i]->getX();
 		origY = f_Images[i]->getY();
-
-		
+		//where to draw at
 		m_dstRect.x = f_Images[i]->isStatic() ? origX : origX + cameraModifierX;
 		m_dstRect.y = f_Images[i]->isStatic() ? origY : origY + cameraModifierY;
 
@@ -73,10 +72,13 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
 
+	//where to wrap text
 	Uint32 lineWrap = wrap;
+
 	int yPos = y;
 	int xPos = x;
 
+	//from string to c string
 	m_pcstr = s.c_str();
 	
 	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, { 0, 0, 0 }, lineWrap);
@@ -88,9 +90,11 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	SDL_FreeSurface(m_pTextSurface);
 	m_pTextSurface = NULL;
 
-	m_dstRect.x = x;
-	m_dstRect.y = y;
+	//where to draw at
+	m_dstRect.x = xPos;
+	m_dstRect.y = yPos;
 
+	//width and height of text
 	m_dstRect.w = m_srcRect.w;
 	m_dstRect.h = m_srcRect.h;
 
