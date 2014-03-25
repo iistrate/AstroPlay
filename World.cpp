@@ -1,10 +1,10 @@
 #include "World.h"
 #include <iostream>
 
-World::World(int h, int w):m_itileHeight(32), m_itileWidth(64) {
+World::World(int h, int w):m_itileHeight(32), m_itileWidth(64), SCREEN_HEIGHT(h), SCREEN_WIDTH(w) {
 	//height and width as percentage of screen
-	m_iheight = h * 2;
-	m_iwidth = w * 2;
+	m_iheight = SCREEN_HEIGHT * 2;
+	m_iwidth = SCREEN_WIDTH * 2;
 
 	//size of vector, figure out how many tiles we need
 	m_vectorY = (m_iheight / m_itileHeight*2);
@@ -23,10 +23,10 @@ World::World(int h, int w):m_itileHeight(32), m_itileWidth(64) {
 			}
 		}
 	}
-	Ioan = new Player(600, 400, 29, 37, 1);
+	Ioan = new Player(620, 490, 29, 37, 1);
 	//initial cam setup
-	PlayerCamera.setCamX(Ioan->getX() + 20);
-	PlayerCamera.setCamY(Ioan->getY() + 60);
+	PlayerCamera.setCamX(620);
+	PlayerCamera.setCamY(460);
 }
 void World::movePlayer(int d) {
 	//Player
@@ -40,6 +40,7 @@ void World::movePlayer(int d) {
 	int oldCamX = PlayerCamera.getCamX();
 	int oldCamY = PlayerCamera.getCamY();
 	int newCamX = 0, newCamY = 0;
+	int origCamX = 620, origCamY = 460;
 
 	switch (d) {
 	case UP:
@@ -63,8 +64,20 @@ void World::movePlayer(int d) {
 	Ioan->setX(newX);
 	Ioan->setY(newY);
 	//set camera position
-	PlayerCamera.setCamX(newX);
-	PlayerCamera.setCamY(newY);
+	if (newX > 1180) {
+		newCamX = d == LEFT ? oldCamX - speed : oldCamX + speed;
+	}
+	else if (newX <= 1180) {
+		newCamX = origCamX;
+	}
+	if (newY > 900) {
+		newCamY = d == UP ? oldCamY - speed : oldCamY + speed;
+	}
+	else if (newY < 900) {
+		newCamY = origCamY;
+	}
+	PlayerCamera.setCamX(newCamX);
+	PlayerCamera.setCamY(newCamY);
 }
 void World::update() {
 	//std::cout << Ioan->getY() << std::endl;

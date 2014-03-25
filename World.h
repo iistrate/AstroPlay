@@ -20,6 +20,10 @@ private:
 	int m_vectorY;
 	int m_vectorX;
 
+	//screen sizes
+	const int SCREEN_WIDTH;
+	const int SCREEN_HEIGHT;
+
 	//tile type
 	enum {
 		BLANK,

@@ -1,4 +1,4 @@
-﻿Build started 3/22/2014 8:30:44 AM.
+﻿Build started 3/25/2014 9:01:03 AM.
      1>Project "C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Practicum\Practicum.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp
@@ -20,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.70
+Time Elapsed 00:00:00.78
