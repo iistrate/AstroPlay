@@ -87,6 +87,8 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
 		//show command
 		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
+		//show camera x and y
+		tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 550, 20);
 
 		//render window
 		SDL_RenderPresent(m_pRenderer);

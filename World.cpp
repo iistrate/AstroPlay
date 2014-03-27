@@ -39,8 +39,8 @@ void World::movePlayer(int d) {
 	//Camera
 	int oldCamX = PlayerCamera.getCamX();
 	int oldCamY = PlayerCamera.getCamY();
-	int newCamX = 0, newCamY = 0;
 	int origCamX = 620, origCamY = 460;
+	int newCamX = origCamX, newCamY = origCamY;
 
 	switch (d) {
 	case UP:
@@ -63,18 +63,27 @@ void World::movePlayer(int d) {
 	//set player position
 	Ioan->setX(newX);
 	Ioan->setY(newY);
+
 	//set camera position
-	if (newX > 1180) {
-		newCamX = d == LEFT ? oldCamX - speed : oldCamX + speed;
+	//X pos
+	if (newX > 1180 && d == RIGHT) {
+		newCamX = oldCamX + speed;
 	}
-	else if (newX <= 1180) {
-		newCamX = origCamX;
+	else if (newX > 1180 && d == LEFT) {
+		newCamX = oldCamX - speed;
 	}
-	if (newY > 900) {
-		newCamY = d == UP ? oldCamY - speed : oldCamY + speed;
+	else {
+		newCamX = oldCamX;
 	}
-	else if (newY < 900) {
-		newCamY = origCamY;
+	//Y pos
+	if (newY > 900 && d == UP) {
+		newCamY = oldCamY - speed;
+	}
+	else if (newY > 900 && d == DOWN) {
+		newCamY = oldCamY + speed;
+	}
+	else {
+		newCamY = oldCamY;
 	}
 	PlayerCamera.setCamX(newCamX);
 	PlayerCamera.setCamY(newCamY);
