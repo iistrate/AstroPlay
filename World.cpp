@@ -109,3 +109,7 @@ void World::getImages(std::vector < Image* > &f_Images) {
 Camera World::getCamera() {
 	return PlayerCamera;
 }
+//interface for Player->DebugMode
+Player* World::getPlayer() {
+	return Ioan;
+}

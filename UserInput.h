@@ -14,7 +14,8 @@ private:
 		LEFT,
 		LEFT_MOUSE_BUTTON,
 		RIGHT_MOUSE_BUTTON,
-		QUIT = 9
+		QUIT = 9,
+		DEBUG_MODE
 	};
 	int m_ipressed;
 	std::string m_scommand;

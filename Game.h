@@ -20,6 +20,7 @@ private:
 
 	//initializers
 	bool m_brunning;
+	bool m_bdebugMode;
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
 
@@ -31,7 +32,8 @@ private:
 		LEFT,
 		LEFT_MOUSE_BUTTON,
 		RIGHT_MOUSE_BUTTON,
-		QUIT = 9
+		QUIT = 9,
+		DEBUG_MODE
 	};
 
 	//compo

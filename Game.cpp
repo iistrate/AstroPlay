@@ -61,6 +61,9 @@ void Game::run() {
 				tmanager.setCamX(Askeron->getCamera().getCamX());
 				tmanager.setCamY(Askeron->getCamera().getCamY());
 			}
+			else if (f_iinput == DEBUG_MODE) {
+				m_bdebugMode = m_bdebugMode == true ? m_bdebugMode = false : m_bdebugMode = true;
+			}
 			//update game 
 			Askeron->update();
 		}
@@ -81,15 +84,19 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
 		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
-		//show turn
-		tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
-		//show mouse position
-		tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
 		//show command
 		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
-		//show camera x and y
-		tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 550, 20);
-
+		//Debug mode
+		if (m_bdebugMode) {
+			//show turn
+			tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
+			//show mouse position
+			tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
+			//show camera x and y
+			tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 450, 20);
+			//show player x and y
+			tmanager.drawText(m_pRenderer, "Player: X " + std::to_string(Askeron->getPlayer()->getX()) + " Y " + std::to_string(Askeron->getPlayer()->getY()), 650, 20);
+		}
 		//render window
 		SDL_RenderPresent(m_pRenderer);
 
@@ -111,7 +118,8 @@ void Game::quit() {
 }
 
 
-Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0), m_pWindow(0), m_fps(0), m_fpsCap(50), m_turn(0) {
+Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0)
+, m_pWindow(0), m_fps(0), m_fpsCap(50), m_turn(0), m_bdebugMode(false) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

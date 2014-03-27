@@ -41,6 +41,9 @@ int UserInput::getCommand() {
 			case SDLK_BACKSPACE:
 				m_scommand += "/d";
 				break;
+			case SDLK_LCTRL:
+				m_ipressed = DEBUG_MODE;
+				break;
 			}
 			break;
 		//if key is released

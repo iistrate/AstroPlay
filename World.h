@@ -63,6 +63,7 @@ public:
 	void getImages(std::vector < Image* > &f_Images);
 
 	Camera getCamera();	
+	Player* getPlayer();
 };
 
 #endif // World.h
