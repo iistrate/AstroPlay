@@ -1,11 +1,14 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "Image.h"
+
 class Camera {
 private:
 	//camera position
 	int m_icamX;
 	int m_icamY;
+	Image* m_pImage;
 public:
 	Camera();
 	~Camera();
@@ -15,6 +18,7 @@ public:
 	//getters
 	int getCamX();
 	int getCamY();
+	Image* getImage();
 };
 
 #endif // Camera.h

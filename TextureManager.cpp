@@ -3,6 +3,7 @@
 TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), m_icamX(0), m_icamY(0),
 									m_ilevelHeight(1800), m_ilevelWidth(2400), m_iscreenHeight(900), m_iscreenWidth(1200){}
 
+
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
 	int cameraModifierX = (m_iscreenWidth / 2) - m_icamX;
@@ -17,6 +18,8 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	bool flipped = false;
 
 	const char* fname = "";
+
+	//surface to texture loader
 
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
 		//speed up loading; only load image sprites once per image set; counter says 3 (which is good)
@@ -69,6 +72,8 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			f_Images[i]->setCurrentFrame(currentFrame);
 		}
 	}
+	SDL_DestroyTexture(m_pTexture);
+	m_pTexture = NULL;
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
 
@@ -100,6 +105,8 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 
 	//magic
 	SDL_RenderCopy(f_prenderer, m_pTexture, NULL, &m_dstRect);
+	SDL_DestroyTexture(m_pTexture);
+	m_pTexture = NULL;
 }
 TextureManager::~TextureManager() {
 	//font cleanup

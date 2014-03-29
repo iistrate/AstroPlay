@@ -42,6 +42,7 @@ private:
 	World* Askeron;
 	GUI gameGUI;
 	std::vector < Image* > m_Images;
+	std::vector < Image* > m_DebugImages;
 
 	//gets string command from user
 	std::string m_scommand;

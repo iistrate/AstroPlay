@@ -43,6 +43,7 @@ public:
 	~TextureManager();
 
 	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void drawImage(SDL_Renderer* f_prenderer, Image* f_Image);
 	void drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap = 305);
 	void sortByLayer(std::vector < Image* > f_Images);
 

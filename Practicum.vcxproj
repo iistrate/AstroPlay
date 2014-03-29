@@ -88,6 +88,7 @@
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UserInput.h" />

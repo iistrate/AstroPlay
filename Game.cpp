@@ -42,6 +42,9 @@ void Game::run() {
 	Askeron->getImages(m_Images);
 	gameGUI.getImages(m_Images);
 
+	//debug
+	m_DebugImages.push_back(Askeron->getCamera().getImage());
+
 	//init font
 	tmanager.initFont();
 
@@ -84,10 +87,28 @@ void Game::run() {
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
 		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
-		//show command
-		tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
+
 		//Debug mode
 		if (m_bdebugMode) {
+			/*
+			 * CMD_Window
+			*/
+			//image array size
+			std::cout << "Image Array Size: " << m_Images.size() << std::endl;
+			
+			/*
+			 * SDL_Window
+			*/
+			
+			/*
+				image
+			*/
+			tmanager.draw(m_pRenderer, m_DebugImages);
+			/*
+				text
+			*/
+			//show command
+			tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
 			//show turn
 			tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
 			//show mouse position
@@ -100,7 +121,9 @@ void Game::run() {
 		//render window
 		SDL_RenderPresent(m_pRenderer);
 
+		//cap fps
 		fpsCap();
+		//increase game turn
 		m_turn++;
 
 	} while (m_brunning);
@@ -116,7 +139,6 @@ void Game::fpsCap() {
 void Game::quit() {
 	m_brunning = false;
 }
-
 
 Game::Game():SCREEN_HEIGHT(960), SCREEN_WIDTH(1200), m_brunning(false), m_pRenderer(0)
 , m_pWindow(0), m_fps(0), m_fpsCap(50), m_turn(0), m_bdebugMode(false) {
