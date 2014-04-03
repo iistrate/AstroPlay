@@ -1,12 +1,13 @@
-﻿Build started 3/28/2014 9:29:50 PM.
+﻿Build started 4/3/2014 7:57:55 AM.
      1>Project "C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Practicum\Practicum.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp Main.cpp TextureManager.cpp World.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp Main.cpp Player.cpp UserInput.cpp World.cpp
          World.cpp
-         TextureManager.cpp
+         Player.cpp
          Game.cpp
          Generating Code...
          Compiling...
+         UserInput.cpp
          Main.cpp
          Generating Code...
        Link:
@@ -21,9 +22,10 @@
          Debug\Tile.obj
          Debug\UserInput.obj
          Debug\World.obj
+     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Practicum.vcxproj -> C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Debug\Practicum.exe
      1>Done Building Project "C:\Users\Ioan\Documents\Visual Studio 2013\Projects\Practicum\Practicum\Practicum.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.17
+Time Elapsed 00:00:05.45

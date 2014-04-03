@@ -8,6 +8,7 @@ private:
 	//camera position
 	int m_icamX;
 	int m_icamY;
+	bool m_bplayerCamera;
 	Image* m_pImage;
 public:
 	Camera();
@@ -15,9 +16,12 @@ public:
 	//setters
 	void setCamX(int);
 	void setCamY(int);
+	void setFollowPlayer(bool);
+	void move(int);
 	//getters
 	int getCamX();
 	int getCamY();
+	bool isFollowingPlayer();
 	Image* getImage();
 };
 

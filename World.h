@@ -1,6 +1,8 @@
 #ifndef WORLD_H
 #define WORLD_H
 
+#include "GLOBALS.h"
+
 #include "Tile.h"
 #include "Player.h"
 #include "Camera.h"
@@ -29,15 +31,6 @@ private:
 		BLANK,
 		CLIFF,
 	};
-	enum {
-		UP = 1,
-		RIGHT,
-		DOWN,
-		LEFT,
-		LEFT_MOUSE_BUTTON,
-		RIGHT_MOUSE_BUTTON,
-		QUIT = 9
-	};
 
 	//holds world's images
 	std::vector < Image* > m_Images;
@@ -51,11 +44,11 @@ private:
 
 public:
 	//gets px height and width from Game
-	World(int, int);
+	World();
 	~World();
 
 	void update();
-	void movePlayer(int);
+	void movePlayerCamera(int);
 
 	//getters
 	int getHeight();

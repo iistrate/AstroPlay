@@ -6,8 +6,8 @@ TextureManager::TextureManager() :m_pTexture(0), m_pTextSurface(0), m_pfont(0), 
 
 void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip f_flip) {
 	//helper vars
-	int cameraModifierX = (m_iscreenWidth / 2) - m_icamX;
-	int cameraModifierY = (m_iscreenHeight / 2) - m_icamY;
+	int cameraModifierX = (-1)* m_icamX;
+	int cameraModifierY = (-1)* m_icamY;
 	int origX = 0;
 	int origY = 0;
 	int currentFrame = 1;
@@ -18,18 +18,12 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	bool flipped = false;
 
 	const char* fname = "";
-
 	//surface to texture loader
-
 	for (std::vector < Image >::size_type i = 0; i != f_Images.size(); i++) {
 		//speed up loading; only load image sprites once per image set; counter says 3 (which is good)
 		if (fname != f_Images[i]->getFileName()) {
 			fname = f_Images[i]->getFileName();
-			SDL_Surface* pTempSurface = IMG_Load(fname);
-			m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, pTempSurface);
-			//free and destroy surface
-			SDL_FreeSurface(pTempSurface);
-			pTempSurface = NULL;
+			m_pTexture = IMG_LoadTexture(f_prenderer, fname);
 		}
 		//image vars
 		animated = f_Images[i]->isAnimated();
@@ -71,6 +65,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			//set frame
 			f_Images[i]->setCurrentFrame(currentFrame);
 		}
+
 	}
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;

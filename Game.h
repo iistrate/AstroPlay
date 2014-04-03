@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "GLOBALS.h"
+
 #include "TextureManager.h"
 #include "UserInput.h"
 #include <iostream>
@@ -23,18 +25,6 @@ private:
 	bool m_bdebugMode;
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
-
-	//controls
-	enum {
-		UP = 1,
-		RIGHT,
-		DOWN,
-		LEFT,
-		LEFT_MOUSE_BUTTON,
-		RIGHT_MOUSE_BUTTON,
-		QUIT = 9,
-		DEBUG_MODE
-	};
 
 	//compo
 	TextureManager tmanager;
