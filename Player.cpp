@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(30), m_bmoving(false) {
 	m_Image = new Image("assets/sprites-astronaut.png", x, y, w, h, 0, 0, 1, true, 1, 3, true);
@@ -11,7 +12,8 @@ Player::~Player() {
 	delete m_Image;
 }
 void Player::move(int d) {
-	m_idirection = d;
+	setDirection(d);
+	m_idirection = d; 
 	int oldX = m_x;
 	int oldY = m_y;
 	int newY = 0, newX = 0;
@@ -50,10 +52,10 @@ void Player::setY(int y) {
 	}
 }
 void Player::setDirection(int i) {
-	if (m_idirection == LEFT) {
+	if ((i == LEFT && m_idirection == RIGHT)) {
 		m_Image->setFlipped(true);
 	}
-	else if (m_idirection == RIGHT) {
+	else if (i == RIGHT && m_idirection == LEFT) {
 		m_Image->setFlipped(false);
 	}
 	m_idirection = i;
