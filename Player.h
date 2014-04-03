@@ -17,6 +17,8 @@ public:
 	void setDirection(int);
 	void setSpeed(int);
 	void setMoving(bool);
+	void setX(int);
+	void setY(int);
 
 	int getDirection();
 	int getSpeed();

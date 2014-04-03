@@ -38,6 +38,18 @@ void Player::move(int d) {
 	setX(newX);
 	setY(newY);
 }
+void Player::setX(int x) {
+	m_x = x;
+	if (x > 0 && x < (GLOBALS::SCREEN_WIDTH - m_width)) {
+		getImage()->setX(x);
+	} 
+}
+void Player::setY(int y) {
+	m_y = y;
+	if (y > 0 && y < (GLOBALS::SCREEN_HEIGHT - m_height)) {
+		getImage()->setY(y);
+	}
+}
 void Player::setDirection(int i) {
 	if (m_idirection == LEFT) {
 		m_Image->setFlipped(true);
