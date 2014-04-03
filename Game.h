@@ -19,6 +19,7 @@ private:
 	Uint32 m_fpsCap;
 
 	int m_turn;
+	bool m_bcameraMode;
 
 	//initializers
 	bool m_brunning;

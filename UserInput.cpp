@@ -44,6 +44,9 @@ int UserInput::getCommand() {
 			case SDLK_LCTRL:
 				m_ipressed = DEBUG_MODE;
 				break;
+			case SDLK_RCTRL:
+				m_ipressed = CAMERA_MODE;
+				break;
 			}
 			break;
 		//if key is released

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(20), m_bmoving(false) {
+Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(30), m_bmoving(false) {
 	m_Image = new Image("assets/sprites-astronaut.png", x, y, w, h, 0, 0, 1, true, 1, 3, true);
 	m_x = x;
 	m_y = y;
@@ -11,7 +11,6 @@ Player::~Player() {
 	delete m_Image;
 }
 void Player::move(int d) {
-	//Player
 	m_idirection = d;
 	int oldX = m_x;
 	int oldY = m_y;

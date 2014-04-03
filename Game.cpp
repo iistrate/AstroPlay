@@ -52,6 +52,13 @@ void Game::run() {
 	do {
 		f_iinput = ui.getCommand();
 
+		if (f_iinput == CAMERA_MODE && m_bcameraMode == false) {
+			m_bcameraMode = true;
+		}
+		else if (f_iinput == CAMERA_MODE) {
+			m_bcameraMode = false;
+		}
+
 		if (f_iinput == QUIT) {
 			quit();
 		}
@@ -59,8 +66,13 @@ void Game::run() {
 			//P(ui.getStringCommand()); //string of command
 			//move player
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
-				Askeron->getPlayer()->move(f_iinput);
-				Askeron->movePlayerCamera(f_iinput);
+				if (m_bcameraMode) {
+					Askeron->getCamera().move(f_iinput);
+				}
+				else {
+					Askeron->getPlayer()->move(f_iinput);
+					Askeron->movePlayerCamera(f_iinput);
+				}
 				//set camera view
 				tmanager.setCamX(Askeron->getCamera().getCamX());
 				tmanager.setCamY(Askeron->getCamera().getCamY());
@@ -142,7 +154,7 @@ void Game::quit() {
 }
 
 Game::Game():SCREEN_HEIGHT(GLOBALS::SCREEN_HEIGHT), SCREEN_WIDTH(GLOBALS::SCREEN_WIDTH), m_brunning(false), m_pRenderer(0)
-, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false) {
+, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager
