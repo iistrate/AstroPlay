@@ -32,7 +32,10 @@ private:
 	UserInput ui;
 	World* Askeron;
 	GUI gameGUI;
-	std::vector < Image* > m_Images;
+	//image sets
+	std::vector < Image* > m_Images_WORLD;
+	std::vector < Image* > m_Images_GUI;
+	std::vector < Image* > m_Images_MOVING;
 	std::vector < Image* > m_DebugImages;
 
 	//gets string command from user

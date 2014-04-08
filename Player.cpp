@@ -58,6 +58,12 @@ void Player::setDirection(int i) {
 	else if (i == RIGHT && m_idirection == LEFT) {
 		m_Image->setFlipped(false);
 	}
+	else if (i == LEFT) {
+		m_Image->setFlipped(true);
+	}
+	else if (i == RIGHT) {
+		m_Image->setFlipped(false);
+	}
 	m_idirection = i;
 }
 void Player::setMoving(bool b) {

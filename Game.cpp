@@ -39,8 +39,9 @@ void Game::run() {
 	tmanager.setCamY(Askeron->getCamera().getCamY());
 
 	//get images
-	Askeron->getImages(m_Images);
-	gameGUI.getImages(m_Images);
+	Askeron->getImages(m_Images_WORLD);
+	gameGUI.getImages(m_Images_GUI);
+	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
 
 	//debug
 	m_DebugImages.push_back(Askeron->getCamera().getImage());
@@ -94,7 +95,9 @@ void Game::run() {
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
 		//draw images
-		tmanager.draw(m_pRenderer, m_Images);
+		tmanager.draw(m_pRenderer, m_Images_WORLD);
+		tmanager.draw(m_pRenderer, m_Images_GUI);
+		tmanager.draw(m_pRenderer, m_Images_MOVING);
 
 		//draw command
 		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
@@ -107,8 +110,10 @@ void Game::run() {
 			 * CMD_Window
 			*/
 			//image array size
-			std::cout << "Image Array Size: " << m_Images.size() << std::endl;
-			
+			std::cout << "World Image Array Size: " << m_Images_WORLD.size() << std::endl;
+			std::cout << "GUI Image Array Size: " << m_Images_GUI.size() << std::endl;
+			std::cout << "MOVING Image Array Size: " << m_Images_MOVING.size() << std::endl;
+
 			/*
 			 * SDL_Window
 			*/

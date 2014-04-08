@@ -80,7 +80,6 @@ void World::getImages(std::vector < Image* > &f_Images) {
 			f_Images.push_back(Map[i][j]->getImage());
 		}
 	}
-	f_Images.push_back(Ioan->getImage());
 }
 //interface for Camera->TextureManager
 Camera World::getCamera() {
