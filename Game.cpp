@@ -1,17 +1,17 @@
 #include "Game.h"
 
-//my little helper
-#define P(x) std::cout << #x << "'s value is " << x << std::endl;
-
 void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
 	m_brunning = true;
 
 	//initialize sdl
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
+		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 		m_pWindow = SDL_CreateWindow(title, x, y, w, h, flags);
 		if (m_pWindow) {
-			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
+			SDL_SetRenderDrawColor(m_pRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 			SDL_StartTextInput();
 		}
 		else {
@@ -52,7 +52,6 @@ void Game::run() {
 	//game loop
 	do {
 		f_iinput = ui.getCommand();
-
 		if (f_iinput == CAMERA_MODE && m_bcameraMode == false) {
 			m_bcameraMode = true;
 		}
@@ -64,7 +63,6 @@ void Game::run() {
 			quit();
 		}
 		else {
-			//P(ui.getStringCommand()); //string of command
 			//move player
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
 				if (m_bcameraMode) {
@@ -87,6 +85,8 @@ void Game::run() {
 		
 		//python script
 		m_scommand = ui.getStringCommand();
+		std::cout << m_scommand << std::endl;
+		std::cout << "assdaad" << std::endl;
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);

@@ -3,16 +3,15 @@
 
 
 UserInput::UserInput() : m_ipressed(0), m_imouseX(0), m_imouseY(0) {
-
 }
 int UserInput::getCommand() {
+	SDL_StartTextInput();
 	//poll for event
 	if (SDL_PollEvent(&event) != 0) {
 		switch (event.type) {
 		//if key is pressed
 		case SDL_TEXTINPUT:
 			//do text input
-			SDL_StartTextInput();
 			m_scommand += event.text.text;
 			break;
 		case SDL_KEYDOWN:

@@ -9,8 +9,8 @@ World::World():m_itileHeight(32), m_itileWidth(64), SCREEN_HEIGHT(GLOBALS::SCREE
 	m_iwidth = GLOBALS::LEVEL_WIDTH;
 
 	//size of vector, figure out how many tiles we need
-	m_vectorY = (m_iheight / m_itileHeight*2);
-	m_vectorX = (m_iwidth / m_itileWidth*2);
+	m_vectorY = (m_iheight / m_itileHeight*1.3);
+	m_vectorX = (m_iwidth / m_itileWidth*1.3);
 
 	//populate tile vector
 	for (int i = 0; i < m_vectorY; i++) {
@@ -27,8 +27,8 @@ World::World():m_itileHeight(32), m_itileWidth(64), SCREEN_HEIGHT(GLOBALS::SCREE
 	}
 	Ioan = new Player(620, 490, 29, 37, 1);
 	//initial cam setup
-	PlayerCamera.setCamX(0);
-	PlayerCamera.setCamY(0);
+	PlayerCamera.setCamX(15);
+	PlayerCamera.setCamY(10);
 }
 void World::movePlayerCamera(int d) {
 	//player position

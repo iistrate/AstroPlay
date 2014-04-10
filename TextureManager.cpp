@@ -70,7 +70,10 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	m_pTexture = NULL;
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
-
+	//initalize font
+	initFont();
+	//set color
+	SDL_Color tmpfontcolor = { 1, 1, 1, 1 };
 	//where to wrap text
 	Uint32 lineWrap = wrap;
 
@@ -80,14 +83,11 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	//from string to c string
 	m_pcstr = s.c_str();
 	
-	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, { 0, 0, 0 }, lineWrap);
+	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, tmpfontcolor, lineWrap);
 	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
 
 	//figure out width and height
 	SDL_QueryTexture(m_pTexture, 0, 0, &m_srcRect.w, &m_srcRect.h);
-	//free resources
-	SDL_FreeSurface(m_pTextSurface);
-	m_pTextSurface = NULL;
 
 	//where to draw at
 	m_dstRect.x = xPos;
@@ -99,14 +99,18 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 
 	//magic
 	SDL_RenderCopy(f_prenderer, m_pTexture, NULL, &m_dstRect);
+
+	//free resources
+	SDL_FreeSurface(m_pTextSurface);
+	m_pTextSurface = NULL;
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;
+	TTF_CloseFont(m_pfont);
+	m_pfont = NULL;
 }
 TextureManager::~TextureManager() {
 	//font cleanup
 	TTF_Quit();
-	TTF_CloseFont(m_pfont);
-	m_pfont = 0;
 }
 
 void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
