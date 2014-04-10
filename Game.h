@@ -8,6 +8,7 @@
 #include <iostream>
 #include "World.h"
 #include "GUI.h"
+#include "StringParser.h"
 
 class Game {
 private:
@@ -20,6 +21,7 @@ private:
 
 	int m_turn;
 	bool m_bcameraMode;
+	std::vector < int > m_icommands;
 
 	//initializers
 	bool m_brunning;
@@ -28,10 +30,11 @@ private:
 	const int SCREEN_HEIGHT; 
 
 	//compo
-	TextureManager tmanager;
-	UserInput ui;
+	TextureManager Tmanager;
+	UserInput Ui;
 	World* Askeron;
-	GUI gameGUI;
+	GUI GameGUI;
+	StringParser Parser;
 	//image sets
 	std::vector < Image* > m_Images_WORLD;
 	std::vector < Image* > m_Images_GUI;

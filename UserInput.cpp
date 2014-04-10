@@ -1,5 +1,4 @@
 #include "UserInput.h"
-#include <iostream>
 
 
 UserInput::UserInput() : m_ipressed(0), m_imouseX(0), m_imouseY(0) {
@@ -11,7 +10,6 @@ int UserInput::getCommand() {
 		switch (event.type) {
 		//if key is pressed
 		case SDL_TEXTINPUT:
-			//do text input
 			m_scommand += event.text.text;
 			break;
 		case SDL_KEYDOWN:

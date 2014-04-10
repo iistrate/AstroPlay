@@ -29,29 +29,29 @@ void Game::run() {
 
 
 	//create panel
-	gameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH);
+	GameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH);
 
 	//create world
 	Askeron = new World();
 
 	//set initial camera view
-	tmanager.setCamX(Askeron->getCamera().getCamX());
-	tmanager.setCamY(Askeron->getCamera().getCamY());
+	Tmanager.setCamX(Askeron->getCamera().getCamX());
+	Tmanager.setCamY(Askeron->getCamera().getCamY());
 
 	//get images
 	Askeron->getImages(m_Images_WORLD);
-	gameGUI.getImages(m_Images_GUI);
+	GameGUI.getImages(m_Images_GUI);
 	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
 
 	//debug
 	m_DebugImages.push_back(Askeron->getCamera().getImage());
 
 	//init font
-	tmanager.initFont();
+	Tmanager.initFont();
 
 	//game loop
 	do {
-		f_iinput = ui.getCommand();
+		f_iinput = Ui.getCommand();
 		if (f_iinput == CAMERA_MODE && m_bcameraMode == false) {
 			m_bcameraMode = true;
 		}
@@ -73,8 +73,8 @@ void Game::run() {
 					Askeron->movePlayerCamera(f_iinput);
 				}
 				//set camera view
-				tmanager.setCamX(Askeron->getCamera().getCamX());
-				tmanager.setCamY(Askeron->getCamera().getCamY());
+				Tmanager.setCamX(Askeron->getCamera().getCamX());
+				Tmanager.setCamY(Askeron->getCamera().getCamY());
 			}
 			else if (f_iinput == DEBUG_MODE) {
 				m_bdebugMode = m_bdebugMode == true ? m_bdebugMode = false : m_bdebugMode = true;
@@ -84,7 +84,7 @@ void Game::run() {
 		}
 		
 		//python script
-		m_scommand = ui.getStringCommand();
+		m_scommand = Ui.getStringCommand();
 		std::cout << m_scommand << std::endl;
 		std::cout << "assdaad" << std::endl;
 
@@ -95,14 +95,14 @@ void Game::run() {
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
 		//draw images
-		tmanager.draw(m_pRenderer, m_Images_WORLD);
-		tmanager.draw(m_pRenderer, m_Images_GUI);
-		tmanager.draw(m_pRenderer, m_Images_MOVING);
+		Tmanager.draw(m_pRenderer, m_Images_WORLD);
+		Tmanager.draw(m_pRenderer, m_Images_GUI);
+		Tmanager.draw(m_pRenderer, m_Images_MOVING);
 
 		//draw command
-		tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
+		Tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
 		//instruction settings
-		tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
+		Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 
 		//Debug mode
 		if (m_bdebugMode) {
@@ -121,20 +121,20 @@ void Game::run() {
 			/*
 				image
 			*/
-			tmanager.draw(m_pRenderer, m_DebugImages);
+			Tmanager.draw(m_pRenderer, m_DebugImages);
 			/*
 				text
 			*/
 			//show command
-			tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
+			Tmanager.drawText(m_pRenderer, "Command: " + std::to_string(f_iinput), 750, 920);
 			//show turn
-			tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
+			Tmanager.drawText(m_pRenderer, "TURN: " + std::to_string(m_turn) + "  FPS:" + std::to_string(m_fpsCap), 100, 920);
 			//show mouse position
-			tmanager.drawText(m_pRenderer, "X: " + std::to_string(ui.getMouseX()) + " Y: " + std::to_string(ui.getMouseY()), 600, 920);
+			Tmanager.drawText(m_pRenderer, "X: " + std::to_string(Ui.getMouseX()) + " Y: " + std::to_string(Ui.getMouseY()), 600, 920);
 			//show camera x and y
-			tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 450, 20);
+			Tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 450, 20);
 			//show player x and y
-			tmanager.drawText(m_pRenderer, "Player: X " + std::to_string(Askeron->getPlayer()->getX()) + " Y " + std::to_string(Askeron->getPlayer()->getY()), 650, 20);
+			Tmanager.drawText(m_pRenderer, "Player: X " + std::to_string(Askeron->getPlayer()->getX()) + " Y " + std::to_string(Askeron->getPlayer()->getY()), 650, 20);
 		}
 		//render window
 		SDL_RenderPresent(m_pRenderer);
