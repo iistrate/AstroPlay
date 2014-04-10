@@ -5,6 +5,8 @@
 #include <Python.h>
 #include <vector>
 
+#include <iostream>
+
 
 class StringParser {
 private:
@@ -12,7 +14,7 @@ private:
 	std::vector < int > m_icommands;
 
 	//Py Objects
-	PyObject *m_pName, *m_pModule;
+	PyObject *m_POname, *m_POmodule, *m_POfunctionName, *m_POvalues;
 
 public:
 	StringParser();

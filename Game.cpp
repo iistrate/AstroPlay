@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <Python.h>
 
 void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
@@ -27,6 +28,10 @@ void Game::run() {
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
+
+	//create PythonParser
+	StringParser Sparser;
+	Sparser.init();
 
 	//create panel
 	GameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH);
@@ -83,10 +88,11 @@ void Game::run() {
 			Askeron->update();
 		}
 		
-		//python script
+		//get command from input
 		m_scommand = Ui.getStringCommand();
-		std::cout << m_scommand << std::endl;
-		std::cout << "assdaad" << std::endl;
+		//send string to python and get list of commands as a vector of ints
+		Sparser.parseString(m_icommands, m_scommand);
+
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);
@@ -145,6 +151,8 @@ void Game::run() {
 		m_turn++;
 
 	} while (m_brunning);
+	//close command parser
+	Sparser.close();
 }
 void Game::fpsCap() {
 	//time in seconds
