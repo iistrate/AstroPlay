@@ -15,6 +15,8 @@ private:
 
 	//Py Objects
 	PyObject *m_POname, *m_POmodule, *m_POfunctionName, *m_POvalues;
+	//gil state
+	PyGILState_STATE m_gstate;
 
 public:
 	StringParser();
