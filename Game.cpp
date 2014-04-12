@@ -90,8 +90,11 @@ void Game::run() {
 		
 		//get command from input
 		m_scommand = Ui.getStringCommand();
+		//send it to python for sanitizing
+		m_scommand = Sparser.parseString(m_icommand, m_scommand);
+		Ui.setStringCommand(m_scommand);
 		//send string to python and get list of commands as a vector of ints
-		Sparser.parseString(m_icommands, m_scommand);
+		//Sparser.parseString(m_icommands, m_scommand);
 
 
 		//clear window

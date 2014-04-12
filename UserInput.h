@@ -19,6 +19,8 @@ public:
 	~UserInput() {}
 	
 	std::string getStringCommand();
+
+	void setStringCommand(std::string s);
 	int getCommand();
 	int getMouseX();
 	int getMouseY();

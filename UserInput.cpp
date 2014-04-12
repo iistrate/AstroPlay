@@ -77,6 +77,9 @@ int UserInput::getCommand() {
 std::string UserInput::getStringCommand() {
 	return m_scommand;
 }
+void UserInput::setStringCommand(std::string s) {
+	m_scommand = s;
+}
 int UserInput::getMouseX() {
 	return m_imouseX;
 }

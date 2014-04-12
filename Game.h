@@ -43,6 +43,8 @@ private:
 
 	//gets string command from user
 	std::string m_scommand;
+	//has commands
+	std::vector < int > m_icommand;
 
 public:
 	Game();

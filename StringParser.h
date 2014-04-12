@@ -4,6 +4,7 @@
 #include <string>
 #include <Python.h>
 #include <vector>
+#include <string>
 
 #include <iostream>
 
@@ -22,9 +23,13 @@ public:
 	StringParser();
 	~StringParser();
 
+	//init and close python c api
 	void init();
 	void close();
-	void parseString(std::vector < int > &i_commands, std::string s_command);
+	
+	//sanitize string before sending it to being drawn and if it is the case 
+	//get commands from string
+	std::string parseString(std::vector < int > &i_commands, std::string s_command);
 };
 
 #endif

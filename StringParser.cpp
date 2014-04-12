@@ -21,19 +21,23 @@ void StringParser::init() {
 	m_POmodule = PyImport_Import(m_POname);
 }
 
-void StringParser::parseString(std::vector < int > &i_commands, std::string s_command) {
+std::string StringParser::parseString(std::vector < int > &i_commands, std::string s_command) {
+	//from string to c string
+	const char* cstring = s_command.c_str();
 	//if python interpreter is initialized
 	if (Py_IsInitialized) {
 		//if module is loaded
 		if (m_POmodule) {
 			//load function
-			m_POfunctionName = PyObject_GetAttrString(m_POmodule, "name");
+			m_POfunctionName = PyObject_GetAttrString(m_POmodule, "parse");
 		}
 		//if function exists and is callable
 		if (m_POfunctionName && PyCallable_Check(m_POfunctionName)) {
-			m_POvalues = PyObject_CallFunctionObjArgs(m_POfunctionName, NULL);
+			m_POvalues = PyObject_CallFunctionObjArgs(m_POfunctionName, Py_BuildValue("s", cstring), NULL);
 		}
 	}
+	//return parsed string
+	return PyUnicode_AsUTF8(m_POvalues);
 }
 
 void StringParser::close() {
