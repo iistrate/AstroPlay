@@ -70,66 +70,95 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	m_pTexture = NULL;
 }
 void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
+	//set font size
+	int fontSize = 16;
 	//initalize font
-	initFont();
+	initFont(fontSize);
+	//get line height
+	int fontLineSkip = TTF_FontLineSkip(m_pfont);
+
+	//will hold individual lines of strings
+	std::vector < std::string > Strings;
+
 	//set color
 	SDL_Color tmpfontcolor = { 1, 1, 1, 1 };
-	//where to wrap text
+
+	//will hold npos for '/n'
+	std::size_t foundCharAt = 0;
+	//while we can find new lines
+	while (foundCharAt != -1) {
+		//create string that will hold cleaned string
+		std::string tempString;
+		//find occurence of a new line character
+		foundCharAt = s.find('\n', 0);
+		//break off substring and add to vector of strings
+		tempString = s.substr(0, foundCharAt);
+		if (foundCharAt != -1) {
+			s = s.substr(foundCharAt + 1, -1);
+		}
+		//add substring to vector of strings
+		Strings.push_back(tempString);
+	}
+
+	//where to wrap text if user chooses to write essay :P
 	Uint32 lineWrap = wrap;
 
+	//original x and y as passed through function
 	int yPos = y;
 	int xPos = x;
 
-	//from string to c string
-	m_pcstr = s.c_str();
-	
-	m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, tmpfontcolor, lineWrap);
-	m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
-
-	//figure out width and height
-	SDL_QueryTexture(m_pTexture, 0, 0, &m_srcRect.w, &m_srcRect.h);
-
-	//where to draw at
-	m_dstRect.x = xPos;
-	m_dstRect.y = yPos;
-
-	//width and height of text
-	m_dstRect.w = m_srcRect.w;
-	m_dstRect.h = m_srcRect.h;
-
-	//magic
-	SDL_RenderCopy(f_prenderer, m_pTexture, NULL, &m_dstRect);
-
+	for (int i = 0; i < Strings.size(); i++) {
+		//from string to c string
+		m_pcstr = Strings[i].c_str();
+		//add each line to surface
+		m_pTextSurface = TTF_RenderText_Blended_Wrapped(m_pfont, m_pcstr, tmpfontcolor, lineWrap);
+		//add surface to texture
+		m_pTexture = SDL_CreateTextureFromSurface(f_prenderer, m_pTextSurface);
+		//free surface
+		SDL_FreeSurface(m_pTextSurface);
+		m_pTextSurface = NULL;
+		//figure out width and height
+		SDL_QueryTexture(m_pTexture, 0, 0, &m_srcRect.w, &m_srcRect.h);
+		//where to draw at
+		m_dstRect.x = xPos;
+		m_dstRect.y = yPos + (fontLineSkip*i);
+		//width and height of text
+		m_dstRect.w = m_srcRect.w;
+		m_dstRect.h = m_srcRect.h;
+		//magic
+		SDL_RenderCopy(f_prenderer, m_pTexture, NULL, &m_dstRect);
+	}
 	//free resources
-	SDL_FreeSurface(m_pTextSurface);
-	m_pTextSurface = NULL;
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;
 	TTF_CloseFont(m_pfont);
 	m_pfont = NULL;
 }
+//on destroy
 TextureManager::~TextureManager() {
 	//font cleanup
 	TTF_Quit();
 }
-
+//which layer to be drawn on top z-index style
 void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
 	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
 		std::cout << f_Images[i]->getLayer() << std::endl;
 	}
 }
-void TextureManager::initFont() {
-	//initialize font
+//initialize font
+void TextureManager::initFont(int fz) {
 	if (TTF_Init() == -1) {
 		std::cout << "Fonts failed to initialize" << std::endl;
 	}
 	else {
-		m_pfont = TTF_OpenFont("assets/arounded.ttf", 16);
+		m_pfont = TTF_OpenFont("assets/arounded.ttf", fz);
 	}
 }
+//set camera x position
 void TextureManager::setCamX(int i) {
 	m_icamX = i;
 }
+//set camera y position
 void TextureManager::setCamY(int i) {
 	m_icamY = i;
 }

@@ -10,6 +10,7 @@ namespace GLOBALS {
 	const int LEVEL_HEIGHT = SCREEN_HEIGHT * 2;
 	const int LEVEL_WIDTH = SCREEN_WIDTH * 2;
 	const int FPS_CAP = 90;
+	const int COMMAND_PANEL_LINE_WRAP = 305;
 }
 
 //controls

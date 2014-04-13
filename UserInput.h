@@ -14,6 +14,7 @@ private:
 	//mouse x and y
 	int m_imouseX;
 	int m_imouseY;
+
 public:
 	UserInput();
 	~UserInput() {}

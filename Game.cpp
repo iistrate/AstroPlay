@@ -51,9 +51,6 @@ void Game::run() {
 	//debug
 	m_DebugImages.push_back(Askeron->getCamera().getImage());
 
-	//init font
-	Tmanager.initFont();
-
 	//game loop
 	do {
 		f_iinput = Ui.getCommand();

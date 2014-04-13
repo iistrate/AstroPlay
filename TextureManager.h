@@ -47,7 +47,7 @@ public:
 	void drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap = 305);
 	void sortByLayer(std::vector < Image* > f_Images);
 
-	void initFont();
+	void initFont(int);
 
 	void setCamX(int);
 	void setCamY(int);

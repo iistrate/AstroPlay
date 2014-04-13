@@ -12,6 +12,7 @@ StringParser::StringParser(): m_POfunctionName(NULL), m_POmodule(NULL), m_POname
 void StringParser::init() {
 	//on init lock gil state
 	m_gstate = PyGILState_Ensure();
+
 	//module name
 	const char module[] = "Parser";
 
