@@ -106,7 +106,7 @@ void Game::run() {
 		Tmanager.draw(m_pRenderer, m_Images_MOVING);
 
 		//draw command
-		Tmanager.drawText(m_pRenderer, m_scommand, 20, 70);
+		Tmanager.drawText(m_pRenderer, m_scommand, 20, 70, GLOBALS::COMMAND_PANEL_LINE_WRAP, true);
 		//instruction settings
 		Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 

@@ -69,7 +69,7 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;
 }
-void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap) {
+void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, int y, int wrap, bool showCursor) {
 	//set font size
 	int fontSize = 16;
 	//initalize font
@@ -107,7 +107,13 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	int yPos = y;
 	int xPos = x;
 
+	//turn number gets increased each time function is called
+	int static turn = 0;
 	for (int i = 0; i < Strings.size(); i++) {
+		//if last string/last char, and you want to show cursor, and turn is divisible by 13; add cursor to end of string
+		if (i == (Strings.size() - 1) && showCursor && (turn % 13)) {
+			Strings[i] += "¶";
+		}
 		//from string to c string
 		m_pcstr = Strings[i].c_str();
 		//add each line to surface
@@ -128,6 +134,7 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 		//magic
 		SDL_RenderCopy(f_prenderer, m_pTexture, NULL, &m_dstRect);
 	}
+	turn++;
 	//free resources
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;

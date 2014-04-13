@@ -15,7 +15,7 @@ def parse(string):
             #if special chars
             if (sarray[key] == "\\"):
                 #if delete char
-                if (sarray[key+1] == "d" and len(sarray) > 3):
+                if (sarray[key+1] == "d" and len(sarray) >= 3):
                     #delete the char that needs deleted, and delete the delete instructions
                     del sarray[key+1]
                     del sarray[key]
