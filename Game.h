@@ -26,6 +26,8 @@ private:
 	//initializers
 	bool m_brunning;
 	bool m_bdebugMode;
+	bool m_bmanualMode;
+
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
 

@@ -22,7 +22,7 @@ void StringParser::init() {
 	m_POmodule = PyImport_Import(m_POname);
 }
 
-std::string StringParser::parseString(std::vector < int > &i_commands, std::string s_command) {
+std::string StringParser::parseString(std::vector < int > &f_icommands, std::string s_command) {
 	//from string to c string
 	const char* cstring = s_command.c_str();
 	//if python interpreter is initialized
@@ -36,9 +36,22 @@ std::string StringParser::parseString(std::vector < int > &i_commands, std::stri
 		if (m_POfunctionName && PyCallable_Check(m_POfunctionName)) {
 			m_POvalues = PyObject_CallFunctionObjArgs(m_POfunctionName, Py_BuildValue("s", cstring), NULL);
 		}
+		if (PyList_Check(m_POvalues)) {
+			//first item is a string
+			m_POstring = PyTuple_GetItem(m_POvalues, 0);
+			//second item is a list
+			m_POlist = PyTuple_GetItem(m_POvalues, 1);
+			int len = PyList_Size(m_POlist);
+			for (int i = 0; i < len; i++) {
+				f_icommands.push_back(PyLong_AsLong(PyList_GetItem(m_POlist, i)));
+			}
+		}
+		else {
+			m_POstring = Py_BuildValue("s", cstring);
+		}
 	}
 	//return parsed string
-	return PyUnicode_AsUTF8(m_POvalues);
+	return PyUnicode_AsUTF8(m_POstring);
 }
 
 void StringParser::close() {
