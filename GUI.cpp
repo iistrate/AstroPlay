@@ -74,6 +74,15 @@ void GUI::buildPanel(int h, int w) {
 			}
 		}
 	}
+	//add play btn
+	m_Images.push_back(new Image("assets/sprites-ui.png", 125, 890, 20, 33, 438, 222, 3, 0, 0, 0, true));
+	//add back btn
+	m_Images.push_back(new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true));
+	//add forward btn
+	m_Images.push_back(new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true));
+	//add pause btn
+	m_Images.push_back(new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true));
+
 }
 void GUI::getImages(std::vector < Image* > &f_Images) {
 	for (int i = 0; i < m_Images.size(); i++) {

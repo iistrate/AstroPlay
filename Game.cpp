@@ -88,12 +88,25 @@ void Game::run() {
 			else if (f_iinput == DEBUG_MODE) {
 				m_bdebugMode = m_bdebugMode == true ? m_bdebugMode = false : m_bdebugMode = true;
 			}
+			//check for clicks
+			if (f_iinput == LEFT_MOUSE_BUTTON) {
+				if (Ui.getMouseX() >= 125 && Ui.getMouseX() <= 145) {
+					if (Ui.getMouseY() >= 890 && Ui.getMouseY() <= 930) {
+						//if there's commands
+						if (m_icommand.size() > 0) {
+							m_bexecute = true;
+						}
+					}
+				}
+			}
 			//needs work
-			if (m_bmanualMode) {
-				for (int i = m_icommand.size() - 1; i >= 0; i--) {
-					Askeron->getPlayer()->move(m_icommand[i]);
-					Askeron->movePlayerCamera(m_icommand[i]);
-					m_icommand.pop_back();
+			if (m_bexecute && m_icommand.size() > 0) {
+				Askeron->getPlayer()->move(m_icommand[m_commandCursor]);
+				Askeron->movePlayerCamera(m_icommand[m_commandCursor]);
+				m_commandCursor++;
+				if (m_commandCursor > m_icommand.size() - 1) {
+					m_commandCursor = 0;
+					m_bexecute = false;
 				}
 			}
 			//update game 
@@ -174,7 +187,7 @@ void Game::quit() {
 }
 
 Game::Game():SCREEN_HEIGHT(GLOBALS::SCREEN_HEIGHT), SCREEN_WIDTH(GLOBALS::SCREEN_WIDTH), m_brunning(false), m_pRenderer(0)
-, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bmanualMode(true) {
+, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bexecute(false), m_commandCursor(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

@@ -47,7 +47,6 @@ def stringToCommand(string):
             commands.append(1)
         elif (word.lower() == "down"):
             commands.append(3)
-        else:
-            commands.append(0)
+
     #return commands as a list
     return commands

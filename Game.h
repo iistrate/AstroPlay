@@ -20,13 +20,14 @@ private:
 	Uint32 m_fpsCap;
 
 	int m_turn;
-	bool m_bcameraMode;
+	bool m_bcameraMode; 
+	int m_commandCursor;
 	std::vector < int > m_icommands;
 
 	//initializers
 	bool m_brunning;
 	bool m_bdebugMode;
-	bool m_bmanualMode;
+	bool m_bexecute;
 
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
