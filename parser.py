@@ -33,6 +33,12 @@ def parse(string):
     return sarray
 
 def stringToCommand(string):
+    #sanitize string
+    found = 0
+    while (found != -1):
+        found = string.find("\n")
+        string = string.replace("\n", " ")
+
     #split string into words
     sarray = string.split(" ")
     #holds int commands

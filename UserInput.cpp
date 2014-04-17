@@ -33,10 +33,14 @@ int UserInput::getCommand() {
 				m_scommand += "\n";
 				break;
 			case SDLK_DELETE:
-				m_scommand += "\\d";
+				if (m_scommand.size() > 0) {
+					m_scommand += "\\d";
+				}
 				break;
 			case SDLK_BACKSPACE:
-				m_scommand += "\\d";
+				if (m_scommand.size() > 0) {
+					m_scommand += "\\d";
+				}
 				break;
 			case SDLK_TAB:
 				m_scommand += "    ";
