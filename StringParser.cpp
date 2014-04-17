@@ -36,7 +36,7 @@ std::string StringParser::parseString(std::vector < int > &f_icommands, std::str
 		if (m_POfunctionName && PyCallable_Check(m_POfunctionName)) {
 			m_POvalues = PyObject_CallFunctionObjArgs(m_POfunctionName, Py_BuildValue("s", cstring), NULL);
 		}
-		if (PyList_Check(m_POvalues)) {
+		if (m_POvalues) {
 			//first item is a string
 			m_POstring = PyTuple_GetItem(m_POvalues, 0);
 			//second item is a list
@@ -46,18 +46,12 @@ std::string StringParser::parseString(std::vector < int > &f_icommands, std::str
 				f_icommands.push_back(PyLong_AsLong(PyList_GetItem(m_POlist, i)));
 			}
 		}
-		else {
-			m_POstring = Py_BuildValue("s", cstring);
-		}
 	}
 	//return parsed string
 	return PyUnicode_AsUTF8(m_POstring);
 }
 
 void StringParser::close() {
-//	Py_DECREF(m_POmodule);
-//	Py_DECREF(m_POname);
-//	Py_DECREF(m_POfunctionName);
 //on close kill gill state
 PyGILState_Release(m_gstate);
 }

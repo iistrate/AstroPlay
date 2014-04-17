@@ -90,11 +90,22 @@ void Game::run() {
 			}
 			//check for clicks
 			if (f_iinput == LEFT_MOUSE_BUTTON) {
+				//get play button x location
 				if (Ui.getMouseX() >= 125 && Ui.getMouseX() <= 145) {
+					//get play button y locations
 					if (Ui.getMouseY() >= 890 && Ui.getMouseY() <= 930) {
 						//if there's commands
 						if (m_icommand.size() > 0) {
 							m_bexecute = true;
+						}
+					}
+				}
+				else if (Ui.getMouseX() >= 175 && Ui.getMouseX() <= 197) {
+					//get pause button y locations
+					if (Ui.getMouseY() >= 890 && Ui.getMouseY() <= 930) {
+						//if there's commands
+						if (m_icommand.size() > 0) {
+							m_bexecute = false;
 						}
 					}
 				}
