@@ -44,7 +44,7 @@ def stringToCommand(string):
     #holds int commands
     commands = list()
     #check each word for valid commands
-    for word in sarray:
+    for key, word in enumerate(sarray):
         if (word.lower() == "left"):
             commands.append(4)
         elif (word.lower() == "right"):
@@ -53,6 +53,22 @@ def stringToCommand(string):
             commands.append(1)
         elif (word.lower() == "down"):
             commands.append(3)
+        elif (word.lower() == "repeat"):
+            if (len(sarray) > key+2):
+                repeat = int(sarray[key+1])
+                command = sarray[key+2]
+                intCommand = 0
+                if (command.lower() == "left"):
+                    intCommand = 4
+                elif (command.lower() == "right"):
+                    intCommand = 2
+                elif (command.lower() == "up"):
+                    intCommand = 1
+                elif (command.lower() == "down"):
+                    intCommand = 3
+                while repeat > 0:
+                    commands.append(intCommand)
+                    repeat -= 1
 
     #return commands as a list
     return commands
