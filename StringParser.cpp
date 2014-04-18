@@ -20,6 +20,7 @@ void StringParser::init() {
 	m_POname = Py_BuildValue("s", module);
 	//load module into py object
 	m_POmodule = PyImport_Import(m_POname);
+	Py_DecRef(m_POname);
 }
 
 std::string StringParser::parseString(std::vector < int > &f_icommands, std::string s_command) {
@@ -35,14 +36,18 @@ std::string StringParser::parseString(std::vector < int > &f_icommands, std::str
 		//if function exists and is callable
 		if (m_POfunctionName && PyCallable_Check(m_POfunctionName)) {
 			m_POvalues = PyObject_CallFunctionObjArgs(m_POfunctionName, Py_BuildValue("s", cstring), NULL);
+			Py_DecRef(m_POfunctionName);
 		}
 		if (m_POvalues) {
 			//first item is a string
 			m_POstring = PyTuple_GetItem(m_POvalues, 0);
 			//second item is a list
 			m_POlist = PyTuple_GetItem(m_POvalues, 1);
+			//empty out commands
+			f_icommands.clear();
 			int len = PyList_Size(m_POlist);
 			for (int i = 0; i < len; i++) {
+				//add command
 				f_icommands.push_back(PyLong_AsLong(PyList_GetItem(m_POlist, i)));
 			}
 		}
