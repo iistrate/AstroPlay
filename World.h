@@ -26,12 +26,6 @@ private:
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT;
 
-	//tile type
-	enum {
-		BLANK,
-		CLIFF,
-	};
-
 	//holds world's images
 	std::vector < Image* > m_Images;
 	//holds tiles

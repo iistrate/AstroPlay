@@ -18,10 +18,13 @@ World::World():m_itileHeight(32), m_itileWidth(64), SCREEN_HEIGHT(GLOBALS::SCREE
 		for (int j = 0; j < m_vectorX; j++) {
 			//first and last rows
 			if (i == 0 || i == (m_vectorY - 1)) {
-				Map[i].push_back(new Tile((j * m_itileWidth) - (m_itileWidth / 2)*j, (i * m_itileHeight) - (m_itileHeight / 2)*i, m_itileWidth, m_itileHeight, BLANK));
+				Map[i].push_back(new Tile((m_itileWidth - (m_itileWidth / 2))*j, (m_itileHeight - (m_itileHeight / 2))*i, m_itileWidth, m_itileHeight, EDGE_TOP));
+			}
+			else if (i == (m_vectorY - 1)) {
+				Map[i].push_back(new Tile((m_itileWidth - (m_itileWidth / 2))*j, (m_itileHeight - (m_itileHeight / 2))*i, m_itileWidth, m_itileHeight, EDGE_BOTTOM));
 			}
 			else {
-				Map[i].push_back(new Tile((j * m_itileWidth) - (m_itileWidth / 2)*j, (i * m_itileHeight) - (m_itileHeight / 2)*i, m_itileWidth, m_itileHeight, BLANK));
+				Map[i].push_back(new Tile((m_itileWidth - (m_itileWidth / 2))*j, (i * m_itileHeight) - (m_itileHeight / 2)*i, m_itileWidth, m_itileHeight, BLANK));
 			}
 		}
 	}

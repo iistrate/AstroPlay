@@ -25,5 +25,11 @@ enum {
 	DEBUG_MODE,
 	CAMERA_MODE
 };
+//tile type
+enum {
+	BLANK,
+	EDGE_TOP,
+	EDGE_BOTTOM,
+};
 
 #endif // end GLOBALS.h

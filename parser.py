@@ -55,7 +55,7 @@ def stringToCommand(string):
             commands.append(3)
         elif (word.lower() == "repeat"):
             if (len(sarray) > key+2):
-                repeat = int(sarray[key+1])
+                repeat = int(sarray[key+1]) - 1 # -1 is added to account for the original left/right/up/down command
                 command = sarray[key+2]
                 intCommand = 0
                 if (command.lower() == "left"):
