@@ -63,8 +63,8 @@ void TextureManager::draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Im
 			currentFrame = currentFrame + 1 == totalFrames ? 1 : currentFrame + 1;
 			//set frame
 			f_Images[i]->setCurrentFrame(currentFrame);
+			f_Images[i]->animate(false);
 		}
-
 	}
 	SDL_DestroyTexture(m_pTexture);
 	m_pTexture = NULL;

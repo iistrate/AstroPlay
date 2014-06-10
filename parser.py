@@ -37,12 +37,14 @@ def stringToCommand(string):
     found = 0
     while (found != -1):
         found = string.find("\n")
-        string = string.replace("\n", " ")
+        #add whitespace before and after char for splitting
+        string = string.replace("\n", " /n ")
 
     #split string into words
     sarray = string.split(" ")
     #holds int commands
     commands = list()
+    print(sarray)
     #check each word for valid commands
     for key, word in enumerate(sarray):
         if (word.lower() == "left"):
@@ -53,8 +55,12 @@ def stringToCommand(string):
             commands.append(1)
         elif (word.lower() == "down"):
             commands.append(3)
+        #if repeat
         elif (word.lower() == "repeat"):
+            #if using repeat inline
             if (len(sarray) > key+2):
+                #break off array at the repeat
+                tempArr = sarray[key+2:]
                 repeat = int(sarray[key+1]) - 1 # -1 is added to account for the original left/right/up/down command
                 command = sarray[key+2]
                 intCommand = 0
@@ -69,6 +75,5 @@ def stringToCommand(string):
                 while repeat > 0:
                     commands.append(intCommand)
                     repeat -= 1
-
     #return commands as a list
     return commands

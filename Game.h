@@ -22,6 +22,7 @@ private:
 	int m_turn;
 	bool m_bcameraMode; 
 	int m_commandCursor;
+	std::string m_shelpers;
 	std::vector < int > m_icommands;
 
 	//initializers
@@ -48,6 +49,7 @@ private:
 	std::string m_scommand;
 	//has commands
 	std::vector < int > m_icommand;
+
 
 public:
 	Game();

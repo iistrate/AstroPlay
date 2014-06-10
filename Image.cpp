@@ -89,3 +89,6 @@ int Image::getSpriteY() {
 bool Image::isStatic() {
 	return m_bstatic;
 }
+void Image::animate(bool b) {
+	m_banimated = b;
+}

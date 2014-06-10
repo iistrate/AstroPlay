@@ -1,7 +1,8 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(10), m_bmoving(false) {
-	m_Image = new Image("assets/sprites-astronaut.png", x, y, w, h, 0, 0, 1, true, 1, 3, true);
+	m_Image = new Image("assets/sprites-astronaut.png", x, y, w, h, 0, 0, 1, false , 1, 3, true);
 	m_x = x;
 	m_y = y;
 	m_width = w;
@@ -35,8 +36,11 @@ void Player::move(int d) {
 		break;
 	}
 	//set player position
-	setX(newX);
-	setY(newY);
+	if (newX != 0 || newY != 0) {
+		setX(newX);
+		setY(newY);
+		m_Image->animate(true);
+	}
 }
 void Player::setX(int x) {
 	m_x = x;

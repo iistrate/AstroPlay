@@ -39,6 +39,7 @@ public:
 	void setFlipped(bool);
 	void setCurrentFrame(int);
 	void setStatic(bool);
+	void animate(bool);
 
 	//getters
 	bool isFlipped();

@@ -5,6 +5,8 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
 	m_brunning = true;
 
+	m_shelpers = "UP RIGHT DOWN LEFT GET DROP INVENTORY REPEAT IF";
+
 	//initialize sdl
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
 		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
@@ -24,7 +26,7 @@ void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	}
 }
 void Game::run() {
-	
+	//init game
 	int f_iinput = 0;
 	init("Practicum", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
@@ -43,7 +45,7 @@ void Game::run() {
 	Tmanager.setCamX(Askeron->getCamera().getCamX());
 	Tmanager.setCamY(Askeron->getCamera().getCamY());
 
-	//get images
+	//get image sets
 	Askeron->getImages(m_Images_WORLD);
 	GameGUI.getImages(m_Images_GUI);
 	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
@@ -53,6 +55,7 @@ void Game::run() {
 
 	//game loop
 	do {
+		//get user input
 		f_iinput = Ui.getCommand();
 		
 		//get command from input
@@ -61,13 +64,14 @@ void Game::run() {
 		m_scommand = Sparser.parseString(m_icommand, m_scommand);
 		Ui.setStringCommand(m_scommand);
 
+		//camera mode on/off
 		if (f_iinput == CAMERA_MODE && m_bcameraMode == false) {
 			m_bcameraMode = true;
 		}
 		else if (f_iinput == CAMERA_MODE) {
 			m_bcameraMode = false;
 		}
-
+		//quit
 		if (f_iinput == QUIT) {
 			quit();
 		}
@@ -110,7 +114,7 @@ void Game::run() {
 					}
 				}
 			}
-			//needs work
+			//execute written command
 			if (m_bexecute && m_icommand.size() > 0) {
 				Askeron->getPlayer()->move(m_icommand[m_commandCursor]);
 				Askeron->movePlayerCamera(m_icommand[m_commandCursor]);
@@ -133,13 +137,15 @@ void Game::run() {
 
 		//draw images
 		Tmanager.draw(m_pRenderer, m_Images_WORLD);
-		Tmanager.draw(m_pRenderer, m_Images_GUI);
 		Tmanager.draw(m_pRenderer, m_Images_MOVING);
+		Tmanager.draw(m_pRenderer, m_Images_GUI);
 
 		//draw command
 		Tmanager.drawText(m_pRenderer, m_scommand, 20, 70, GLOBALS::COMMAND_PANEL_LINE_WRAP, true);
 		//instruction settings
 		Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
+		//drag and drop commands
+		Tmanager.drawText(m_pRenderer, m_shelpers, 30, 600);
 
 		//Debug mode
 		if (m_bdebugMode) {
@@ -198,7 +204,8 @@ void Game::quit() {
 }
 
 Game::Game():SCREEN_HEIGHT(GLOBALS::SCREEN_HEIGHT), SCREEN_WIDTH(GLOBALS::SCREEN_WIDTH), m_brunning(false), m_pRenderer(0)
-, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bexecute(false), m_commandCursor(0) {
+, m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bexecute(false), 
+m_commandCursor(0) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager
