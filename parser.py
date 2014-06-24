@@ -29,7 +29,8 @@ def parse(string):
     
     #string is at index 0; command list at index 1
     sarray = (cleanedString, stringToCommand(cleanedString))
-    print(sarray)
+    #debug mode
+    #print(sarray)
     return sarray
 
 def stringToCommand(string):
@@ -44,7 +45,8 @@ def stringToCommand(string):
     sarray = string.split(" ")
     #holds int commands
     commands = list()
-    print(sarray)
+    #debug mode
+    #print(sarray)
     #check each word for valid commands
     for key, word in enumerate(sarray):
         if (word.lower() == "left"):

@@ -149,7 +149,8 @@ TextureManager::~TextureManager() {
 //which layer to be drawn on top z-index style
 void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
 	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
-		std::cout << f_Images[i]->getLayer() << std::endl;
+		//std::cout << f_Images[i]->getLayer() << std::endl;
+		void;
 	}
 }
 //initialize font

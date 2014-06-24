@@ -12,42 +12,45 @@
 
 class Game {
 private:
-	//sdl
+	//sdl vars
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	//fps thingy
-	Uint32 m_fps;
-	Uint32 m_fpsCap;
 
+	//in game vars
 	int m_turn;
-	bool m_bcameraMode; 
 	int m_commandCursor;
-	std::string m_shelpers;
+	std::vector < std::string > m_shelpers;
 	std::vector < int > m_icommands;
 
 	//initializers
 	bool m_brunning;
 	bool m_bdebugMode;
 	bool m_bexecute;
+	bool m_bcameraMode;
 
+	//screen settings
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT; 
+	//fps thingy
+	Uint32 m_fps;
+	Uint32 m_fpsCap;
 
-	//compo
+	//composition
 	TextureManager Tmanager;
 	UserInput Ui;
 	World* Askeron;
 	GUI GameGUI;
 	StringParser Parser;
+
 	//image sets
 	std::vector < Image* > m_Images_WORLD;
 	std::vector < Image* > m_Images_GUI;
 	std::vector < Image* > m_Images_MOVING;
 	std::vector < Image* > m_DebugImages;
 
-	//gets string command from user
+	//holds string command
 	std::string m_scommand;
-	//has commands
+	//holds translated commands
 	std::vector < int > m_icommand;
 
 

@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 Camera::Camera():m_icamX(0), m_icamY(0), m_bplayerCamera(false), m_icamSpeed(30) {
 	m_pImage = new Image("assets/camera.png", m_icamX, m_icamY, 48, 48, 0, 0, 1, false, 1, 1, true);
@@ -38,7 +39,7 @@ void Camera::move(int d) {
 		newY = oldY;
 		break;
 	}
-	//set player position
+	//set camera position
 	setCamX(newX);
 	setCamY(newY);
 }

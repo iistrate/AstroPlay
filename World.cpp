@@ -69,7 +69,7 @@ void World::movePlayerCamera(int d) {
 	PlayerCamera.setCamY(newCamY);
 }
 void World::update() {
-	//std::cout << Ioan->getY() << std::endl;
+	void;
 }
 int World::getHeight() {
 	return m_iheight;

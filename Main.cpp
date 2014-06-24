@@ -7,7 +7,5 @@ int main(int argc, char** args) {
 	//run game
 	TheGame.run();
 
-
-
 	return 0;
 }
