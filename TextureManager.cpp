@@ -141,6 +141,9 @@ void TextureManager::drawText(SDL_Renderer* f_prenderer, std::string s, int x, i
 	TTF_CloseFont(m_pfont);
 	m_pfont = NULL;
 }
+int TextureManager::getFontWidth() {
+	return m_ifontWidth;
+}
 //on destroy
 TextureManager::~TextureManager() {
 	//font cleanup
@@ -160,6 +163,8 @@ void TextureManager::initFont(int fz) {
 	}
 	else {
 		m_pfont = TTF_OpenFont("assets/arounded.ttf", fz);
+		//get font width
+		m_ifontWidth = TTF_GetFontOutline(m_pfont);
 	}
 }
 //set camera x position

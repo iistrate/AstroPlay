@@ -22,6 +22,7 @@ private:
 	TTF_Font* m_pfont;
 	const char *m_pcstr;
 	std::string m_scommand;
+	int m_ifontWidth;
 
 	Uint32 FPS;
 
@@ -41,6 +42,8 @@ private:
 public:
 	TextureManager();
 	~TextureManager();
+
+	int getFontWidth();
 
 	void draw(SDL_Renderer* f_prenderer, std::vector < Image* > f_Images, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawImage(SDL_Renderer* f_prenderer, Image* f_Image);

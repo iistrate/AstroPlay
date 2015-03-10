@@ -149,48 +149,7 @@ void Game::run() {
 		//instruction settings
 		Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 
-		//drag and drop commands
-		for (int i = 0; i < m_shelpers.size(); i++) {
-			//holds each helper command line
-			std::string line = m_shelpers[i];
-			int counter = 0;
-			int words = 0;
-			/*
-				1 iterate through sentence, 
-				2 count total letters in line, 
-				3 substract words from line wrap, 
-				4 distribute spaces after the first word
-			*/
-			//#1
-			for (int j = 0; j < line.size(); j++) {
-				if (line[j] != ' ') {
-					//#2
-					counter++;
-				}
-				else {
-					words++;
-				}
-			}
-			//reset counter, initialize used space var
-			int usedSpace = counter;
-			int wordsPerLine = words;
-			counter = 0;
-			words = 0;
-			//#3
-			int toDistribute = GLOBALS::COMMAND_PANEL_LINE_WRAP - usedSpace;
-			//#4
-			for (int j = 0; j < line.size(); j++) {
-				if (line[j] == ' ') {
-					for (int k = 0; k < ceil(toDistribute / wordsPerLine); k++) {
-						//line[j] += 1;
-						void;
-					}
-				}
-			}
-			//draw each line
-			int lineHeight = 25;
-			Tmanager.drawText(m_pRenderer, line, 30, (600 + i*lineHeight));
-		}
+
 		//Debug mode
 		if (m_bdebugMode) {
 			/*
