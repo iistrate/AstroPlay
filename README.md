@@ -1,7 +1,7 @@
 Practicum
 =========
 
-Building a programming helper for beginner programmers. Technologies used: C++, Python, and SDL2
+Building a programming helper for beginner programmers. Technologies used: C++, Python, and SDL2. 
 
 The goal for this project was to build software that will help teach programming concepts to beginner programmers. 
 The user’s goal is to write a set of instructions that will help an astronaut explore the Red Planet, and pick up samples of rock to be sent back to Earth.

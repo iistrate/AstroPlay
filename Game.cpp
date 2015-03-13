@@ -45,7 +45,7 @@ void Game::run() {
 	//create world
 	Askeron = new World();
 
-	//set initial camera view
+	//set initial camera view for the texture manager
 	Tmanager.setCamX(Askeron->getCamera().getCamX());
 	Tmanager.setCamY(Askeron->getCamera().getCamY());
 
@@ -54,7 +54,7 @@ void Game::run() {
 	GameGUI.getImages(m_Images_GUI);
 	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
 
-	//debug
+	//debug mode camera image
 	m_DebugImages.push_back(Askeron->getCamera().getImage());
 
 	//game loop
@@ -98,6 +98,16 @@ void Game::run() {
 			}
 			//check for clicks
 			if (f_iinput == LEFT_MOUSE_BUTTON) {
+				//get close button x location
+				if (Ui.getMouseX() >= 330 && Ui.getMouseX() <= 339) {
+					//get close button y location
+					if (Ui.getMouseY() >= 45 && Ui.getMouseY() <= 53) {
+						//get rid of images
+						m_Images_GUI.clear();
+						//get rid of text
+						m_showCommandPrompt = false;
+					}
+				}
 				//get play button x location
 				if (Ui.getMouseX() >= 125 && Ui.getMouseX() <= 145) {
 					//get play button y locations
@@ -144,11 +154,12 @@ void Game::run() {
 		Tmanager.draw(m_pRenderer, m_Images_MOVING);
 		Tmanager.draw(m_pRenderer, m_Images_GUI);
 
-		//draw command
-		Tmanager.drawText(m_pRenderer, m_scommand, 20, 70, GLOBALS::COMMAND_PANEL_LINE_WRAP, true);
-		//instruction settings
-		Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
-
+		if (m_showCommandPrompt) {
+			//draw command
+			Tmanager.drawText(m_pRenderer, m_scommand, 20, 70, GLOBALS::COMMAND_PANEL_LINE_WRAP, true);
+			//instruction settings
+			Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
+		}
 
 		//Debug mode
 		if (m_bdebugMode) {
@@ -208,7 +219,7 @@ void Game::quit() {
 
 Game::Game():SCREEN_HEIGHT(GLOBALS::SCREEN_HEIGHT), SCREEN_WIDTH(GLOBALS::SCREEN_WIDTH), m_brunning(false), m_pRenderer(0)
 , m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bexecute(false), 
-m_commandCursor(0) {
+m_commandCursor(0), m_showCommandPrompt(true) {
 }
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager

@@ -74,6 +74,8 @@ void GUI::buildPanel(int h, int w) {
 			}
 		}
 	}
+	//add close btn
+	m_Images.push_back(new Image("assets/sprites-gui.png", 330, 45, 9, 8, 112, 24, 5, false, 0, 0, true));
 	//add play btn
 	m_Images.push_back(new Image("assets/sprites-ui.png", 125, 890, 20, 33, 438, 222, 3, 0, 0, 0, true));
 	//add back btn

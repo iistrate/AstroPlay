@@ -22,11 +22,12 @@ private:
 	std::vector < std::string > m_shelpers;
 	std::vector < int > m_icommands;
 
-	//initializers
+	//switches
 	bool m_brunning;
 	bool m_bdebugMode;
 	bool m_bexecute;
 	bool m_bcameraMode;
+	bool m_showCommandPrompt;
 
 	//screen settings
 	const int SCREEN_WIDTH;

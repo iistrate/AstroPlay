@@ -28,6 +28,7 @@ World::World():m_itileHeight(32), m_itileWidth(64), SCREEN_HEIGHT(GLOBALS::SCREE
 			}
 		}
 	}
+	//x, y, width, height, 
 	Ioan = new Player(620, 490, 29, 37, 1);
 	//initial cam setup
 	PlayerCamera.setCamX(15);
