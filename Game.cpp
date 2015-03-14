@@ -40,7 +40,7 @@ void Game::run() {
 	Sparser.init();
 
 	//create panel
-	GameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH);
+	GameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH*0.3);
 
 	//create world
 	Askeron = new World();
