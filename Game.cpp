@@ -1,6 +1,5 @@
 #include "Game.h"
-#include <Python.h>
-#include <math.h>
+
 
 void Game::init(const char* title, int x, int y, int w, int h, int flags) {
 	//game loop condition
@@ -39,8 +38,11 @@ void Game::run() {
 	StringParser Sparser;
 	Sparser.init();
 
-	//create panel
-	GameGUI.buildPanel(SCREEN_HEIGHT, SCREEN_WIDTH*0.3);
+	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.3, SCREEN_HEIGHT, 0, 0);
+	ControlPanel->getImages(m_Images_GUI);
+
+	Panel *test = new Panel(450, 200, SCREEN_WIDTH-450, 200);
+	test->getImages(m_Images_GUI);
 
 	//create world
 	Askeron = new World();
@@ -51,7 +53,6 @@ void Game::run() {
 
 	//get image sets
 	Askeron->getImages(m_Images_WORLD);
-	GameGUI.getImages(m_Images_GUI);
 	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
 
 	//debug mode camera image

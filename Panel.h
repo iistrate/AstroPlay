@@ -8,41 +8,42 @@ using std::vector;
 
 class Panel {
 private:
-	int m_width;
-	int m_height;
-	int m_xPos;
-	int m_yPos;
-	vector < Image* > m_Images;
-public:
-	Panel(void) : m_width(0), m_height(0), m_xPos(0), m_yPos(0), m_Images(0) {}
-	Panel(int w, int h, int x, int y);
-	~Panel(void);
-	//inlines
-	void setWidth(int w) {
-		m_width = w;
-	}
-	void setHeight(int h) {
-		m_height = h;
-	}
-	void setXPos(int x) {
-		m_xPos = x;
-	}
-	void setYPos(int y) {
-		m_yPos = y;
-	}
-	int getWidth(void) {
-		return m_width;
-	}
-	int getHeight(void) {
-		return m_height;
-	}
-	int getXPos(void) {
-		return m_xPos;
-	}
-	int getYPos(void) {
-		return m_yPos;
-	}
+	//size
+	int m_vectorY;
+	int m_vectorX;
 
+	//position
+	int m_panelx;
+	int m_panely;
+
+	//flags
+	bool m_visible;
+
+	std::vector <Image *> m_Images;
+public:
+	Panel(int w, int h, int x, int y);
+	~Panel();
+
+	void getImages(std::vector < Image* > &f_Images);
+
+	int Panel::getX() {
+		return m_panelx;
+	}
+	int Panel::getY() {
+		return m_panely;
+	}
+	void Panel::setX(int x) {
+		m_panelx = x;
+	}
+	void Panel::setY(int y) {
+		m_panely = y;
+	}
+	bool Panel::isVisible() {
+		return m_visible;
+	}
+	void Panel::setVisible(bool visible) {
+		m_visible = visible;
+	}
 };
 
 #endif //end Panel.h

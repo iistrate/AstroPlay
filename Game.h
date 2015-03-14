@@ -7,8 +7,10 @@
 #include "UserInput.h"
 #include <iostream>
 #include "World.h"
-#include "GUI.h"
 #include "StringParser.h"
+#include <Python.h>
+#include <math.h>
+#include "Panel.h"
 
 class Game {
 private:
@@ -40,7 +42,6 @@ private:
 	TextureManager Tmanager;
 	UserInput Ui;
 	World* Askeron;
-	GUI GameGUI;
 	StringParser Parser;
 
 	//image sets
