@@ -42,7 +42,7 @@ private:
 	//composition
 	TextureManager Tmanager;
 	UserInput Ui;
-	World* Askeron;
+	World* Mars;
 	StringParser Parser;
 
 	//image sets

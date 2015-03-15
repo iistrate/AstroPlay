@@ -47,9 +47,9 @@ enum {
 };
 //layers
 enum {
-	BACKGROUND_LAYER = 1,
-	MOVING_LAYER = 3,
-	CONTROLS_LAYER = 9
+	BACKGROUND_LAYER = 3,
+	MOVING_LAYER = 5,
+	CONTROLS_LAYER = 7
 };
 
 #endif // end GLOBALS.h

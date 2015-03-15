@@ -17,19 +17,19 @@ void Game::run() {
 	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER, GUI));
 
 	//create world
-	Askeron = new World();
+	Mars = new World();
 
 	//set initial camera view for the texture manager
-	Tmanager.setCamX(Askeron->getCamera().getCamX());
-	Tmanager.setCamY(Askeron->getCamera().getCamY());
+	Tmanager.setCamX(Mars->getCamera().getCamX());
+	Tmanager.setCamY(Mars->getCamera().getCamY());
 
 	//get world image sets
-	m_Images.push_back(new ImageSet(Askeron->getImages(), BACKGROUND_LAYER, WORLD));
+	m_Images.push_back(new ImageSet(Mars->getImages(), BACKGROUND_LAYER, WORLD));
 	//get player image
-	m_Images.push_back(new ImageSet(Askeron->getPlayer()->getImage(), MOVING_LAYER, MOVING));
+	m_Images.push_back(new ImageSet(Mars->getPlayer()->getImage(), MOVING_LAYER, MOVING));
 
 	//debug mode camera image
-	m_DebugImages.push_back(new ImageSet(Askeron->getCamera().getImage(), MOVING_LAYER, MOVING));
+	m_DebugImages.push_back(new ImageSet(Mars->getCamera().getImage(), MOVING_LAYER, MOVING));
 	//game loop
 	do {
 		//get user input
@@ -56,15 +56,15 @@ void Game::run() {
 			//move player
 			if (f_iinput == UP || f_iinput == DOWN || f_iinput == LEFT || f_iinput == RIGHT) {
 				if (m_bcameraMode) {
-					Askeron->getCamera().move(f_iinput);
+					Mars->getCamera().move(f_iinput);
 				}
 				else {
-					Askeron->getPlayer()->move(f_iinput);
-					Askeron->movePlayerCamera(f_iinput);
+					Mars->getPlayer()->move(f_iinput);
+					Mars->movePlayerCamera(f_iinput);
 				}
 				//set camera view
-				Tmanager.setCamX(Askeron->getCamera().getCamX());
-				Tmanager.setCamY(Askeron->getCamera().getCamY());
+				Tmanager.setCamX(Mars->getCamera().getCamX());
+				Tmanager.setCamY(Mars->getCamera().getCamY());
 			}
 			else if (f_iinput == DEBUG_MODE) {
 				m_bdebugMode = m_bdebugMode == true ? m_bdebugMode = false : m_bdebugMode = true;
@@ -84,9 +84,13 @@ void Game::run() {
 				switch (buttonPressed) {
 				//close panel
 				case CLOSE:
-					//get rid of images
-					//m_Images_GUI.clear();
-					//get rid of text
+					//hide images
+					//not working
+					for (int i = 0; i < m_Images.size(); i++) {
+						if (m_Images[i]->getIdentifier() == GUI) {
+							m_Images[i]->hide();
+						}
+					}
 					m_showCommandPrompt = false;
 					break;
 				//play script
@@ -110,8 +114,8 @@ void Game::run() {
 			}
 			//execute written command
 			if (m_bexecute && m_icommand.size() > 0) {
-				Askeron->getPlayer()->move(m_icommand[m_commandCursor]);
-				Askeron->movePlayerCamera(m_icommand[m_commandCursor]);
+				Mars->getPlayer()->move(m_icommand[m_commandCursor]);
+				Mars->movePlayerCamera(m_icommand[m_commandCursor]);
 				m_commandCursor++;
 				if (m_commandCursor > m_icommand.size() - 1) {
 					m_commandCursor = 0;
@@ -119,7 +123,7 @@ void Game::run() {
 				}
 			}
 			//update game 
-			Askeron->update();
+			Mars->update();
 		}
 
 
@@ -180,9 +184,9 @@ void Game::run() {
 			//show mouse position
 			Tmanager.drawText(m_pRenderer, "X: " + std::to_string(Ui.getMouseX()) + " Y: " + std::to_string(Ui.getMouseY()), 600, 920);
 			//show camera x and y
-			Tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Askeron->getCamera().getCamX()) + " Y " + std::to_string(Askeron->getCamera().getCamY()), 450, 20);
+			Tmanager.drawText(m_pRenderer, "Camera: X " + std::to_string(Mars->getCamera().getCamX()) + " Y " + std::to_string(Mars->getCamera().getCamY()), 450, 20);
 			//show player x and y
-			Tmanager.drawText(m_pRenderer, "Player: X " + std::to_string(Askeron->getPlayer()->getX()) + " Y " + std::to_string(Askeron->getPlayer()->getY()), 650, 20);
+			Tmanager.drawText(m_pRenderer, "Player: X " + std::to_string(Mars->getPlayer()->getX()) + " Y " + std::to_string(Mars->getPlayer()->getY()), 650, 20);
 		}
 		//render window
 		SDL_RenderPresent(m_pRenderer);

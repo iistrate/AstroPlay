@@ -30,6 +30,12 @@ public:
 	const int getIdentifier(void) {
 		return m_identifier;
 	}
+	void hide(void) {
+		m_zIndex = 1;
+	}
+	void reveal(void) {
+		m_zIndex = 7;
+	}
 };
 
 #endif
