@@ -28,25 +28,28 @@ public:
 
 	void getImages(std::vector < Image* > &f_Images);
 
-	int Panel::getX() {
+	int getX() {
 		return m_panelx;
 	}
-	int Panel::getY() {
+	int getY() {
 		return m_panely;
 	}
-	void Panel::setX(int x) {
+	void setX(int x) {
 		m_panelx = x;
 	}
-	void Panel::setY(int y) {
+	void setY(int y) {
 		m_panely = y;
 	}
-	bool Panel::isVisible() {
+	bool isVisible() {
 		return m_visible;
 	}
-	void Panel::setVisible(bool visible) {
+	void setVisible(bool visible) {
 		m_visible = visible;
 	}
-	void Panel::addButton(int x, int y, int w, int h, Image* btnImage);
+	void addButton(int x, int y, int w, int h, Image* btnImage, int identity);
+	std::vector < Button* > getButtons(void) {
+		return m_Buttons;
+	}
 };
 
 #endif //end Panel.h

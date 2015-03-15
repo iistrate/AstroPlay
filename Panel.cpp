@@ -29,7 +29,6 @@ Panel::Panel(int w, int h, int x, int y): m_visible(true) {
 				}
 				//second row
 				else if (i == starting_y + 1) {
-					P(j * tileWidth);
 					m_Images.push_back(new Image("assets/sprites-ui.png", j * tileWidth, i * tileHeight, tileWidth, 36, 34, 53, 2, 0, 0, 0, true));
 				}
 				//bottom row
@@ -82,21 +81,21 @@ Panel::Panel(int w, int h, int x, int y): m_visible(true) {
 		}
 	}
 	//add close btn
-	addButton(330, 45, 9, 8, new Image("assets/sprites-gui.png", 330, 45, 9, 8, 112, 24, 5, false, 0, 0, true));
+	addButton(330, 45, 9, 8, new Image("assets/sprites-gui.png", 330, 45, 9, 8, 112, 24, 5, false, 0, 0, true), CLOSE);
 	//add play btn
-	addButton(135, 890, 20, 33, new Image("assets/sprites-ui.png", 135, 890, 20, 33, 437, 222, 3, 0, 0, 0, true));
+	addButton(135, 890, 20, 33, new Image("assets/sprites-ui.png", 135, 890, 20, 33, 437, 222, 3, 0, 0, 0, true), PLAY);
 	//add back btn
-	addButton(75, 890, 33, 33, new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true));
+	addButton(75, 890, 33, 33, new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true), BACK);
 	//add forward btn
-	addButton(225, 890, 33, 33, new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true));
+	addButton(225, 890, 33, 33, new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true), FORWARD);
 	//add pause btn
-	addButton(175, 890, 22, 33, new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true));	
+	addButton(175, 890, 22, 33, new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true), PAUSE);	
 
 }
 //add button to panel
-void Panel::addButton(int x, int y, int w, int h, Image* btnImage) {
+void Panel::addButton(int x, int y, int w, int h, Image* btnImage, int identity) {
 	m_Images.push_back(btnImage);
-	m_Buttons.push_back(new Button(x, y, w, h, btnImage));
+	m_Buttons.push_back(new Button(x, y, w, h, btnImage, identity));
 }
 
 void Panel::getImages(std::vector < Image* > &f_Images) {

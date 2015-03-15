@@ -96,34 +96,41 @@ void Game::run() {
 			}
 			//check for clicks
 			if (f_iinput == LEFT_MOUSE_BUTTON) {
-				//get close button x location
-				if (Ui.getMouseX() >= 330 && Ui.getMouseX() <= 339) {
-					//get close button y location
-					if (Ui.getMouseY() >= 45 && Ui.getMouseY() <= 53) {
-						//get rid of images
-						m_Images_GUI.clear();
-						//get rid of text
-						m_showCommandPrompt = false;
+				//check if mouse click location belongs to any buttons
+				int mouseX = Ui.getMouseX();
+				int mouseY = Ui.getMouseY();
+				int buttonPressed = -1;
+				std::vector < Button* > Buttons = ControlPanel->getButtons();
+				for (int i = 0; i < Buttons.size(); i++) {
+					if (Buttons[i]->isClicked(mouseX, mouseY)) {
+						buttonPressed = Buttons[i]->getIdentifier();
 					}
 				}
-				//get play button x location
-				if (Ui.getMouseX() >= 125 && Ui.getMouseX() <= 145) {
-					//get play button y locations
-					if (Ui.getMouseY() >= 890 && Ui.getMouseY() <= 930) {
-						//if there's commands
-						if (m_icommand.size() > 0) {
-							m_bexecute = true;
-						}
+				switch (buttonPressed) {
+				//close panel
+				case CLOSE:
+					//get rid of images
+					m_Images_GUI.clear();
+					//get rid of text
+					m_showCommandPrompt = false;
+					break;
+				//play script
+				case PLAY:
+					//if there's commands
+					if (m_icommand.size() > 0) {
+						m_bexecute = true;
 					}
-				}
-				else if (Ui.getMouseX() >= 175 && Ui.getMouseX() <= 197) {
-					//get pause button y locations
-					if (Ui.getMouseY() >= 890 && Ui.getMouseY() <= 930) {
-						//if there's commands
-						if (m_icommand.size() > 0) {
-							m_bexecute = false;
-						}
+					break;
+				//pause script
+				case PAUSE:
+					//if there's commands
+					if (m_icommand.size() > 0) {
+						m_bexecute = false;
 					}
+					break;
+				default:
+					buttonPressed = -1;
+					break;
 				}
 			}
 			//execute written command

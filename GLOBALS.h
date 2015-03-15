@@ -31,5 +31,13 @@ enum {
 	EDGE_TOP,
 	EDGE_BOTTOM,
 };
+//buttons
+enum {
+	CLOSE,
+	PLAY,
+	BACK,
+	FORWARD,
+	PAUSE
+};
 
 #endif // end GLOBALS.h
