@@ -152,8 +152,15 @@ TextureManager::~TextureManager() {
 //which layer to be drawn on top z-index style
 void TextureManager::sortByLayer(std::vector < Image* > f_Images) {
 	for (std::vector < Image >::size_type i = 0; i < f_Images.size(); i++) {
-		//std::cout << f_Images[i]->getLayer() << std::endl;
-		void;
+		for (std::vector < Image >::size_type j = 0; j < f_Images.size(); j++) {
+			int layerCurrent = f_Images[i]->getLayer();
+			int layerReplace = f_Images[j]->getLayer();
+			if (layerCurrent < layerReplace) {
+				Image* temp = f_Images[i];
+				f_Images[i] = f_Images[j];
+				f_Images[j] = temp;
+			}
+		}
 	}
 }
 //initialize font

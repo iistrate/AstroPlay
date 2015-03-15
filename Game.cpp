@@ -1,33 +1,8 @@
 #include "Game.h"
 
+//globals
+void sortByLayer(std::vector < ImageSet* > &ImageSets);
 
-void Game::init(const char* title, int x, int y, int w, int h, int flags) {
-	//game loop condition
-	m_brunning = true;
-
-	//drag and drop helpers
-	m_shelpers.push_back("UP RIGHT DOWN LEFT ");
-	m_shelpers.push_back("GET PUT INVENTORY ");
-	m_shelpers.push_back("REPEAT IF ");
-
-	//initialize sdl
-	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
-		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
-		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
-		m_pWindow = SDL_CreateWindow(title, x, y, w, h, flags);
-		if (m_pWindow) {
-			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
-			SDL_SetRenderDrawColor(m_pRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			SDL_StartTextInput();
-		}
-		else {
-			std::cout << "Window failed to load" << std::endl;
-		}
-	}
-	else {
-		std::cout << "SDL failed to initialize" << std::endl;
-	}
-}
 void Game::run() {
 	//init game
 	int f_iinput = 0;
@@ -38,8 +13,8 @@ void Game::run() {
 	StringParser Sparser;
 	Sparser.init();
 
-	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.3, SCREEN_HEIGHT, 0, 0);
-	ControlPanel->getImages(m_Images_GUI);
+	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.26, SCREEN_HEIGHT, 0, 0);
+	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER));
 
 	//create world
 	Askeron = new World();
@@ -48,13 +23,13 @@ void Game::run() {
 	Tmanager.setCamX(Askeron->getCamera().getCamX());
 	Tmanager.setCamY(Askeron->getCamera().getCamY());
 
-	//get image sets
-	Askeron->getImages(m_Images_WORLD);
-	m_Images_MOVING.push_back(Askeron->getPlayer()->getImage());
+	//get world image sets
+	m_Images.push_back(new ImageSet(Askeron->getImages(), BACKGROUND_LAYER));
+	//get player image
+	m_Images.push_back(new ImageSet(Askeron->getPlayer()->getImage(), MOVING_LAYER));
 
 	//debug mode camera image
-	m_DebugImages.push_back(Askeron->getCamera().getImage());
-
+	m_DebugImages.push_back(new ImageSet(Askeron->getCamera().getImage(), MOVING_LAYER));
 	//game loop
 	do {
 		//get user input
@@ -110,7 +85,7 @@ void Game::run() {
 				//close panel
 				case CLOSE:
 					//get rid of images
-					m_Images_GUI.clear();
+					//m_Images_GUI.clear();
 					//get rid of text
 					m_showCommandPrompt = false;
 					break;
@@ -150,14 +125,16 @@ void Game::run() {
 
 		//clear window
 		SDL_RenderClear(m_pRenderer);
-
 		//set color bg to white
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
-
+		
+		//sort by zIndex CSS style :)
+		sortByLayer(m_Images);
 		//draw images
-		Tmanager.draw(m_pRenderer, m_Images_WORLD);
-		Tmanager.draw(m_pRenderer, m_Images_MOVING);
-		Tmanager.draw(m_pRenderer, m_Images_GUI);
+		for (std::vector < ImageSet* >::size_type i = 0; i < m_Images.size(); i++) {
+			Tmanager.draw(m_pRenderer, m_Images[i]->getImages());
+		}
+
 
 		if (m_showCommandPrompt) {
 			//draw command
@@ -172,9 +149,9 @@ void Game::run() {
 			 * CMD_Window
 			*/
 			//image array size
-			std::cout << "World Image Array Size: " << m_Images_WORLD.size() << std::endl;
-			std::cout << "GUI Image Array Size: " << m_Images_GUI.size() << std::endl;
-			std::cout << "MOVING Image Array Size: " << m_Images_MOVING.size() << std::endl;
+			//std::cout << "World Image Array Size: " << m_Images_WORLD.size() << std::endl;
+			//std::cout << "GUI Image Array Size: " << m_Images_GUI.size() << std::endl;
+			//std::cout << "MOVING Image Array Size: " << m_Images_MOVING.size() << std::endl;
 
 			/*
 			 * SDL_Window
@@ -183,7 +160,7 @@ void Game::run() {
 			/*
 				image
 			*/
-			Tmanager.draw(m_pRenderer, m_DebugImages);
+			//Tmanager.draw(m_pRenderer, m_DebugImages);
 			/*
 				text
 			*/
@@ -226,6 +203,34 @@ Game::Game():SCREEN_HEIGHT(GLOBALS::SCREEN_HEIGHT), SCREEN_WIDTH(GLOBALS::SCREEN
 , m_pWindow(0), m_fps(0), m_fpsCap(GLOBALS::FPS_CAP), m_turn(0), m_bdebugMode(false), m_bcameraMode(false), m_bexecute(false), 
 m_commandCursor(0), m_showCommandPrompt(true) {
 }
+
+void Game::init(const char* title, int x, int y, int w, int h, int flags) {
+	//game loop condition
+	m_brunning = true;
+
+	//drag and drop helpers
+	m_shelpers.push_back("UP RIGHT DOWN LEFT ");
+	m_shelpers.push_back("GET PUT INVENTORY ");
+	m_shelpers.push_back("REPEAT IF ");
+
+	//initialize sdl
+	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
+		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+		m_pWindow = SDL_CreateWindow(title, x, y, w, h, flags);
+		if (m_pWindow) {
+			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
+			SDL_SetRenderDrawColor(m_pRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+			SDL_StartTextInput();
+		}
+		else {
+			std::cout << "Window failed to load" << std::endl;
+		}
+	}
+	else {
+		std::cout << "SDL failed to initialize" << std::endl;
+	}
+}
 Game::~Game() {
 	//sdl cleanup; font cleanup handled in tmanager
 	SDL_Quit();
@@ -233,4 +238,21 @@ Game::~Game() {
 	m_pWindow = 0;
 	SDL_DestroyRenderer(m_pRenderer);
 	m_pRenderer = 0;
+}
+//which layer to be drawn on top z-index style
+void sortByLayer(std::vector < ImageSet* > &ImageSets) {
+	//go through each of the image set
+	for (int i = 0; i < ImageSets.size(); i++) {
+		//and compare to each other one 
+		for (int j = i + 1; j < ImageSets.size(); j++) {
+			int zIndexOriginal = ImageSets[i]->getzIndex();
+			int zIndexCompare = ImageSets[j]->getzIndex();
+			//bigger zIndex gets added at end of list
+			if (zIndexOriginal > zIndexCompare) {
+				ImageSet* temp = ImageSets[i];
+				ImageSets[i] = ImageSets[j];
+				ImageSets[j] = temp;
+			}
+		}
+	}
 }

@@ -38,19 +38,19 @@ private:
 
 public:
 	//gets px height and width from Game
-	World();
-	~World();
+	World(void);
+	~World(void);
 
-	void update();
+	void update(void);
 	void movePlayerCamera(int);
 
 	//getters
-	int getHeight();
-	int getWidth();
-	void getImages(std::vector < Image* > &f_Images);
+	int getHeight(void);
+	int getWidth(void);
+	std::vector < Image* > getImages(void);
 
-	Camera getCamera();	
-	Player* getPlayer();
+	Camera getCamera(void);	
+	Player* getPlayer(void);
 };
 
 #endif // World.h

@@ -11,6 +11,7 @@
 #include <Python.h>
 #include <math.h>
 #include "Panel.h"
+#include "ImageSet.h"
 
 class Game {
 private:
@@ -45,10 +46,8 @@ private:
 	StringParser Parser;
 
 	//image sets
-	std::vector < Image* > m_Images_WORLD;
-	std::vector < Image* > m_Images_GUI;
-	std::vector < Image* > m_Images_MOVING;
-	std::vector < Image* > m_DebugImages;
+	std::vector < ImageSet* > m_Images;
+	std::vector < ImageSet* > m_DebugImages;
 
 	//holds string command
 	std::string m_scommand;

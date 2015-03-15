@@ -4,6 +4,7 @@
 #include <vector>
 #include "Image.h"
 #include "Button.h"
+#include "Game.h"
 
 using std::vector;
 
@@ -26,8 +27,9 @@ public:
 	Panel(int w, int h, int x, int y);
 	~Panel();
 
-	void getImages(std::vector < Image* > &f_Images);
-
+	std::vector < Image* > Panel::getImages(void) {
+		return m_Images;
+	}
 	int getX() {
 		return m_panelx;
 	}

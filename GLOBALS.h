@@ -39,5 +39,17 @@ enum {
 	FORWARD,
 	PAUSE
 };
+//image sets
+enum {
+	GUI,
+	WORLD,
+	MOVING
+};
+//layers
+enum {
+	BACKGROUND_LAYER = 1,
+	MOVING_LAYER = 3,
+	CONTROLS_LAYER = 9
+};
 
 #endif // end GLOBALS.h

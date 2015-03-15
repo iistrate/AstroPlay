@@ -78,12 +78,13 @@ int World::getHeight() {
 int World::getWidth() {
 	return m_iwidth;
 }
-void World::getImages(std::vector < Image* > &f_Images) {
+std::vector < Image* > World::getImages(void) {
 	for (int i = 0; i < m_vectorY; i++) {
 		for (int j = 0; j < m_vectorX; j++) {
-			f_Images.push_back(Map[i][j]->getImage());
+			m_Images.push_back(Map[i][j]->getImage());
 		}
 	}
+	return m_Images;
 }
 //interface for Camera->TextureManager
 Camera World::getCamera() {
