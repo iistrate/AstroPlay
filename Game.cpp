@@ -41,9 +41,6 @@ void Game::run() {
 	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.3, SCREEN_HEIGHT, 0, 0);
 	ControlPanel->getImages(m_Images_GUI);
 
-	Panel *test = new Panel(450, 200, SCREEN_WIDTH-450, 200);
-	test->getImages(m_Images_GUI);
-
 	//create world
 	Askeron = new World();
 
