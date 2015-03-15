@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Image.h"
+#include "Button.h"
 
 using std::vector;
 
@@ -20,6 +21,7 @@ private:
 	bool m_visible;
 
 	std::vector <Image *> m_Images;
+	std::vector <Button*> m_Buttons;
 public:
 	Panel(int w, int h, int x, int y);
 	~Panel();
@@ -44,6 +46,7 @@ public:
 	void Panel::setVisible(bool visible) {
 		m_visible = visible;
 	}
+	void Panel::addButton(int x, int y, int w, int h, Image* btnImage);
 };
 
 #endif //end Panel.h

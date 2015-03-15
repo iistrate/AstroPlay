@@ -82,16 +82,21 @@ Panel::Panel(int w, int h, int x, int y): m_visible(true) {
 		}
 	}
 	//add close btn
-	m_Images.push_back(new Image("assets/sprites-gui.png", 330, 45, 9, 8, 112, 24, 5, false, 0, 0, true));
+	addButton(330, 45, 9, 8, new Image("assets/sprites-gui.png", 330, 45, 9, 8, 112, 24, 5, false, 0, 0, true));
 	//add play btn
-	m_Images.push_back(new Image("assets/sprites-ui.png", 125, 890, 20, 33, 438, 222, 3, 0, 0, 0, true));
+	addButton(135, 890, 20, 33, new Image("assets/sprites-ui.png", 135, 890, 20, 33, 437, 222, 3, 0, 0, 0, true));
 	//add back btn
-	m_Images.push_back(new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true));
+	addButton(75, 890, 33, 33, new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true));
 	//add forward btn
-	m_Images.push_back(new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true));
+	addButton(225, 890, 33, 33, new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true));
 	//add pause btn
-	m_Images.push_back(new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true));
-	
+	addButton(175, 890, 22, 33, new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true));	
+
+}
+//add button to panel
+void Panel::addButton(int x, int y, int w, int h, Image* btnImage) {
+	m_Images.push_back(btnImage);
+	m_Buttons.push_back(new Button(x, y, w, h, btnImage));
 }
 
 void Panel::getImages(std::vector < Image* > &f_Images) {
