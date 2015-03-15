@@ -14,7 +14,7 @@ void Game::run() {
 	Sparser.init();
 
 	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.26, SCREEN_HEIGHT, 0, 0);
-	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER));
+	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER, GUI));
 
 	//create world
 	Askeron = new World();
@@ -24,12 +24,12 @@ void Game::run() {
 	Tmanager.setCamY(Askeron->getCamera().getCamY());
 
 	//get world image sets
-	m_Images.push_back(new ImageSet(Askeron->getImages(), BACKGROUND_LAYER));
+	m_Images.push_back(new ImageSet(Askeron->getImages(), BACKGROUND_LAYER, WORLD));
 	//get player image
-	m_Images.push_back(new ImageSet(Askeron->getPlayer()->getImage(), MOVING_LAYER));
+	m_Images.push_back(new ImageSet(Askeron->getPlayer()->getImage(), MOVING_LAYER, MOVING));
 
 	//debug mode camera image
-	m_DebugImages.push_back(new ImageSet(Askeron->getCamera().getImage(), MOVING_LAYER));
+	m_DebugImages.push_back(new ImageSet(Askeron->getCamera().getImage(), MOVING_LAYER, MOVING));
 	//game loop
 	do {
 		//get user input
@@ -149,9 +149,18 @@ void Game::run() {
 			 * CMD_Window
 			*/
 			//image array size
-			//std::cout << "World Image Array Size: " << m_Images_WORLD.size() << std::endl;
-			//std::cout << "GUI Image Array Size: " << m_Images_GUI.size() << std::endl;
-			//std::cout << "MOVING Image Array Size: " << m_Images_MOVING.size() << std::endl;
+			for (std::vector < ImageSet* >::size_type i = 0; i < m_Images.size(); i++) {
+				int identity = m_Images[i]->getIdentifier();
+				if (identity == WORLD) {
+					std::cout << "World Image Array Size: " << m_Images[i]->getImages().size() << std::endl;
+				}
+				else if (identity == GUI) {
+					std::cout << "GUI Image Array Size: " << m_Images[i]->getImages().size() << std::endl;
+				}
+				else {
+					std::cout << "MOVING Image Array Size: " << m_Images[i]->getImages().size() << std::endl;
+				}
+			}
 
 			/*
 			 * SDL_Window

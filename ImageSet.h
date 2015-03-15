@@ -8,14 +8,12 @@ class ImageSet {
 private:
 	std::vector < Image* > m_Images;
 	int m_zIndex;
-	int m_identifier;
+	const int m_identifier;
 public:
-	ImageSet(std::vector < Image* > Images, int zIndex) {
-		m_zIndex = zIndex;
+	ImageSet(std::vector < Image* > Images, int zIndex, int identity): m_zIndex(zIndex), m_identifier(identity) {
 		m_Images = Images;
 	}
-	ImageSet(Image* singleImage, int zIndex): m_Images(0) {
-		m_zIndex = zIndex;
+	ImageSet(Image* singleImage, int zIndex, int identity) : m_Images(0), m_zIndex(zIndex), m_identifier(identity) {
 		m_Images.push_back(singleImage);
 	}
 	~ImageSet(void) {
@@ -28,6 +26,9 @@ public:
 	}
 	std::vector < Image* > getImages(void) {
 		return m_Images;
+	}
+	const int getIdentifier(void) {
+		return m_identifier;
 	}
 };
 
