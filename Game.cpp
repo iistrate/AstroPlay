@@ -14,7 +14,10 @@ void Game::run() {
 	Sparser.init();
 
 	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.26, SCREEN_HEIGHT, 0, 0);
-	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER, GUI));
+	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER, CONTROL_PANEL));
+	m_BtnControlPanel = new Button(0, 0, 50, 50, new Image("assets/controlPanel.png", 0, 0, 50, 50, 0, 0, 1, 0, 1, 1, true), OPEN_CONTROL_PANEL);
+	m_Images.push_back(new ImageSet(m_BtnControlPanel->getImage(), HIDDEN, OPEN_CONTROL_PANEL));
+
 
 	//create world
 	Mars = new World();
@@ -81,17 +84,33 @@ void Game::run() {
 						buttonPressed = Buttons[i]->getIdentifier();
 					}
 				}
+				if (m_BtnControlPanel->isClicked(mouseX, mouseY)) {
+					buttonPressed = m_BtnControlPanel->getIdentifier();
+					P(buttonPressed);
+				}
 				switch (buttonPressed) {
 				//close panel
 				case CLOSE:
-					//hide images
-					//not working
 					for (int i = 0; i < m_Images.size(); i++) {
-						if (m_Images[i]->getIdentifier() == GUI) {
+						if (m_Images[i]->getIdentifier() == CONTROL_PANEL) {
 							m_Images[i]->hide();
+						}
+						else if (m_Images[i]->getIdentifier() == OPEN_CONTROL_PANEL) {
+							m_Images[i]->reveal();
 						}
 					}
 					m_showCommandPrompt = false;
+					break;
+				case OPEN_CONTROL_PANEL:
+					for (int i = 0; i < m_Images.size(); i++) {
+						if (m_Images[i]->getIdentifier() == CONTROL_PANEL) {
+							m_Images[i]->reveal();
+						}
+						else if (m_Images[i]->getIdentifier() == OPEN_CONTROL_PANEL) {
+							m_Images[i]->hide();
+						}
+					}
+					m_showCommandPrompt = true;
 					break;
 				//play script
 				case PLAY:
@@ -146,6 +165,14 @@ void Game::run() {
 			//instruction settings
 			Tmanager.drawText(m_pRenderer, "Please enter command: ", 20, 40);
 		}
+		else {
+			//draw images
+			for (std::vector < ImageSet* >::size_type i = 0; i < m_Images.size(); i++) {
+				if (m_Images[i]->getIdentifier() == OPEN_CONTROL_PANEL) {
+					Tmanager.draw(m_pRenderer, m_Images[i]->getImages());
+				}
+			}
+		}
 
 		//Debug mode
 		if (m_bdebugMode) {
@@ -173,7 +200,7 @@ void Game::run() {
 			/*
 				image
 			*/
-			//Tmanager.draw(m_pRenderer, m_DebugImages);
+			Tmanager.draw(m_pRenderer, m_DebugImages[0]->getImages());
 			/*
 				text
 			*/

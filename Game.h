@@ -49,6 +49,9 @@ private:
 	std::vector < ImageSet* > m_Images;
 	std::vector < ImageSet* > m_DebugImages;
 
+	//buttons
+	Button* m_BtnControlPanel;
+
 	//holds string command
 	std::string m_scommand;
 	//holds translated commands

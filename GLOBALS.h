@@ -37,16 +37,19 @@ enum {
 	PLAY,
 	BACK,
 	FORWARD,
-	PAUSE
+	PAUSE,
+	OPEN_CONTROL_PANEL,
 };
 //image sets
 enum {
 	GUI,
 	WORLD,
-	MOVING
+	MOVING,
+	CONTROL_PANEL
 };
-//layers
+//layers zindex
 enum {
+	HIDDEN = 0,
 	BACKGROUND_LAYER = 3,
 	MOVING_LAYER = 5,
 	CONTROLS_LAYER = 7
