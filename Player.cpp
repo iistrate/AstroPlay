@@ -6,6 +6,7 @@ Player::Player(int x, int y, int w, int h, int t):m_idirection(0), m_ispeed(10),
 	m_y = y;
 	m_width = w;
 	m_height = h;
+	m_Inventory = new Inventory();
 }
 Player::~Player() {
 	delete m_Image;

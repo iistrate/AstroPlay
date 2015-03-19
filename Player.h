@@ -3,12 +3,14 @@
 
 #include "GameObject.h"
 #include "GLOBALS.h"
+#include "Inventory.h"
 
 class Player : public GameObject {
 private:
 	int m_idirection;
 	int m_ispeed;
-	bool m_bmoving;
+	bool m_bmoving; 
+	Inventory* m_Inventory;
 
 public:
 	Player(int x, int y, int w, int h, int t);

@@ -25,6 +25,7 @@ enum {
 	DEBUG_MODE,
 	CAMERA_MODE
 };
+
 //tile type
 enum {
 	BLANK,

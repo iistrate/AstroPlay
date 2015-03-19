@@ -90,6 +90,8 @@
     <ClInclude Include="GLOBALS.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageSet.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryObject.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="StringParser.h" />
