@@ -40,13 +40,15 @@ enum {
 	FORWARD,
 	PAUSE,
 	OPEN_CONTROL_PANEL,
+	OPEN_INVENTORY_PANEL
 };
 //image sets
 enum {
 	GUI,
 	WORLD,
 	MOVING,
-	CONTROL_PANEL
+	CONTROL_PANEL,
+	INVENTORY_PANEL
 };
 //layers zindex
 enum {

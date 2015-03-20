@@ -14,9 +14,18 @@ void Game::run() {
 	Sparser.init();
 
 	Panel *ControlPanel = new Panel(SCREEN_WIDTH*0.26, SCREEN_HEIGHT, 0, 0);
+	ControlPanel->addButton(135, 890, 20, 33, new Image("assets/sprites-ui.png", 135, 890, 20, 33, 437, 222, 3, 0, 0, 0, true), PLAY);
+	ControlPanel->addButton(75, 890, 33, 33, new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true), BACK);
+	ControlPanel->addButton(225, 890, 33, 33, new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true), FORWARD);
+	ControlPanel->addButton(175, 890, 22, 33, new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true), PAUSE);
 	m_Images.push_back(new ImageSet(ControlPanel->getImages(), CONTROLS_LAYER, CONTROL_PANEL));
+
+	Panel *InventoryPanel = new Panel(SCREEN_WIDTH*0.26, 200, SCREEN_WIDTH - SCREEN_WIDTH*0.27, 0);
+	m_Images.push_back(new ImageSet(InventoryPanel->getImages(), CONTROLS_LAYER, INVENTORY_PANEL));
 	m_BtnControlPanel = new Button(0, 0, 50, 50, new Image("assets/controlPanel.png", 0, 0, 50, 50, 0, 0, 1, 0, 1, 1, true), OPEN_CONTROL_PANEL);
 	m_Images.push_back(new ImageSet(m_BtnControlPanel->getImage(), HIDDEN, OPEN_CONTROL_PANEL));
+
+
 
 
 	//create world
@@ -92,7 +101,7 @@ void Game::run() {
 				//close panel
 				case CLOSE:
 					for (int i = 0; i < m_Images.size(); i++) {
-						if (m_Images[i]->getIdentifier() == CONTROL_PANEL) {
+						if (m_Images[i]->getIdentifier() == CONTROL_PANEL || m_Images[i]->getIdentifier() == INVENTORY_PANEL) {
 							m_Images[i]->hide();
 						}
 						else if (m_Images[i]->getIdentifier() == OPEN_CONTROL_PANEL) {

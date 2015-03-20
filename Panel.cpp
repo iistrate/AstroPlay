@@ -19,7 +19,7 @@ Panel::Panel(int w, int h, int x, int y): m_visible(true) {
 	m_panelx = x;
 	m_panely = y;
 	//custom images for left panel
-	for (int i = starting_y; i <= ending_y; i++) {
+	for (int i = starting_y; i < ending_y; i++) {
 		for (int j = starting_x; j <= ending_x; j++) {
 			//bordered left
 			if (j == starting_x) {
@@ -81,16 +81,8 @@ Panel::Panel(int w, int h, int x, int y): m_visible(true) {
 		}
 	}
 	//add close btn
-	addButton(w - 9, 45, 9, 8, new Image("assets/sprites-gui.png", w - 9, 45, 9, 8, 112, 24, 5, false, 0, 0, true), CLOSE);
-	//add play btn
-	addButton(135, 890, 20, 33, new Image("assets/sprites-ui.png", 135, 890, 20, 33, 437, 222, 3, 0, 0, 0, true), PLAY);
-	//add back btn
-	addButton(75, 890, 33, 33, new Image("assets/sprites-ui.png", 75, 890, 33, 33, 320, 222, 3, 0, 0, 0, true), BACK);
-	//add forward btn
-	addButton(225, 890, 33, 33, new Image("assets/sprites-ui.png", 225, 890, 33, 33, 467, 222, 3, 0, 0, 0, true), FORWARD);
-	//add pause btn
-	addButton(175, 890, 22, 33, new Image("assets/sprites-ui.png", 175, 890, 22, 33, 399, 222, 3, 0, 0, 0, true), PAUSE);	
-
+	int closeBtnWidth = 9;
+	addButton((x + w) - closeBtnWidth, 45, closeBtnWidth, 8, new Image("assets/sprites-gui.png", (x + w) - closeBtnWidth, 45, closeBtnWidth, 8, 112, 24, 5, false, 0, 0, true), CLOSE);
 }
 //add button to panel
 void Panel::addButton(int x, int y, int w, int h, Image* btnImage, int identity) {
